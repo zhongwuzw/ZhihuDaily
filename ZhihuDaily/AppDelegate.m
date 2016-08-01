@@ -30,9 +30,9 @@
     rightVC.view.backgroundColor = [UIColor whiteColor];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:rightVC];
     
-//    SideMenuViewController *sideMenu = [[SideMenuViewController alloc] initWithContentViewController:navigationController leftMenuViewController:leftVC rightMenuViewController:nil];
+    SideMenuViewController *sideMenu = [[SideMenuViewController alloc] initWithContentViewController:navigationController menuViewController:leftVC];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-//    self.window.rootViewController = sideMenu;
+    self.window.rootViewController = sideMenu;
     [self.window makeKeyAndVisible];
 }
 
