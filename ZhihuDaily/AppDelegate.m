@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
+#import "SideMenuViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,8 +18,22 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [self configureRootVC];
     return YES;
+}
+
+- (void)configureRootVC{
+    ViewController *leftVC = [ViewController new];
+    leftVC.view.backgroundColor = [UIColor redColor];
+    UIViewController *rightVC = [UIViewController new];
+    rightVC.title = @"sss";
+    rightVC.view.backgroundColor = [UIColor whiteColor];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:rightVC];
+    
+//    SideMenuViewController *sideMenu = [[SideMenuViewController alloc] initWithContentViewController:navigationController leftMenuViewController:leftVC rightMenuViewController:nil];
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//    self.window.rootViewController = sideMenu;
+    [self.window makeKeyAndVisible];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
