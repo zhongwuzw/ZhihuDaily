@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0E006E2A1D503EE700308651 /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E6CD08B1D4F20900099D816 /* SideMenuViewController.m */; };
+		0E006E371D50892800308651 /* CircularCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E006E361D50892800308651 /* CircularCollectionView.m */; };
+		0E006E3B1D508DD600308651 /* CircularCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E006E391D508DD600308651 /* CircularCollectionViewCell.m */; };
+		0E006E3C1D508DD600308651 /* CircularCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E006E3A1D508DD600308651 /* CircularCollectionViewCell.xib */; };
+		0E006E411D50928100308651 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E006E401D50928100308651 /* TestViewController.m */; };
 		0E62D6E81D4F0A5300F61530 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E62D6E71D4F0A5300F61530 /* main.m */; };
 		0E62D6EB1D4F0A5300F61530 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E62D6EA1D4F0A5300F61530 /* AppDelegate.m */; };
 		0E62D6EE1D4F0A5300F61530 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E62D6ED1D4F0A5300F61530 /* ViewController.m */; };
@@ -38,6 +42,13 @@
 
 /* Begin PBXFileReference section */
 		0E006E2D1D503FF800308651 /* CommonMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonMacros.h; sourceTree = "<group>"; };
+		0E006E351D50892800308651 /* CircularCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularCollectionView.h; sourceTree = "<group>"; };
+		0E006E361D50892800308651 /* CircularCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularCollectionView.m; sourceTree = "<group>"; };
+		0E006E381D508DD600308651 /* CircularCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularCollectionViewCell.h; sourceTree = "<group>"; };
+		0E006E391D508DD600308651 /* CircularCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularCollectionViewCell.m; sourceTree = "<group>"; };
+		0E006E3A1D508DD600308651 /* CircularCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircularCollectionViewCell.xib; sourceTree = "<group>"; };
+		0E006E3F1D50928100308651 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		0E006E401D50928100308651 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		0E62D6E31D4F0A5300F61530 /* ZhihuDaily.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZhihuDaily.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E62D6E71D4F0A5300F61530 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0E62D6E91D4F0A5300F61530 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -91,6 +102,8 @@
 		0E006E2B1D503FC600308651 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				0E006E341D5088E500308651 /* View */,
+				0E006E331D506E4900308651 /* BaseVC */,
 				0E006E2C1D503FE600308651 /* Header */,
 			);
 			name = Utils;
@@ -102,6 +115,50 @@
 				0E006E2D1D503FF800308651 /* CommonMacros.h */,
 			);
 			name = Header;
+			sourceTree = "<group>";
+		};
+		0E006E2E1D506D1D00308651 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				0E62D6E91D4F0A5300F61530 /* AppDelegate.h */,
+				0E62D6EA1D4F0A5300F61530 /* AppDelegate.m */,
+			);
+			name = Application;
+			sourceTree = "<group>";
+		};
+		0E006E2F1D506D3C00308651 /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = SideMenu;
+			sourceTree = "<group>";
+		};
+		0E006E301D506D4C00308651 /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = HomePage;
+			sourceTree = "<group>";
+		};
+		0E006E331D506E4900308651 /* BaseVC */ = {
+			isa = PBXGroup;
+			children = (
+				0E6CD08A1D4F20900099D816 /* SideMenuViewController.h */,
+				0E6CD08B1D4F20900099D816 /* SideMenuViewController.m */,
+			);
+			name = BaseVC;
+			sourceTree = "<group>";
+		};
+		0E006E341D5088E500308651 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0E006E351D50892800308651 /* CircularCollectionView.h */,
+				0E006E361D50892800308651 /* CircularCollectionView.m */,
+				0E006E381D508DD600308651 /* CircularCollectionViewCell.h */,
+				0E006E391D508DD600308651 /* CircularCollectionViewCell.m */,
+				0E006E3A1D508DD600308651 /* CircularCollectionViewCell.xib */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		0E62D6DA1D4F0A5300F61530 = {
@@ -129,19 +186,20 @@
 		0E62D6E51D4F0A5300F61530 /* ZhihuDaily */ = {
 			isa = PBXGroup;
 			children = (
+				0E006E301D506D4C00308651 /* HomePage */,
+				0E006E2F1D506D3C00308651 /* SideMenu */,
+				0E006E2E1D506D1D00308651 /* Application */,
 				0E006E2B1D503FC600308651 /* Utils */,
-				0E62D6E91D4F0A5300F61530 /* AppDelegate.h */,
-				0E62D6EA1D4F0A5300F61530 /* AppDelegate.m */,
 				0E62D6EC1D4F0A5300F61530 /* ViewController.h */,
 				0E62D6ED1D4F0A5300F61530 /* ViewController.m */,
 				0E62D6EF1D4F0A5300F61530 /* Main.storyboard */,
 				0E62D6F21D4F0A5300F61530 /* Assets.xcassets */,
 				0E62D6F41D4F0A5300F61530 /* LaunchScreen.storyboard */,
 				0E62D6F71D4F0A5300F61530 /* Info.plist */,
-				0E62D6E61D4F0A5300F61530 /* Supporting Files */,
-				0E6CD08A1D4F20900099D816 /* SideMenuViewController.h */,
-				0E6CD08B1D4F20900099D816 /* SideMenuViewController.m */,
 				0E6CD0971D4F507A0099D816 /* ZhihuDaily.pch */,
+				0E62D6E61D4F0A5300F61530 /* Supporting Files */,
+				0E006E3F1D50928100308651 /* TestViewController.h */,
+				0E006E401D50928100308651 /* TestViewController.m */,
 			);
 			path = ZhihuDaily;
 			sourceTree = "<group>";
@@ -299,6 +357,7 @@
 				0E62D6F61D4F0A5300F61530 /* LaunchScreen.storyboard in Resources */,
 				0E62D6F31D4F0A5300F61530 /* Assets.xcassets in Resources */,
 				0E62D6F11D4F0A5300F61530 /* Main.storyboard in Resources */,
+				0E006E3C1D508DD600308651 /* CircularCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,9 +431,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E006E2A1D503EE700308651 /* SideMenuViewController.m in Sources */,
+				0E006E371D50892800308651 /* CircularCollectionView.m in Sources */,
+				0E006E411D50928100308651 /* TestViewController.m in Sources */,
 				0E62D6EE1D4F0A5300F61530 /* ViewController.m in Sources */,
 				0E62D6EB1D4F0A5300F61530 /* AppDelegate.m in Sources */,
 				0E62D6E81D4F0A5300F61530 /* main.m in Sources */,
+				0E006E3B1D508DD600308651 /* CircularCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
