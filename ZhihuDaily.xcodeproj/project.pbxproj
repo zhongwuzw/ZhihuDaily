@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E006E2A1D503EE700308651 /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E6CD08B1D4F20900099D816 /* SideMenuViewController.m */; };
 		0E62D6E81D4F0A5300F61530 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E62D6E71D4F0A5300F61530 /* main.m */; };
 		0E62D6EB1D4F0A5300F61530 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E62D6EA1D4F0A5300F61530 /* AppDelegate.m */; };
 		0E62D6EE1D4F0A5300F61530 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E62D6ED1D4F0A5300F61530 /* ViewController.m */; };
@@ -15,7 +16,6 @@
 		0E62D6F61D4F0A5300F61530 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E62D6F41D4F0A5300F61530 /* LaunchScreen.storyboard */; };
 		0E62D7011D4F0A5300F61530 /* ZhihuDailyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E62D7001D4F0A5300F61530 /* ZhihuDailyTests.m */; };
 		0E62D70C1D4F0A5300F61530 /* ZhihuDailyUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E62D70B1D4F0A5300F61530 /* ZhihuDailyUITests.m */; };
-		0E6CD08C1D4F20900099D816 /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E6CD08B1D4F20900099D816 /* SideMenuViewController.m */; };
 		A7BF8EB070CB32E760C5DAFE /* libPods-ZhihuDaily.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F2A2427616E77FCCA1CCA9 /* libPods-ZhihuDaily.a */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E006E2D1D503FF800308651 /* CommonMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonMacros.h; sourceTree = "<group>"; };
 		0E62D6E31D4F0A5300F61530 /* ZhihuDaily.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZhihuDaily.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E62D6E71D4F0A5300F61530 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0E62D6E91D4F0A5300F61530 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -87,6 +88,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E006E2B1D503FC600308651 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0E006E2C1D503FE600308651 /* Header */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		0E006E2C1D503FE600308651 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				0E006E2D1D503FF800308651 /* CommonMacros.h */,
+			);
+			name = Header;
+			sourceTree = "<group>";
+		};
 		0E62D6DA1D4F0A5300F61530 = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +129,7 @@
 		0E62D6E51D4F0A5300F61530 /* ZhihuDaily */ = {
 			isa = PBXGroup;
 			children = (
+				0E006E2B1D503FC600308651 /* Utils */,
 				0E62D6E91D4F0A5300F61530 /* AppDelegate.h */,
 				0E62D6EA1D4F0A5300F61530 /* AppDelegate.m */,
 				0E62D6EC1D4F0A5300F61530 /* ViewController.h */,
@@ -353,7 +371,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E6CD08C1D4F20900099D816 /* SideMenuViewController.m in Sources */,
+				0E006E2A1D503EE700308651 /* SideMenuViewController.m in Sources */,
 				0E62D6EE1D4F0A5300F61530 /* ViewController.m in Sources */,
 				0E62D6EB1D4F0A5300F61530 /* AppDelegate.m in Sources */,
 				0E62D6E81D4F0A5300F61530 /* main.m in Sources */,

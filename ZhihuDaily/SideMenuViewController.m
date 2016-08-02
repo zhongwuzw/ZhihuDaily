@@ -13,11 +13,12 @@
 @property (strong, nonatomic) UIButton *contentButton;
 @property (strong, nonatomic) UIView *menuViewContainer;
 @property (strong, nonatomic) UIView *contentViewContainer;
-@property (assign, nonatomic) CGFloat sumOffset;
 
 @end
 
 @implementation SideMenuViewController
+
+#pragma mark - Init方法
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -42,8 +43,6 @@
     _animationDuration = 0.35f;
     
     _panMinimumOpenThreshold = 60.0;
-    
-    _sumOffset = 0.f;
 }
 
 - (void)viewDidLoad {
@@ -82,12 +81,52 @@
     }
 }
 
-- (void)addGesture{
-    self.view.multipleTouchEnabled = NO;
-    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
-    panGestureRecognizer.delegate = self;
-    [self.view addGestureRecognizer:panGestureRecognizer];
+#pragma mark - ContentVC Set方法
+
+- (void)setContentViewController:(UIViewController *)contentViewController{
+    if (!_contentViewController) {
+        _contentViewController = contentViewController;
+        return;
+    }
+    
+    [self hideViewController:_contentViewController];
+    _contentViewController = contentViewController;
+    
+    [self addContainerConstraints:_contentViewController container:self.contentViewContainer];
 }
+
+- (void)setContentViewController:(UIViewController *)contentViewController animated:(BOOL)animated{
+    if (_contentViewController == contentViewController) {
+        return;
+    }
+    
+    if (!animated) {
+        [self setContentViewController:contentViewController];
+    }
+    else{
+        [self addChildViewController:contentViewController];
+        
+        UIView *view = contentViewController.view;
+        view.alpha = 0;
+        [self.contentViewContainer addSubview:view];
+        
+        [view setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [self.contentViewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[view]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(view)]];
+        [self.contentViewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[view]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(view)]];
+        
+        [UIView animateWithDuration:self.animationDuration animations:^{
+            view.alpha = 1;
+        }completion:^(BOOL finished){
+            [self hideViewController:self.contentViewController];
+            [contentViewController didMoveToParentViewController:self];
+            _contentViewController = contentViewController;
+            
+            [self statusBarNeedsAppearanceUpdate];
+        }];
+    }
+}
+
+#pragma mark - Helper方法
 
 - (void)addContainerConstraints:(UIViewController *)controller container:(UIView *)container{
     [self addChildViewController:controller];
@@ -101,41 +140,22 @@
     [controller didMoveToParentViewController:self];
 }
 
-- (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer{
-    CGPoint point = [recognizer translationInView:self.view];
-    
-    if (recognizer.state == UIGestureRecognizerStateBegan) {
-        [self addContentButton];
-        [self.view.window endEditing:YES];
+- (void)showMenuViewController{
+    if (!self.menuViewController) {
+        return;
     }
+    [self.menuViewController beginAppearanceTransition:YES animated:YES];
+    [self.view.window endEditing:YES];
+    [self addContentButton];
     
-    if (recognizer.state == UIGestureRecognizerStateChanged) {
-        NSLog(@"content.bounds is %lf",self.contentViewContainer.frame.origin.x);
-        if (_sumOffset == CGRectGetWidth(self.view.bounds)/2 && point.x > 0) {
-            return;
-        }
-        
-        if (_sumOffset < 0) {
-            self.contentViewContainer.transform = CGAffineTransformIdentity;
-            self.menuViewContainer.transform = CGAffineTransformIdentity;
-            _sumOffset = 0;
-            return;
-        }
-        
-        if (_sumOffset + point.x > CGRectGetWidth(self.view.bounds)/2) {
-            point.x = CGRectGetWidth(self.view.bounds)/2 - _sumOffset;
-        }
-        _sumOffset += point.x;
-        
-        self.contentViewContainer.transform = CGAffineTransformTranslate(self.contentViewContainer.transform, point.x, 0);
+    [UIView animateWithDuration:self.animationDuration animations:^{
+        self.contentViewContainer.transform = CGAffineTransformMakeTranslation(CGRectGetMidX(self.view.bounds), 0);
         self.menuViewContainer.transform = self.contentViewContainer.transform;
-        
-        [self statusBarNeedsAppearanceUpdate];
-    }
+    }completion:^(BOOL finished){
+        [self.menuViewController endAppearanceTransition];
+    }];
     
-    if (recognizer.state == UIGestureRecognizerStateEnded) {
-        
-    }
+    [self statusBarNeedsAppearanceUpdate];
 }
 
 - (void)statusBarNeedsAppearanceUpdate
@@ -159,7 +179,113 @@
     [self.contentViewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_contentButton]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_contentButton)]];
 }
 
+#pragma mark - Pan Gesture方法
+
+- (void)addGesture{
+    self.view.multipleTouchEnabled = NO;
+    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognized:)];
+    panGestureRecognizer.delegate = self;
+    [self.view addGestureRecognizer:panGestureRecognizer];
+}
+
+- (void)panGestureRecognized:(UIPanGestureRecognizer *)recognizer{
+    CGPoint point = [recognizer translationInView:self.view];
+    
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        [self addContentButton];
+        [self.view.window endEditing:YES];
+    }
+    
+    if (recognizer.state == UIGestureRecognizerStateChanged) {
+        if (self.contentViewContainer.frame.origin.x == CGRectGetWidth(self.view.bounds)/2 && point.x > 0) {
+            return;
+        }
+        
+        if ((self.contentViewContainer.frame.origin.x <= 0 && point.x < 0) || self.contentViewContainer.frame.origin.x + point.x < 0) {
+            self.contentViewContainer.transform = CGAffineTransformIdentity;
+            self.menuViewContainer.transform = CGAffineTransformIdentity;
+            return;
+        }
+        
+        if (self.contentViewContainer.frame.origin.x + point.x > CGRectGetWidth(self.view.bounds)/2) {
+            point.x = CGRectGetWidth(self.view.bounds)/2 - self.contentViewContainer.frame.origin.x;
+        }
+        [recognizer setTranslation:CGPointZero inView:self.view];
+        
+        self.contentViewContainer.transform = CGAffineTransformTranslate(self.contentViewContainer.transform, point.x, 0);
+        self.menuViewContainer.transform = self.contentViewContainer.transform;
+        
+        [self statusBarNeedsAppearanceUpdate];
+    }
+    
+    if (recognizer.state == UIGestureRecognizerStateEnded) {
+        if (self.panMinimumOpenThreshold > 0 && (self.contentViewContainer.frame.origin.x > 0 && self.contentViewContainer.frame.origin.x < self.panMinimumOpenThreshold)){
+            [self hideMenuViewController];
+        }
+        else if (self.contentViewContainer.frame.origin.x == 0) {
+            [self hideMenuViewControllerAnimated:NO];
+        }
+        else{
+            if ([recognizer velocityInView:self.view].x > 0) {
+                [self showMenuViewController];
+            }
+            else
+                [self hideMenuViewController];
+        }
+    }
+}
+
+#pragma mark - Hide方法
+
 - (void)hideMenuViewController{
+    [self hideMenuViewControllerAnimated:YES];
+}
+
+- (void)hideMenuViewControllerAnimated:(BOOL)animated{
+    [self.menuViewController beginAppearanceTransition:NO animated:animated];
+    
+    [self.contentButton removeFromSuperview];
+    
+    WEAK_REF(self)
+    
+    void (^animationBlock)(void) = ^{
+        STRONG_REF(self_)
+        if (!self__) {
+            return ;
+        }
+        self__.contentViewContainer.transform = CGAffineTransformIdentity;
+        self__.menuViewContainer.transform = CGAffineTransformIdentity;
+    };
+    
+    void (^completionBlock)(void) = ^{
+        STRONG_REF(self_)
+        if (!self__) {
+            return ;
+        }
+        [self__.menuViewController endAppearanceTransition];
+    };
+    
+    if (animated) {
+        [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+        [UIView animateWithDuration:self.animationDuration animations:^{
+            animationBlock();
+        }completion:^(BOOL finished){
+            [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+            completionBlock();
+        }];
+    } else {
+        animationBlock();
+        completionBlock();
+    }
+    
+    [self statusBarNeedsAppearanceUpdate];
+}
+
+- (void)hideViewController:(UIViewController *)viewController
+{
+    [viewController willMoveToParentViewController:nil];
+    [viewController.view removeFromSuperview];
+    [viewController removeFromParentViewController];
 }
 
 - (void)didReceiveMemoryWarning {
