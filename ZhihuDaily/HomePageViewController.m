@@ -30,6 +30,7 @@ static const CGFloat TestViewControllerHeadScrollHeight = 240.0f;
     
     [self initTableView];
     [self initCollectionView];
+    [self loadData];
 }
 
 - (void)initTableView{
@@ -63,6 +64,15 @@ static const CGFloat TestViewControllerHeadScrollHeight = 240.0f;
     [self.collectionView reloadData];
     
     [self.tableView addSubview:self.collectionView];
+}
+
+- (void)loadData{
+    WEAK_REF(self)
+    
+    [[HTTPClient sharedInstance] getLatestNewsWithSuccess:^(NSURLSessionDataTask *task, BaseResponseModel *model){
+        
+    }fail:^(NSURLSessionDataTask *task,BaseResponseModel *model){
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

@@ -9,6 +9,7 @@
 #import "HTTPClient.h"
 #import "HTTPURLConfiguration.h"
 #import "HTTPManager.h"
+#import "LatestNewsResponseModel.h"
 
 @interface HTTPClient ()
 
@@ -32,7 +33,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HTTPClient)
                                               fail:(HttpClientFailureBlock)fail{
     NSString *relativePath = [[HTTPURLConfiguration sharedInstance] latestNews];
 
-    return nil;
+    return [_httpManager GET:relativePath parameters:nil modelClass:[LatestNewsResponseModel class] success:success failure:fail];
 }
 
 @end

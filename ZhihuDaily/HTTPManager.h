@@ -14,7 +14,7 @@
 - (NSURLSessionDataTask *)GET:(NSString *)URLPath
                      parameters:(NSDictionary *)parameters
                      modelClass:(Class)modelClass
-                        success:(void (^)(NSURLSessionDataTask *operation, BaseResponseModel *model))success
-                        failure:(void (^)(NSURLSessionDataTask *operation, BaseResponseModel *model))failure;
+                        success:(void (^)(NSURLSessionDataTask *task, BaseResponseModel *model))success
+                        failure:(void (^)(NSURLSessionDataTask *task, BaseResponseModel *model))failure;
 
 @end
