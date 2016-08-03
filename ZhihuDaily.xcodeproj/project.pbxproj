@@ -12,6 +12,7 @@
 		0E006E3B1D508DD600308651 /* CircularCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E006E391D508DD600308651 /* CircularCollectionViewCell.m */; };
 		0E006E3C1D508DD600308651 /* CircularCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E006E3A1D508DD600308651 /* CircularCollectionViewCell.xib */; };
 		0E006E411D50928100308651 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E006E401D50928100308651 /* TestViewController.m */; };
+		0E1307981D51C4EE000C90A2 /* UINavigationBar+BackgroundColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E1307971D51C4EE000C90A2 /* UINavigationBar+BackgroundColor.m */; };
 		0E62D6E81D4F0A5300F61530 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E62D6E71D4F0A5300F61530 /* main.m */; };
 		0E62D6EB1D4F0A5300F61530 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E62D6EA1D4F0A5300F61530 /* AppDelegate.m */; };
 		0E62D6EE1D4F0A5300F61530 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E62D6ED1D4F0A5300F61530 /* ViewController.m */; };
@@ -49,6 +50,8 @@
 		0E006E3A1D508DD600308651 /* CircularCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircularCollectionViewCell.xib; sourceTree = "<group>"; };
 		0E006E3F1D50928100308651 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		0E006E401D50928100308651 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		0E1307961D51C4EE000C90A2 /* UINavigationBar+BackgroundColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+BackgroundColor.h"; sourceTree = "<group>"; };
+		0E1307971D51C4EE000C90A2 /* UINavigationBar+BackgroundColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+BackgroundColor.m"; sourceTree = "<group>"; };
 		0E62D6E31D4F0A5300F61530 /* ZhihuDaily.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZhihuDaily.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E62D6E71D4F0A5300F61530 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0E62D6E91D4F0A5300F61530 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -102,6 +105,7 @@
 		0E006E2B1D503FC600308651 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				0E1307951D51C4BB000C90A2 /* Category */,
 				0E006E341D5088E500308651 /* View */,
 				0E006E331D506E4900308651 /* BaseVC */,
 				0E006E2C1D503FE600308651 /* Header */,
@@ -159,6 +163,15 @@
 				0E006E3A1D508DD600308651 /* CircularCollectionViewCell.xib */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		0E1307951D51C4BB000C90A2 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				0E1307961D51C4EE000C90A2 /* UINavigationBar+BackgroundColor.h */,
+				0E1307971D51C4EE000C90A2 /* UINavigationBar+BackgroundColor.m */,
+			);
+			name = Category;
 			sourceTree = "<group>";
 		};
 		0E62D6DA1D4F0A5300F61530 = {
@@ -433,6 +446,7 @@
 				0E006E2A1D503EE700308651 /* SideMenuViewController.m in Sources */,
 				0E006E371D50892800308651 /* CircularCollectionView.m in Sources */,
 				0E006E411D50928100308651 /* TestViewController.m in Sources */,
+				0E1307981D51C4EE000C90A2 /* UINavigationBar+BackgroundColor.m in Sources */,
 				0E62D6EE1D4F0A5300F61530 /* ViewController.m in Sources */,
 				0E62D6EB1D4F0A5300F61530 /* AppDelegate.m in Sources */,
 				0E62D6E81D4F0A5300F61530 /* main.m in Sources */,

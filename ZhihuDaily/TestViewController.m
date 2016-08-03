@@ -8,51 +8,92 @@
 
 #import "TestViewController.h"
 #import "CircularCollectionView.h"
+#import "UINavigationBar+BackgroundColor.h"
 
-@interface TestViewController ()
-@property (nonatomic, strong)CircularCollectionView *collectionView;
-@property (nonatomic, strong)NSLayoutConstraint *heightConstraint;
+#define NAVBAR_CHANGE_POINT 50
+
+static const CGFloat TestViewControllerHeadScrollHeight = 240.0f;
+
+@interface TestViewController ()<UITableViewDelegate,UITableViewDataSource>
+
+@property (nonatomic, strong) CircularCollectionView *collectionView;
+@property (nonatomic, strong) NSLayoutConstraint *heightConstraint;
+@property (nonatomic, strong) UITableView *tableView;
+
 @end
 
 @implementation TestViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.view.backgroundColor = [UIColor grayColor];
     
+    [self initTableView];
+    [self initCollectionView];
+}
+
+- (void)initTableView{
+    self.tableView = [UITableView new];
+    [self.view addSubview:_tableView];
+    
+    [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_tableView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_tableView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
+    
+    self.tableView.contentInset = UIEdgeInsetsMake(TestViewControllerHeadScrollHeight, 0, 0, 0);
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    
+    [self.tableView reloadData];
+
+    [self.tableView setContentOffset:CGPointMake(0, -TestViewControllerHeadScrollHeight) animated:NO];
+}
+
+- (void)initCollectionView{
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     layout.minimumInteritemSpacing = 0;
-    self.collectionView = [[CircularCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
+    
+    self.collectionView = [[CircularCollectionView alloc] initWithFrame:CGRectMake(0, -TestViewControllerHeadScrollHeight, CGRectGetWidth(self.view.bounds), TestViewControllerHeadScrollHeight) collectionViewLayout:layout];
     [self.collectionView setupDataForCollectionView];
     [self.collectionView reloadData];
     
-    [self.view addSubview:self.collectionView];
-    
-    [self.collectionView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_collectionView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_collectionView)]];
-    self.heightConstraint = [NSLayoutConstraint constraintWithItem:_collectionView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeHeight multiplier:1 constant:0];
-    [self.view addConstraint:self.heightConstraint];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_collectionView]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_collectionView)]];
-    
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-    [button setTitle:@"点我" forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(handleTouch:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
-    [button setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1 constant:-10]];
-    // Do any additional setup after loading the view.
+    [self.tableView addSubview:self.collectionView];
 }
 
-- (void)handleTouch:(UIButton *)sender{
-//    [self.collectionView setFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 100)];
-    [self.heightConstraint setConstant:-100];
-    [self.view updateConstraintsIfNeeded];
-    [self.collectionView.collectionViewLayout invalidateLayout];
-    self.collectionView.contentInset = UIEdgeInsetsZero;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 100;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    
+    cell.textLabel.text = @"haha";
+    
+    return cell;
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGFloat yOffset  = scrollView.contentOffset.y;
+    if (yOffset < - TestViewControllerHeadScrollHeight) {
+        CGRect f = self.collectionView.frame;
+        f.origin.y = yOffset;
+        f.size.height =  -yOffset;
+        self.collectionView.frame = f;
+    }
+    else{
+        if (yOffset > NAVBAR_CHANGE_POINT - TestViewControllerHeadScrollHeight) {
+            CGFloat alpha = MIN(1, 1 - ((NAVBAR_CHANGE_POINT - TestViewControllerHeadScrollHeight + 64 - yOffset) / 64));
+            [self.navigationController.navigationBar setBarBGColor:[UIColor colorWithRed:0.175f green:0.458f blue:0.831f alpha:alpha]];
+        } else {
+            [self.navigationController.navigationBar setBarBGColor:[UIColor colorWithRed:0.175f green:0.458f blue:0.831f alpha:0]];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {

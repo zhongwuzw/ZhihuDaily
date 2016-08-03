@@ -28,7 +28,6 @@
     leftVC.view.backgroundColor = [UIColor redColor];
     TestViewController *rightVC = [TestViewController new];
     rightVC.title = @"sss";
-    rightVC.view.backgroundColor = [UIColor whiteColor];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:rightVC];
     
     SideMenuViewController *sideMenu = [[SideMenuViewController alloc] initWithContentViewController:navigationController menuViewController:leftVC];

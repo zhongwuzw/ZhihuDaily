@@ -23,6 +23,7 @@
         self.pagingEnabled = YES;
         self.contentInset = UIEdgeInsetsZero;
         self.backgroundColor = [UIColor blueColor];
+        self.bounces = NO;
         [self setupDataForCollectionView];
     }
     
@@ -73,6 +74,22 @@
     return UIEdgeInsetsZero;
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    float contentOffsetWhenFullyScrolledRight = self.frame.size.width * ([self.dataArray count] -1);
+    
+    if (self.contentOffset.x == contentOffsetWhenFullyScrolledRight) {
+        NSIndexPath *newIndexPath = [NSIndexPath indexPathForItem:1 inSection:0];
+
+        [self scrollToItemAtIndexPath:newIndexPath atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
+        
+    } else if (self.contentOffset.x == 0)  {
+        NSIndexPath *newIndexPath = [NSIndexPath indexPathForItem:([self.dataArray count] -2) inSection:0];
+
+        [self scrollToItemAtIndexPath:newIndexPath atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
+        
+    }
+}
+
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollview {
     float contentOffsetWhenFullyScrolledRight = self.frame.size.width * ([self.dataArray count] -1);
     
@@ -88,6 +105,15 @@
         
     }
 }
+
+- (void)setFrame:(CGRect)frame
+{
+    if (self.frame.size.height != frame.size.width) {
+        [self.collectionViewLayout invalidateLayout];
+    }
+    [super setFrame:frame];
+}
+
 
 /*
 // Only override drawRect: if you perform custom drawing.
