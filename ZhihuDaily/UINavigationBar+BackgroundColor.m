@@ -33,10 +33,4 @@ static void *kOverlay;
     self.overlay.backgroundColor = backgroundColor;
 }
 
-- (void)removeBGColor{
-    [self setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
-    [self.overlay removeFromSuperview];
-    self.overlay = nil;
-}
-
 @end

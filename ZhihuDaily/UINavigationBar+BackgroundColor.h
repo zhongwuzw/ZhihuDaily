@@ -13,6 +13,5 @@
 @property (nonatomic, strong) UIView *overlay;
 
 - (void)setBarBGColor:(UIColor *)backgroundColor;
-- (void)removeBGColor;
 
 @end

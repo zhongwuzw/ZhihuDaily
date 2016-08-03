@@ -11,8 +11,12 @@
 		0E006E371D50892800308651 /* CircularCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E006E361D50892800308651 /* CircularCollectionView.m */; };
 		0E006E3B1D508DD600308651 /* CircularCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E006E391D508DD600308651 /* CircularCollectionViewCell.m */; };
 		0E006E3C1D508DD600308651 /* CircularCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E006E3A1D508DD600308651 /* CircularCollectionViewCell.xib */; };
-		0E006E411D50928100308651 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E006E401D50928100308651 /* TestViewController.m */; };
+		0E006E411D50928100308651 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E006E401D50928100308651 /* HomePageViewController.m */; };
 		0E1307981D51C4EE000C90A2 /* UINavigationBar+BackgroundColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E1307971D51C4EE000C90A2 /* UINavigationBar+BackgroundColor.m */; };
+		0E13079C1D51E3D1000C90A2 /* HTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E13079B1D51E3D1000C90A2 /* HTTPClient.m */; };
+		0E13079F1D51E3DD000C90A2 /* HTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E13079E1D51E3DD000C90A2 /* HTTPManager.m */; };
+		0E1307A31D51E716000C90A2 /* BaseResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E1307A21D51E716000C90A2 /* BaseResponseModel.m */; };
+		0E1307A61D51F63B000C90A2 /* HTTPURLConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E1307A51D51F63B000C90A2 /* HTTPURLConfiguration.m */; };
 		0E62D6E81D4F0A5300F61530 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E62D6E71D4F0A5300F61530 /* main.m */; };
 		0E62D6EB1D4F0A5300F61530 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E62D6EA1D4F0A5300F61530 /* AppDelegate.m */; };
 		0E62D6EE1D4F0A5300F61530 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E62D6ED1D4F0A5300F61530 /* ViewController.m */; };
@@ -48,10 +52,18 @@
 		0E006E381D508DD600308651 /* CircularCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularCollectionViewCell.h; sourceTree = "<group>"; };
 		0E006E391D508DD600308651 /* CircularCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularCollectionViewCell.m; sourceTree = "<group>"; };
 		0E006E3A1D508DD600308651 /* CircularCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircularCollectionViewCell.xib; sourceTree = "<group>"; };
-		0E006E3F1D50928100308651 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
-		0E006E401D50928100308651 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		0E006E3F1D50928100308651 /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
+		0E006E401D50928100308651 /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
 		0E1307961D51C4EE000C90A2 /* UINavigationBar+BackgroundColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+BackgroundColor.h"; sourceTree = "<group>"; };
 		0E1307971D51C4EE000C90A2 /* UINavigationBar+BackgroundColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+BackgroundColor.m"; sourceTree = "<group>"; };
+		0E13079A1D51E3D1000C90A2 /* HTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPClient.h; sourceTree = "<group>"; };
+		0E13079B1D51E3D1000C90A2 /* HTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPClient.m; sourceTree = "<group>"; };
+		0E13079D1D51E3DD000C90A2 /* HTTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPManager.h; sourceTree = "<group>"; };
+		0E13079E1D51E3DD000C90A2 /* HTTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPManager.m; sourceTree = "<group>"; };
+		0E1307A11D51E716000C90A2 /* BaseResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseResponseModel.h; sourceTree = "<group>"; };
+		0E1307A21D51E716000C90A2 /* BaseResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseResponseModel.m; sourceTree = "<group>"; };
+		0E1307A41D51F63B000C90A2 /* HTTPURLConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPURLConfiguration.h; sourceTree = "<group>"; };
+		0E1307A51D51F63B000C90A2 /* HTTPURLConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPURLConfiguration.m; sourceTree = "<group>"; };
 		0E62D6E31D4F0A5300F61530 /* ZhihuDaily.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZhihuDaily.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E62D6E71D4F0A5300F61530 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0E62D6E91D4F0A5300F61530 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -140,6 +152,8 @@
 		0E006E301D506D4C00308651 /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
+				0E006E3F1D50928100308651 /* HomePageViewController.h */,
+				0E006E401D50928100308651 /* HomePageViewController.m */,
 			);
 			name = HomePage;
 			sourceTree = "<group>";
@@ -174,6 +188,29 @@
 			name = Category;
 			sourceTree = "<group>";
 		};
+		0E1307991D51E1D7000C90A2 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				0E1307A01D51E6FD000C90A2 /* Models */,
+				0E13079A1D51E3D1000C90A2 /* HTTPClient.h */,
+				0E13079B1D51E3D1000C90A2 /* HTTPClient.m */,
+				0E13079D1D51E3DD000C90A2 /* HTTPManager.h */,
+				0E13079E1D51E3DD000C90A2 /* HTTPManager.m */,
+				0E1307A41D51F63B000C90A2 /* HTTPURLConfiguration.h */,
+				0E1307A51D51F63B000C90A2 /* HTTPURLConfiguration.m */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		0E1307A01D51E6FD000C90A2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0E1307A11D51E716000C90A2 /* BaseResponseModel.h */,
+				0E1307A21D51E716000C90A2 /* BaseResponseModel.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		0E62D6DA1D4F0A5300F61530 = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +236,7 @@
 		0E62D6E51D4F0A5300F61530 /* ZhihuDaily */ = {
 			isa = PBXGroup;
 			children = (
+				0E1307991D51E1D7000C90A2 /* Network */,
 				0E006E301D506D4C00308651 /* HomePage */,
 				0E006E2F1D506D3C00308651 /* SideMenu */,
 				0E006E2E1D506D1D00308651 /* Application */,
@@ -211,8 +249,6 @@
 				0E62D6F71D4F0A5300F61530 /* Info.plist */,
 				0E6CD0971D4F507A0099D816 /* ZhihuDaily.pch */,
 				0E62D6E61D4F0A5300F61530 /* Supporting Files */,
-				0E006E3F1D50928100308651 /* TestViewController.h */,
-				0E006E401D50928100308651 /* TestViewController.m */,
 			);
 			path = ZhihuDaily;
 			sourceTree = "<group>";
@@ -445,9 +481,13 @@
 			files = (
 				0E006E2A1D503EE700308651 /* SideMenuViewController.m in Sources */,
 				0E006E371D50892800308651 /* CircularCollectionView.m in Sources */,
-				0E006E411D50928100308651 /* TestViewController.m in Sources */,
+				0E13079C1D51E3D1000C90A2 /* HTTPClient.m in Sources */,
+				0E1307A31D51E716000C90A2 /* BaseResponseModel.m in Sources */,
+				0E006E411D50928100308651 /* HomePageViewController.m in Sources */,
 				0E1307981D51C4EE000C90A2 /* UINavigationBar+BackgroundColor.m in Sources */,
+				0E13079F1D51E3DD000C90A2 /* HTTPManager.m in Sources */,
 				0E62D6EE1D4F0A5300F61530 /* ViewController.m in Sources */,
+				0E1307A61D51F63B000C90A2 /* HTTPURLConfiguration.m in Sources */,
 				0E62D6EB1D4F0A5300F61530 /* AppDelegate.m in Sources */,
 				0E62D6E81D4F0A5300F61530 /* main.m in Sources */,
 				0E006E3B1D508DD600308651 /* CircularCollectionViewCell.m in Sources */,

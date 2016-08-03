@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "SideMenuViewController.h"
-#import "TestViewController.h"
+#import "HomePageViewController.h"
 
 @interface AppDelegate ()
 
@@ -26,7 +26,7 @@
 - (void)configureRootVC{
     ViewController *leftVC = [ViewController new];
     leftVC.view.backgroundColor = [UIColor redColor];
-    TestViewController *rightVC = [TestViewController new];
+    HomePageViewController *rightVC = [HomePageViewController new];
     rightVC.title = @"sss";
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:rightVC];
     
