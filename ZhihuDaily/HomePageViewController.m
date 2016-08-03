@@ -9,16 +9,21 @@
 #import "HomePageViewController.h"
 #import "CircularCollectionView.h"
 #import "UINavigationBar+BackgroundColor.h"
+#import "LatestNewsResponseModel.h"
+#import "NewsResponseModel.h"
+#import "TopNewsResponseModel.h"
 
 #define NAVBAR_CHANGE_POINT 50
 
-static const CGFloat TestViewControllerHeadScrollHeight = 240.0f;
+static const CGFloat TestViewControllerHeadScrollHeight = 190.0f;
 
 @interface HomePageViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) CircularCollectionView *collectionView;
 @property (nonatomic, strong) NSLayoutConstraint *heightConstraint;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *newsArray;
+@property (nonatomic, copy) NSArray *topNewsArray;
 
 @end
 
@@ -50,6 +55,8 @@ static const CGFloat TestViewControllerHeadScrollHeight = 240.0f;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     
     [self.tableView reloadData];
+    
+    self.tableView.rowHeight = 76;
 
     [self.tableView setContentOffset:CGPointMake(0, -TestViewControllerHeadScrollHeight) animated:NO];
 }
