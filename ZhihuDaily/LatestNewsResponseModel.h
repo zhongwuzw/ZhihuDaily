@@ -14,7 +14,7 @@
 @interface LatestNewsResponseModel : MTLModel <MTLJSONSerializing>
 
 @property (nonnull, copy, readonly) NSString *date;
-@property (nonatomic, copy, readonly) NSArray<NewsResponseModel *> *stories;
-@property (nonatomic, copy, readonly) NSArray<TopNewsResponseModel *> *topStories;
+@property (nonatomic, copy, readonly, nullable) NSArray<NewsResponseModel *> *stories;
+@property (nonatomic, copy, readonly, nullable) NSArray<TopNewsResponseModel *> *topStories;
 
 @end

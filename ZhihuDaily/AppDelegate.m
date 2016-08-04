@@ -20,6 +20,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self configureRootVC];
+    
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0/255.0 green:175/255.0 blue:240/255.0 alpha:1]];
+    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                           [UIColor whiteColor], NSForegroundColorAttributeName, [UIFont systemFontOfSize:17], NSFontAttributeName, nil]];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     return YES;
 }
 
@@ -27,7 +34,7 @@
     ViewController *leftVC = [ViewController new];
     leftVC.view.backgroundColor = [UIColor redColor];
     HomePageViewController *rightVC = [HomePageViewController new];
-    rightVC.title = @"sss";
+    rightVC.title = @"今日热闻";
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:rightVC];
     
     SideMenuViewController *sideMenu = [[SideMenuViewController alloc] initWithContentViewController:navigationController menuViewController:leftVC];

@@ -17,6 +17,8 @@
 		0E13079F1D51E3DD000C90A2 /* HTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E13079E1D51E3DD000C90A2 /* HTTPManager.m */; };
 		0E1307A31D51E716000C90A2 /* BaseResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E1307A21D51E716000C90A2 /* BaseResponseModel.m */; };
 		0E1307A61D51F63B000C90A2 /* HTTPURLConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E1307A51D51F63B000C90A2 /* HTTPURLConfiguration.m */; };
+		0E2EBF831D52D54500CC9B24 /* NewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2EBF821D52D54500CC9B24 /* NewsTableViewCell.m */; };
+		0E2EBF881D530A9500CC9B24 /* NavigationbarCenterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2EBF871D530A9500CC9B24 /* NavigationbarCenterView.m */; };
 		0E62D6E81D4F0A5300F61530 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E62D6E71D4F0A5300F61530 /* main.m */; };
 		0E62D6EB1D4F0A5300F61530 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E62D6EA1D4F0A5300F61530 /* AppDelegate.m */; };
 		0E62D6EE1D4F0A5300F61530 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E62D6ED1D4F0A5300F61530 /* ViewController.m */; };
@@ -67,6 +69,10 @@
 		0E1307A21D51E716000C90A2 /* BaseResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseResponseModel.m; sourceTree = "<group>"; };
 		0E1307A41D51F63B000C90A2 /* HTTPURLConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPURLConfiguration.h; sourceTree = "<group>"; };
 		0E1307A51D51F63B000C90A2 /* HTTPURLConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPURLConfiguration.m; sourceTree = "<group>"; };
+		0E2EBF811D52D54500CC9B24 /* NewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsTableViewCell.h; sourceTree = "<group>"; };
+		0E2EBF821D52D54500CC9B24 /* NewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsTableViewCell.m; sourceTree = "<group>"; };
+		0E2EBF861D530A9500CC9B24 /* NavigationbarCenterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationbarCenterView.h; sourceTree = "<group>"; };
+		0E2EBF871D530A9500CC9B24 /* NavigationbarCenterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationbarCenterView.m; sourceTree = "<group>"; };
 		0E62D6E31D4F0A5300F61530 /* ZhihuDaily.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZhihuDaily.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E62D6E71D4F0A5300F61530 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0E62D6E91D4F0A5300F61530 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -162,8 +168,8 @@
 		0E006E301D506D4C00308651 /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
-				0E006E3F1D50928100308651 /* HomePageViewController.h */,
-				0E006E401D50928100308651 /* HomePageViewController.m */,
+				0E2EBF851D52D95E00CC9B24 /* View */,
+				0E2EBF841D52D95200CC9B24 /* Controller */,
 			);
 			name = HomePage;
 			sourceTree = "<group>";
@@ -226,6 +232,26 @@
 				0EE1B9F41D523A4B000AC44B /* TopNewsResponseModel.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		0E2EBF841D52D95200CC9B24 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0E006E3F1D50928100308651 /* HomePageViewController.h */,
+				0E006E401D50928100308651 /* HomePageViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		0E2EBF851D52D95E00CC9B24 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0E2EBF811D52D54500CC9B24 /* NewsTableViewCell.h */,
+				0E2EBF821D52D54500CC9B24 /* NewsTableViewCell.m */,
+				0E2EBF861D530A9500CC9B24 /* NavigationbarCenterView.h */,
+				0E2EBF871D530A9500CC9B24 /* NavigationbarCenterView.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		0E62D6DA1D4F0A5300F61530 = {
@@ -505,11 +531,13 @@
 				0E1307981D51C4EE000C90A2 /* UINavigationBar+BackgroundColor.m in Sources */,
 				0EE1B9F21D523A2F000AC44B /* NewsResponseModel.m in Sources */,
 				0E13079F1D51E3DD000C90A2 /* HTTPManager.m in Sources */,
+				0E2EBF881D530A9500CC9B24 /* NavigationbarCenterView.m in Sources */,
 				0E62D6EE1D4F0A5300F61530 /* ViewController.m in Sources */,
 				0E1307A61D51F63B000C90A2 /* HTTPURLConfiguration.m in Sources */,
 				0E62D6EB1D4F0A5300F61530 /* AppDelegate.m in Sources */,
 				0E62D6E81D4F0A5300F61530 /* main.m in Sources */,
 				0EE1B9F51D523A4B000AC44B /* TopNewsResponseModel.m in Sources */,
+				0E2EBF831D52D54500CC9B24 /* NewsTableViewCell.m in Sources */,
 				0E006E3B1D508DD600308651 /* CircularCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

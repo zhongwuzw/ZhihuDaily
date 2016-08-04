@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class BaseResponseModel;
+
 @interface HomePageViewController : UIViewController
+
+@property (nonatomic, strong) BaseResponseModel *newsModel;
 
 @end
