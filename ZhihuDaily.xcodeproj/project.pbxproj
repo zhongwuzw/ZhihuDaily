@@ -27,6 +27,10 @@
 		0E62D6F61D4F0A5300F61530 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E62D6F41D4F0A5300F61530 /* LaunchScreen.storyboard */; };
 		0E62D7011D4F0A5300F61530 /* ZhihuDailyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E62D7001D4F0A5300F61530 /* ZhihuDailyTests.m */; };
 		0E62D70C1D4F0A5300F61530 /* ZhihuDailyUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E62D70B1D4F0A5300F61530 /* ZhihuDailyUITests.m */; };
+		0EBCDE651D5464AE008E3420 /* NavBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBCDE641D5464AE008E3420 /* NavBarView.m */; };
+		0EBCDE681D54680F008E3420 /* CircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBCDE671D54680F008E3420 /* CircleProgressView.m */; };
+		0EBCDE6D1D549A81008E3420 /* HomeNewsTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBCDE6C1D549A81008E3420 /* HomeNewsTableHeaderView.m */; };
+		0EBCDE701D549F0D008E3420 /* NSDateFormatter+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBCDE6F1D549F0D008E3420 /* NSDateFormatter+Util.m */; };
 		0EE1B9EF1D523840000AC44B /* LatestNewsResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE1B9EE1D523840000AC44B /* LatestNewsResponseModel.m */; };
 		0EE1B9F21D523A2F000AC44B /* NewsResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE1B9F11D523A2F000AC44B /* NewsResponseModel.m */; };
 		0EE1B9F51D523A4B000AC44B /* TopNewsResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE1B9F41D523A4B000AC44B /* TopNewsResponseModel.m */; };
@@ -92,6 +96,14 @@
 		0E6CD08A1D4F20900099D816 /* SideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenuViewController.h; sourceTree = "<group>"; };
 		0E6CD08B1D4F20900099D816 /* SideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuViewController.m; sourceTree = "<group>"; };
 		0E6CD0971D4F507A0099D816 /* ZhihuDaily.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZhihuDaily.pch; sourceTree = "<group>"; };
+		0EBCDE631D5464AE008E3420 /* NavBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavBarView.h; sourceTree = "<group>"; };
+		0EBCDE641D5464AE008E3420 /* NavBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavBarView.m; sourceTree = "<group>"; };
+		0EBCDE661D54680F008E3420 /* CircleProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleProgressView.h; sourceTree = "<group>"; };
+		0EBCDE671D54680F008E3420 /* CircleProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleProgressView.m; sourceTree = "<group>"; };
+		0EBCDE6B1D549A81008E3420 /* HomeNewsTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeNewsTableHeaderView.h; sourceTree = "<group>"; };
+		0EBCDE6C1D549A81008E3420 /* HomeNewsTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeNewsTableHeaderView.m; sourceTree = "<group>"; };
+		0EBCDE6E1D549F0D008E3420 /* NSDateFormatter+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Util.h"; sourceTree = "<group>"; };
+		0EBCDE6F1D549F0D008E3420 /* NSDateFormatter+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Util.m"; sourceTree = "<group>"; };
 		0EE1B9EC1D522D27000AC44B /* HTTPErrorCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTTPErrorCode.h; sourceTree = "<group>"; };
 		0EE1B9ED1D523840000AC44B /* LatestNewsResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LatestNewsResponseModel.h; sourceTree = "<group>"; };
 		0EE1B9EE1D523840000AC44B /* LatestNewsResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LatestNewsResponseModel.m; sourceTree = "<group>"; };
@@ -200,6 +212,8 @@
 			children = (
 				0E1307961D51C4EE000C90A2 /* UINavigationBar+BackgroundColor.h */,
 				0E1307971D51C4EE000C90A2 /* UINavigationBar+BackgroundColor.m */,
+				0EBCDE6E1D549F0D008E3420 /* NSDateFormatter+Util.h */,
+				0EBCDE6F1D549F0D008E3420 /* NSDateFormatter+Util.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -250,6 +264,12 @@
 				0E2EBF821D52D54500CC9B24 /* NewsTableViewCell.m */,
 				0E2EBF861D530A9500CC9B24 /* NavigationbarCenterView.h */,
 				0E2EBF871D530A9500CC9B24 /* NavigationbarCenterView.m */,
+				0EBCDE631D5464AE008E3420 /* NavBarView.h */,
+				0EBCDE641D5464AE008E3420 /* NavBarView.m */,
+				0EBCDE661D54680F008E3420 /* CircleProgressView.h */,
+				0EBCDE671D54680F008E3420 /* CircleProgressView.m */,
+				0EBCDE6B1D549A81008E3420 /* HomeNewsTableHeaderView.h */,
+				0EBCDE6C1D549A81008E3420 /* HomeNewsTableHeaderView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -524,7 +544,9 @@
 			files = (
 				0E006E2A1D503EE700308651 /* SideMenuViewController.m in Sources */,
 				0EE1B9EF1D523840000AC44B /* LatestNewsResponseModel.m in Sources */,
+				0EBCDE651D5464AE008E3420 /* NavBarView.m in Sources */,
 				0E006E371D50892800308651 /* CircularCollectionView.m in Sources */,
+				0EBCDE681D54680F008E3420 /* CircleProgressView.m in Sources */,
 				0E13079C1D51E3D1000C90A2 /* HTTPClient.m in Sources */,
 				0E1307A31D51E716000C90A2 /* BaseResponseModel.m in Sources */,
 				0E006E411D50928100308651 /* HomePageViewController.m in Sources */,
@@ -534,10 +556,12 @@
 				0E2EBF881D530A9500CC9B24 /* NavigationbarCenterView.m in Sources */,
 				0E62D6EE1D4F0A5300F61530 /* ViewController.m in Sources */,
 				0E1307A61D51F63B000C90A2 /* HTTPURLConfiguration.m in Sources */,
+				0EBCDE6D1D549A81008E3420 /* HomeNewsTableHeaderView.m in Sources */,
 				0E62D6EB1D4F0A5300F61530 /* AppDelegate.m in Sources */,
 				0E62D6E81D4F0A5300F61530 /* main.m in Sources */,
 				0EE1B9F51D523A4B000AC44B /* TopNewsResponseModel.m in Sources */,
 				0E2EBF831D52D54500CC9B24 /* NewsTableViewCell.m in Sources */,
+				0EBCDE701D549F0D008E3420 /* NSDateFormatter+Util.m in Sources */,
 				0E006E3B1D508DD600308651 /* CircularCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
