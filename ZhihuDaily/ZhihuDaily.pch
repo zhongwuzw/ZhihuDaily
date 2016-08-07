@@ -15,4 +15,6 @@
 #import "HTTPClient.h"
 #import "BaseResponseModel.h"
 
+#import "UIView+Additions.h"
+
 #endif /* ZhihuDaily_pch */

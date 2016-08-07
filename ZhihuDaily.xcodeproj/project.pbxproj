@@ -27,6 +27,7 @@
 		0E62D6F61D4F0A5300F61530 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E62D6F41D4F0A5300F61530 /* LaunchScreen.storyboard */; };
 		0E62D7011D4F0A5300F61530 /* ZhihuDailyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E62D7001D4F0A5300F61530 /* ZhihuDailyTests.m */; };
 		0E62D70C1D4F0A5300F61530 /* ZhihuDailyUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E62D70B1D4F0A5300F61530 /* ZhihuDailyUITests.m */; };
+		0EAF0C0C1D56CEE400479F54 /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EAF0C0B1D56CEE400479F54 /* UIView+Additions.m */; };
 		0EBCDE651D5464AE008E3420 /* NavBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBCDE641D5464AE008E3420 /* NavBarView.m */; };
 		0EBCDE681D54680F008E3420 /* CircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBCDE671D54680F008E3420 /* CircleProgressView.m */; };
 		0EBCDE6D1D549A81008E3420 /* HomeNewsTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBCDE6C1D549A81008E3420 /* HomeNewsTableHeaderView.m */; };
@@ -96,6 +97,8 @@
 		0E6CD08A1D4F20900099D816 /* SideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenuViewController.h; sourceTree = "<group>"; };
 		0E6CD08B1D4F20900099D816 /* SideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuViewController.m; sourceTree = "<group>"; };
 		0E6CD0971D4F507A0099D816 /* ZhihuDaily.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZhihuDaily.pch; sourceTree = "<group>"; };
+		0EAF0C0A1D56CEE400479F54 /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Additions.h"; sourceTree = "<group>"; };
+		0EAF0C0B1D56CEE400479F54 /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Additions.m"; sourceTree = "<group>"; };
 		0EBCDE631D5464AE008E3420 /* NavBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavBarView.h; sourceTree = "<group>"; };
 		0EBCDE641D5464AE008E3420 /* NavBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavBarView.m; sourceTree = "<group>"; };
 		0EBCDE661D54680F008E3420 /* CircleProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleProgressView.h; sourceTree = "<group>"; };
@@ -210,6 +213,8 @@
 		0E1307951D51C4BB000C90A2 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				0EAF0C0A1D56CEE400479F54 /* UIView+Additions.h */,
+				0EAF0C0B1D56CEE400479F54 /* UIView+Additions.m */,
 				0E1307961D51C4EE000C90A2 /* UINavigationBar+BackgroundColor.h */,
 				0E1307971D51C4EE000C90A2 /* UINavigationBar+BackgroundColor.m */,
 				0EBCDE6E1D549F0D008E3420 /* NSDateFormatter+Util.h */,
@@ -552,6 +557,7 @@
 				0E006E411D50928100308651 /* HomePageViewController.m in Sources */,
 				0E1307981D51C4EE000C90A2 /* UINavigationBar+BackgroundColor.m in Sources */,
 				0EE1B9F21D523A2F000AC44B /* NewsResponseModel.m in Sources */,
+				0EAF0C0C1D56CEE400479F54 /* UIView+Additions.m in Sources */,
 				0E13079F1D51E3DD000C90A2 /* HTTPManager.m in Sources */,
 				0E2EBF881D530A9500CC9B24 /* NavigationbarCenterView.m in Sources */,
 				0E62D6EE1D4F0A5300F61530 /* ViewController.m in Sources */,

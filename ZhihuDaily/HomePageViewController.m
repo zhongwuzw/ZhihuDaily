@@ -17,6 +17,9 @@
 #import "HomeNewsTableHeaderView.h"
 
 #define NAVBAR_CHANGE_POINT 50
+#define TABLE_HEADER_VIEW_HEIGHT 34
+#define TABLE_VIEW_CELL_HEIGHT 82
+
 #define REUSE_TABLE_VIEW_CELL @"REUSE_TABLE_VIEW_CELL"
 #define REUSE_TABLE_Header_VIEW_CELL @"REUSE_TABLE_Header_VIEW_CELL"
 
@@ -38,7 +41,7 @@ static const CGFloat TestViewControllerHeadScrollHeight = 190.0f;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
-//    [self.navigationController.navigationBar setBarBGColor:[UIColor colorWithRed:0.175f green:0.458f blue:0.831f alpha:0]];
+
     [self.navigationController setNavigationBarHidden:YES];
     [self setNeedsStatusBarAppearanceUpdate];
     
@@ -46,7 +49,6 @@ static const CGFloat TestViewControllerHeadScrollHeight = 190.0f;
     [self initTableView];
     [self initCollectionView];
     [self loadData];
-    
     
     self.navBarView = [NavBarView new];
     [_navBarView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -69,7 +71,6 @@ static const CGFloat TestViewControllerHeadScrollHeight = 190.0f;
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_tableView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-16-[_tableView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
     
-//    self.tableView.contentInset = UIEdgeInsetsMake(TestViewControllerHeadScrollHeight, 0, 0, 0);
     self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.tableView.bounds), TestViewControllerHeadScrollHeight)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -79,11 +80,7 @@ static const CGFloat TestViewControllerHeadScrollHeight = 190.0f;
     [self.tableView registerClass:[NewsTableViewCell class] forCellReuseIdentifier:REUSE_TABLE_VIEW_CELL];
     [self.tableView registerClass:[HomeNewsTableHeaderView class] forHeaderFooterViewReuseIdentifier:REUSE_TABLE_Header_VIEW_CELL];
     
-//    self.tableView.rowHeight = 82;
-    self.tableView.rowHeight = 100;
-    self.tableView.sectionHeaderHeight = 34;
-
-//    [self.tableView setContentOffset:CGPointMake(0, -TestViewControllerHeadScrollHeight) animated:NO];
+    self.tableView.rowHeight = TABLE_VIEW_CELL_HEIGHT;
     
     self.newsArray = [NSMutableArray arrayWithCapacity:8];
 }
@@ -93,7 +90,7 @@ static const CGFloat TestViewControllerHeadScrollHeight = 190.0f;
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     layout.minimumInteritemSpacing = 0;
     
-    self.collectionView = [[CircularCollectionView alloc] initWithFrame:CGRectMake(0, -16, CGRectGetWidth(self.view.bounds), TestViewControllerHeadScrollHeight) collectionViewLayout:layout];
+    self.collectionView = [[CircularCollectionView alloc] initWithFrame:CGRectMake(0, -16, CGRectGetWidth(self.view.bounds), TestViewControllerHeadScrollHeight + 16) collectionViewLayout:layout];
     [self.collectionView setupDataForCollectionView];
     [self.collectionView reloadData];
     
@@ -130,6 +127,14 @@ static const CGFloat TestViewControllerHeadScrollHeight = 190.0f;
     return view;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == 0) {
+        return CGFLOAT_MIN;
+//        return 0.1;
+    }
+    return TABLE_HEADER_VIEW_HEIGHT;
+}
+
 - (void)tableView:(UITableView *)tableView didEndDisplayingHeaderView:(UIView *)view forSection:(NSInteger)section{
     if (section == 0) {
         [_navBarView.backgroundHeightConstraint setConstant:20];
@@ -137,13 +142,14 @@ static const CGFloat TestViewControllerHeadScrollHeight = 190.0f;
     }
 }
 
-#pragma mark - UITableViewDataSource Method
-
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section{
-    if (section == 1) {
+    if (section == 0) {
         [_navBarView.backgroundHeightConstraint setConstant:50];
+        [_navBarView setTitleLabelHidden:NO];
     }
 }
+
+#pragma mark - UITableViewDataSource Method
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if (self.newsArray.count > 0) {
@@ -153,17 +159,10 @@ static const CGFloat TestViewControllerHeadScrollHeight = 190.0f;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section == 0) {
-        return 1;
-    }
     return [self.newsArray count] - 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
-        NewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:REUSE_TABLE_VIEW_CELL];
-        return cell;
-    }
     NewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:REUSE_TABLE_VIEW_CELL];
     
     NewsResponseModel *model = self.newsArray[indexPath.row];
