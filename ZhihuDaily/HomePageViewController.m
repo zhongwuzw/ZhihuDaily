@@ -7,7 +7,7 @@
 //
 
 #import "HomePageViewController.h"
-#import "CircularCollectionView.h"
+#import "HomeTopNewsCircularView.h"
 #import "UINavigationBar+BackgroundColor.h"
 #import "LatestNewsResponseModel.h"
 #import "NewsResponseModel.h"
@@ -23,11 +23,11 @@
 #define REUSE_TABLE_VIEW_CELL @"REUSE_TABLE_VIEW_CELL"
 #define REUSE_TABLE_Header_VIEW_CELL @"REUSE_TABLE_Header_VIEW_CELL"
 
-static const CGFloat TestViewControllerHeadScrollHeight = 190.0f;
+static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
 
 @interface HomePageViewController ()<UITableViewDelegate,UITableViewDataSource>
 
-@property (nonatomic, strong) CircularCollectionView *collectionView;
+@property (nonatomic, strong) HomeTopNewsCircularView *circularView;
 @property (nonatomic, strong) NSLayoutConstraint *heightConstraint;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray<NewsResponseModel *> *newsArray;
@@ -47,7 +47,7 @@ static const CGFloat TestViewControllerHeadScrollHeight = 190.0f;
     
     
     [self initTableView];
-    [self initCollectionView];
+    [self initCircularView];
     [self loadData];
     
     self.navBarView = [NavBarView new];
@@ -85,16 +85,11 @@ static const CGFloat TestViewControllerHeadScrollHeight = 190.0f;
     self.newsArray = [NSMutableArray arrayWithCapacity:8];
 }
 
-- (void)initCollectionView{
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    layout.minimumInteritemSpacing = 0;
+- (void)initCircularView{
     
-    self.collectionView = [[CircularCollectionView alloc] initWithFrame:CGRectMake(0, -16, CGRectGetWidth(self.view.bounds), TestViewControllerHeadScrollHeight + 16) collectionViewLayout:layout];
-    [self.collectionView setupDataForCollectionView];
-    [self.collectionView reloadData];
+    self.circularView = [[HomeTopNewsCircularView alloc] initWithFrame:CGRectMake(0, -16, CGRectGetWidth(self.view.bounds), TestViewControllerHeadScrollHeight + 16)];
     
-    [self.tableView addSubview:self.collectionView];
+    [self.tableView addSubview:self.circularView];
     [self.tableView setClipsToBounds:NO];
 }
 
@@ -106,6 +101,10 @@ static const CGFloat TestViewControllerHeadScrollHeight = 190.0f;
         if (self__) {
             if ([model isKindOfClass:[LatestNewsResponseModel class]]) {
                 [self__.newsArray addObjectsFromArray:((LatestNewsResponseModel *)model).stories];
+                [self__.circularView setupDataForCollectionViewWithArray:((LatestNewsResponseModel *)model).topStories];
+                self__.circularView.TapActionBlock = ^(MTLModel <MTLJSONSerializing> * indexModel){
+                    NSLog(@"click model is %@",indexModel);
+                };
                 [self__.tableView reloadData];
             }
         }
@@ -177,10 +176,10 @@ static const CGFloat TestViewControllerHeadScrollHeight = 190.0f;
     if (yOffset <= 0) {
 //        CGFloat progress = -yOffset/50;
 //        [_progressView updateProgress:progress];
-        CGRect f = self.collectionView.frame;
-        f.origin.y += yOffset;
-        f.size.height -=  yOffset;
-        self.collectionView.frame = f;
+        CGRect f = self.circularView.frame;
+        f.origin.y = -16 + yOffset;
+        f.size.height = TestViewControllerHeadScrollHeight + 16 - yOffset;
+        self.circularView.frame = f;
     }
     else{
         if (yOffset > NAVBAR_CHANGE_POINT) {

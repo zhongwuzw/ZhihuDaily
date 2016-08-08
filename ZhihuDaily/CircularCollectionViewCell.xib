@@ -19,7 +19,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Home_Image_Mask" translatesAutoresizingMaskIntoConstraints="NO" id="rR9-PU-vKI">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rR9-PU-vKI">
                         <rect key="frame" x="0.0" y="0.0" width="328" height="133"/>
                     </imageView>
                 </subviews>
@@ -42,12 +42,10 @@
                 </mask>
             </variation>
             <connections>
+                <outlet property="imageView" destination="rR9-PU-vKI" id="7L0-Qv-t7p"/>
                 <outlet property="textLabel" destination="WAe-5d-uCE" id="Mmd-9A-PCN"/>
             </connections>
             <point key="canvasLocation" x="276" y="245.5"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="Home_Image_Mask" width="320" height="150"/>
-    </resources>
 </document>

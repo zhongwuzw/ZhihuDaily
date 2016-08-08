@@ -50,7 +50,7 @@
     [_titleLabel setTextColor:[UIColor whiteColor]];
     [_titleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_titleLabel setFont:[UIFont systemFontOfSize:18]];
-    [_titleLabel setText:@"dadasd"];
+    [_titleLabel setText:@"今日热点"];
     
     [self addSubview:_titleLabel];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:_titleLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];

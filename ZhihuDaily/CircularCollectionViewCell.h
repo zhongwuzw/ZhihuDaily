@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@class MTLModel;
+@protocol MTLJSONSerializing;
 
 @interface CircularCollectionViewCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) MTLModel<MTLJSONSerializing> *model;
 
 @end
