@@ -55,6 +55,21 @@
     [self addSubview:_titleLabel];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:_titleLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:_titleLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:_leftButton attribute:NSLayoutAttributeBottom multiplier:1 constant:0]];
+    
+    self.progressView = [CircleProgressView new];
+    [self addSubview:_progressView];
+    [_progressView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_progressView(20)]-3-[_titleLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_progressView,_titleLabel)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[_progressView(20)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_progressView)]];
+    
+    self.activityView = [UIActivityIndicatorView new];
+    [self addSubview:_activityView];
+    
+    [_activityView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_activityView(20)]-3-[_titleLabel]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_activityView,_titleLabel)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[_activityView(20)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_activityView)]];
 }
 
 - (void)setBackgroundViewColor:(UIColor *)color{
@@ -63,6 +78,27 @@
 
 - (void)setTitleLabelHidden:(BOOL)hidden{
     _titleLabel.hidden = hidden;
+}
+
+- (void)updateProgress:(CGFloat)progress{
+    if (_activityView.isAnimating) {
+        return;
+    }
+    [_progressView setHidden:NO];
+    [_progressView updateProgress:progress];
+}
+
+- (void)startActivityIndicator{
+    [_progressView setHidden:YES];
+    [_activityView startAnimating];
+}
+
+- (void)stopActivityIndicator{
+    [_activityView stopAnimating];
+}
+
+- (BOOL)isActivityIndicatorAnimating{
+    return _activityView.isAnimating;
 }
 
 @end

@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @class BaseResponseModel;
+@class SideMenuViewController;
 
 @interface HomePageViewController : UIViewController
 
 @property (nonatomic, strong) BaseResponseModel *newsModel;
+@property (nonatomic, weak) SideMenuViewController *sideMenuController;
 
 @end

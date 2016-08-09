@@ -10,6 +10,7 @@
 #import "ViewController.h"
 #import "SideMenuViewController.h"
 #import "HomePageViewController.h"
+#import "LeftMenuViewController.h"
 
 @interface AppDelegate ()
 
@@ -30,13 +31,12 @@
 }
 
 - (void)configureRootVC{
-    ViewController *leftVC = [ViewController new];
-    leftVC.view.backgroundColor = [UIColor redColor];
+    LeftMenuViewController *leftVC = [LeftMenuViewController new];
     HomePageViewController *rightVC = [HomePageViewController new];
-    rightVC.title = @"今日热闻";
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:rightVC];
     
     SideMenuViewController *sideMenu = [[SideMenuViewController alloc] initWithContentViewController:navigationController menuViewController:leftVC];
+    rightVC.sideMenuController = sideMenu;
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = sideMenu;
     [self.window makeKeyAndVisible];

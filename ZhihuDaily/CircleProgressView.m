@@ -79,6 +79,7 @@
     }
     else
         _backgroundCircleView.hidden = YES;
+    
     progress = MIN(progress, 1);
     UIBezierPath *path = [UIBezierPath bezierPath];
     

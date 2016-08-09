@@ -15,10 +15,13 @@
 #import "NewsTableViewCell.h"
 #import "NavBarView.h"
 #import "HomeNewsTableHeaderView.h"
+#import "SideMenuViewController.h"
+#import "HomePageDataManager.h"
 
 #define NAVBAR_CHANGE_POINT 50
 #define TABLE_HEADER_VIEW_HEIGHT 34
 #define TABLE_VIEW_CELL_HEIGHT 82
+#define PROGRESS_THRESHOLD 40
 
 #define REUSE_TABLE_VIEW_CELL @"REUSE_TABLE_VIEW_CELL"
 #define REUSE_TABLE_Header_VIEW_CELL @"REUSE_TABLE_Header_VIEW_CELL"
@@ -45,7 +48,7 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
     [self.navigationController setNavigationBarHidden:YES];
     [self setNeedsStatusBarAppearanceUpdate];
     
-    
+    [HomePageDataManager sharedInstance];
     [self initTableView];
     [self initCircularView];
     [self loadData];
@@ -55,7 +58,12 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
     [self.view addSubview:_navBarView];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_navBarView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_navBarView)]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_navBarView(50)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_navBarView)]];
+    [_navBarView.leftButton addTarget:self action:@selector(menuButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
+}
+
+- (void)menuButtonClicked:(UIButton *)button{
+    [self.sideMenuController showMenuViewController];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle{
@@ -101,15 +109,29 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
         if (self__) {
             if ([model isKindOfClass:[LatestNewsResponseModel class]]) {
                 [self__.newsArray addObjectsFromArray:((LatestNewsResponseModel *)model).stories];
+                
+                NSArray *tempArray = ((LatestNewsResponseModel *)model).topStories;
+                
+                NSRange range;
+                NSArray *newArray;
+                if (self__.circularView.dataArray.count > 0) {
+                    range.location = 1;
+                    range.length = self__.circularView.dataArray.count - 2;
+                    newArray = [self__.circularView.dataArray subarrayWithRange:range];
+                }
+                
+                BOOL isEqual = [tempArray isEqualToArray:newArray];
                 [self__.circularView setupDataForCollectionViewWithArray:((LatestNewsResponseModel *)model).topStories];
+                
                 self__.circularView.TapActionBlock = ^(MTLModel <MTLJSONSerializing> * indexModel){
                     NSLog(@"click model is %@",indexModel);
                 };
                 [self__.tableView reloadData];
             }
+            [_navBarView stopActivityIndicator];
         }
     }fail:^(NSURLSessionDataTask *task,BaseResponseModel *model){
-        
+        [_navBarView stopActivityIndicator];
     }];
 }
 
@@ -170,12 +192,29 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
     return cell;
 }
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    CGFloat yoffset = scrollView.contentOffset.y;
+    
+    if (yoffset < 0 && -yoffset >= PROGRESS_THRESHOLD) {
+        if (![_navBarView isActivityIndicatorAnimating]) {
+            [_navBarView startActivityIndicator];
+            [self loadData];
+        }
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     CGFloat yOffset  = scrollView.contentOffset.y;
     if (yOffset <= 0) {
-//        CGFloat progress = -yOffset/50;
-//        [_progressView updateProgress:progress];
+        
+        CGFloat progress = -yOffset / PROGRESS_THRESHOLD;
+        [_navBarView updateProgress:progress];
+        
         CGRect f = self.circularView.frame;
         f.origin.y = -16 + yOffset;
         f.size.height = TestViewControllerHeadScrollHeight + 16 - yOffset;
@@ -185,10 +224,8 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
         if (yOffset > NAVBAR_CHANGE_POINT) {
             CGFloat alpha = MIN(1, 1 - ((NAVBAR_CHANGE_POINT + 64 - yOffset) / 64));
             [_navBarView setBackgroundViewColor:[UIColor colorWithRed:0.175f green:0.458f blue:0.831f alpha:alpha]];
-//            [self.navigationController.navigationBar setBarBGColor:[UIColor colorWithRed:0.175f green:0.458f blue:0.831f alpha:alpha]];
         } else {
             [_navBarView setBackgroundViewColor:[UIColor colorWithRed:0.175f green:0.458f blue:0.831f alpha:0]];
-//            [self.navigationController.navigationBar setBarBGColor:[UIColor colorWithRed:0.175f green:0.458f blue:0.831f alpha:0]];
         }
     }
 }

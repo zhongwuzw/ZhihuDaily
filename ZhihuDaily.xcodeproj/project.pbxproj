@@ -20,6 +20,9 @@
 		0E1307A61D51F63B000C90A2 /* HTTPURLConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E1307A51D51F63B000C90A2 /* HTTPURLConfiguration.m */; };
 		0E2EBF831D52D54500CC9B24 /* NewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2EBF821D52D54500CC9B24 /* NewsTableViewCell.m */; };
 		0E2EBF881D530A9500CC9B24 /* NavigationbarCenterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2EBF871D530A9500CC9B24 /* NavigationbarCenterView.m */; };
+		0E5973551D59B20400D216BB /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5973531D59B20400D216BB /* LeftMenuViewController.m */; };
+		0E5973561D59B20400D216BB /* LeftMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E5973541D59B20400D216BB /* LeftMenuViewController.xib */; };
+		0E59735A1D59CBCE00D216BB /* HomePageDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5973591D59CBCE00D216BB /* HomePageDataManager.m */; };
 		0E62D6E81D4F0A5300F61530 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E62D6E71D4F0A5300F61530 /* main.m */; };
 		0E62D6EB1D4F0A5300F61530 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E62D6EA1D4F0A5300F61530 /* AppDelegate.m */; };
 		0E62D6EE1D4F0A5300F61530 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E62D6ED1D4F0A5300F61530 /* ViewController.m */; };
@@ -82,6 +85,11 @@
 		0E2EBF821D52D54500CC9B24 /* NewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsTableViewCell.m; sourceTree = "<group>"; };
 		0E2EBF861D530A9500CC9B24 /* NavigationbarCenterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationbarCenterView.h; sourceTree = "<group>"; };
 		0E2EBF871D530A9500CC9B24 /* NavigationbarCenterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationbarCenterView.m; sourceTree = "<group>"; };
+		0E5973521D59B20400D216BB /* LeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuViewController.h; sourceTree = "<group>"; };
+		0E5973531D59B20400D216BB /* LeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenuViewController.m; sourceTree = "<group>"; };
+		0E5973541D59B20400D216BB /* LeftMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftMenuViewController.xib; sourceTree = "<group>"; };
+		0E5973581D59CBCE00D216BB /* HomePageDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageDataManager.h; sourceTree = "<group>"; };
+		0E5973591D59CBCE00D216BB /* HomePageDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageDataManager.m; sourceTree = "<group>"; };
 		0E62D6E31D4F0A5300F61530 /* ZhihuDaily.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZhihuDaily.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E62D6E71D4F0A5300F61530 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0E62D6E91D4F0A5300F61530 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -180,16 +188,20 @@
 			name = Application;
 			sourceTree = "<group>";
 		};
-		0E006E2F1D506D3C00308651 /* SideMenu */ = {
+		0E006E2F1D506D3C00308651 /* LeftMenu */ = {
 			isa = PBXGroup;
 			children = (
+				0E5973521D59B20400D216BB /* LeftMenuViewController.h */,
+				0E5973531D59B20400D216BB /* LeftMenuViewController.m */,
+				0E5973541D59B20400D216BB /* LeftMenuViewController.xib */,
 			);
-			name = SideMenu;
+			name = LeftMenu;
 			sourceTree = "<group>";
 		};
 		0E006E301D506D4C00308651 /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
+				0E5973571D59CBB300D216BB /* Model */,
 				0E2EBF851D52D95E00CC9B24 /* View */,
 				0E2EBF841D52D95200CC9B24 /* Controller */,
 			);
@@ -297,6 +309,15 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		0E5973571D59CBB300D216BB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0E5973581D59CBCE00D216BB /* HomePageDataManager.h */,
+				0E5973591D59CBCE00D216BB /* HomePageDataManager.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		0E62D6DA1D4F0A5300F61530 = {
 			isa = PBXGroup;
 			children = (
@@ -324,7 +345,7 @@
 			children = (
 				0E1307991D51E1D7000C90A2 /* Network */,
 				0E006E301D506D4C00308651 /* HomePage */,
-				0E006E2F1D506D3C00308651 /* SideMenu */,
+				0E006E2F1D506D3C00308651 /* LeftMenu */,
 				0E006E2E1D506D1D00308651 /* Application */,
 				0E006E2B1D503FC600308651 /* Utils */,
 				0E62D6EC1D4F0A5300F61530 /* ViewController.h */,
@@ -492,6 +513,7 @@
 				0E62D6F61D4F0A5300F61530 /* LaunchScreen.storyboard in Resources */,
 				0E62D6F31D4F0A5300F61530 /* Assets.xcassets in Resources */,
 				0E62D6F11D4F0A5300F61530 /* Main.storyboard in Resources */,
+				0E5973561D59B20400D216BB /* LeftMenuViewController.xib in Resources */,
 				0E006E3C1D508DD600308651 /* CircularCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -566,6 +588,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E006E2A1D503EE700308651 /* SideMenuViewController.m in Sources */,
+				0E59735A1D59CBCE00D216BB /* HomePageDataManager.m in Sources */,
 				0EE1B9EF1D523840000AC44B /* LatestNewsResponseModel.m in Sources */,
 				0EBCDE651D5464AE008E3420 /* NavBarView.m in Sources */,
 				0E006E371D50892800308651 /* CircularView.m in Sources */,
@@ -578,6 +601,7 @@
 				0EAF0C0C1D56CEE400479F54 /* UIView+Additions.m in Sources */,
 				0E13079F1D51E3DD000C90A2 /* HTTPManager.m in Sources */,
 				0E2EBF881D530A9500CC9B24 /* NavigationbarCenterView.m in Sources */,
+				0E5973551D59B20400D216BB /* LeftMenuViewController.m in Sources */,
 				0E62D6EE1D4F0A5300F61530 /* ViewController.m in Sources */,
 				0E0DE6F31D5883DC0069A2C2 /* WeakTarget.m in Sources */,
 				0E1307A61D51F63B000C90A2 /* HTTPURLConfiguration.m in Sources */,
