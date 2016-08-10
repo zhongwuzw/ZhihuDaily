@@ -10,6 +10,6 @@
 
 @interface HomeNewsTableHeaderView : UITableViewHeaderFooterView
 
-@property (nonatomic, strong) UILabel *titleLabel;
+- (void)setHeaderTitle:(NSString *)title;
 
 @end

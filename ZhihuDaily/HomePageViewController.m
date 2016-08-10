@@ -33,13 +33,29 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
 @property (nonatomic, strong) HomeTopNewsCircularView *circularView;
 @property (nonatomic, strong) NSLayoutConstraint *heightConstraint;
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray<NewsResponseModel *> *newsArray;
-@property (nonatomic, copy) NSArray<TopNewsResponseModel *> *topNewsArray;
+@property (nonatomic, strong, readonly) NSMutableArray<NSArray *> *newsArray;
+@property (nonatomic, copy, readonly) NSArray<TopNewsResponseModel *> *topNewsArray;
+@property (nonatomic, strong, readonly) HomePageDataManager *homePageDataManager;
 @property (nonatomic, strong) NavBarView *navBarView;
 
 @end
 
 @implementation HomePageViewController
+
+#pragma mark - Getter Method
+- (NSMutableArray *)newsArray{
+    return self.homePageDataManager.homePageArray;
+}
+
+- (NSArray *)topNewsArray{
+    return self.homePageDataManager.topNewsArray;
+}
+
+- (HomePageDataManager *)homePageDataManager{
+    return [HomePageDataManager sharedInstance];
+}
+
+#pragma mark - Controller Event
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,7 +64,6 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
     [self.navigationController setNavigationBarHidden:YES];
     [self setNeedsStatusBarAppearanceUpdate];
     
-    [HomePageDataManager sharedInstance];
     [self initTableView];
     [self initCircularView];
     [self loadData];
@@ -62,9 +77,13 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
     
 }
 
+#pragma Controller Transition
+
 - (void)menuButtonClicked:(UIButton *)button{
     [self.sideMenuController showMenuViewController];
 }
+
+#pragma mark - Controller UI Init
 
 - (UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
@@ -89,8 +108,6 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
     [self.tableView registerClass:[HomeNewsTableHeaderView class] forHeaderFooterViewReuseIdentifier:REUSE_TABLE_Header_VIEW_CELL];
     
     self.tableView.rowHeight = TABLE_VIEW_CELL_HEIGHT;
-    
-    self.newsArray = [NSMutableArray arrayWithCapacity:8];
 }
 
 - (void)initCircularView{
@@ -101,33 +118,20 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
     [self.tableView setClipsToBounds:NO];
 }
 
+#pragma mark - loadData Method
+
 - (void)loadData{
     WEAK_REF(self)
     
-    [[HTTPClient sharedInstance] getLatestNewsWithSuccess:^(NSURLSessionDataTask *task, BaseResponseModel *model){
+    [self.homePageDataManager getLatestNewsWithSuccess:^(NSURLSessionDataTask *task, BaseResponseModel *model){
         STRONG_REF(self_)
         if (self__) {
-            if ([model isKindOfClass:[LatestNewsResponseModel class]]) {
-                [self__.newsArray addObjectsFromArray:((LatestNewsResponseModel *)model).stories];
-                
-                NSArray *tempArray = ((LatestNewsResponseModel *)model).topStories;
-                
-                NSRange range;
-                NSArray *newArray;
-                if (self__.circularView.dataArray.count > 0) {
-                    range.location = 1;
-                    range.length = self__.circularView.dataArray.count - 2;
-                    newArray = [self__.circularView.dataArray subarrayWithRange:range];
-                }
-                
-                BOOL isEqual = [tempArray isEqualToArray:newArray];
-                [self__.circularView setupDataForCollectionViewWithArray:((LatestNewsResponseModel *)model).topStories];
-                
-                self__.circularView.TapActionBlock = ^(MTLModel <MTLJSONSerializing> * indexModel){
-                    NSLog(@"click model is %@",indexModel);
-                };
-                [self__.tableView reloadData];
-            }
+            [self__.circularView setupDataForCollectionViewWithArray:self__.topNewsArray];
+            
+            self__.circularView.TapActionBlock = ^(MTLModel <MTLJSONSerializing> * indexModel){
+                NSLog(@"click model is %@",indexModel);
+            };
+            [self__.tableView reloadData];
             [_navBarView stopActivityIndicator];
         }
     }fail:^(NSURLSessionDataTask *task,BaseResponseModel *model){
@@ -143,8 +147,9 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
     }
 
     HomeNewsTableHeaderView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:REUSE_TABLE_Header_VIEW_CELL];
-    view.titleLabel.text = @"测试！";
-    view.contentView.backgroundColor = [UIColor colorWithRed:0.175f green:0.458f blue:0.831f alpha:1];
+    
+    [view setHeaderTitle:[self.homePageDataManager headerTitleForSection:section]];
+
     return view;
 }
 
@@ -172,25 +177,24 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
 #pragma mark - UITableViewDataSource Method
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    if (self.newsArray.count > 0) {
-        return 5;
-    }
-    return 0;
+    return self.newsArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [self.newsArray count] - 1;
+    return [self.homePageDataManager numberofRowsInSection:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:REUSE_TABLE_VIEW_CELL];
     
-    NewsResponseModel *model = self.newsArray[indexPath.row];
+    NewsResponseModel *model = [self.homePageDataManager modelForRowAtIndexPath:indexPath];
     
     [cell setTitleLabel:model.title imageURL:[model.images firstObject]];
     
     return cell;
 }
+
+#pragma mark - UIScrollViewDelegate Method
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     CGFloat yoffset = scrollView.contentOffset.y;
@@ -201,10 +205,6 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
             [self loadData];
         }
     }
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -226,6 +226,15 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
             [_navBarView setBackgroundViewColor:[UIColor colorWithRed:0.175f green:0.458f blue:0.831f alpha:alpha]];
         } else {
             [_navBarView setBackgroundViewColor:[UIColor colorWithRed:0.175f green:0.458f blue:0.831f alpha:0]];
+        }
+        
+        if (yOffset + _tableView.height + TABLE_VIEW_CELL_HEIGHT > _tableView.contentSize.height) {
+            [self.homePageDataManager getPreviousNewsWithSuccess:^(NSURLSessionDataTask *task, BaseResponseModel *model){
+                NSInteger section = [self.homePageDataManager numberofSections];
+                [_tableView insertSections:[NSIndexSet indexSetWithIndex:section - 1] withRowAnimation:UITableViewRowAnimationFade];
+            }fail:^(NSURLSessionDataTask *task, BaseResponseModel *model){
+                ;
+            }];
         }
     }
 }

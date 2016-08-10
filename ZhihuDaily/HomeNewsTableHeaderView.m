@@ -9,6 +9,12 @@
 #import "HomeNewsTableHeaderView.h"
 #import "NSDateFormatter+Util.h"
 
+@interface HomeNewsTableHeaderView ()
+
+@property (nonatomic, strong) UILabel *titleLabel;
+
+@end
+
 @implementation HomeNewsTableHeaderView
 
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
@@ -23,12 +29,18 @@
 - (void)initUI{
     self.titleLabel = [UILabel new];
     [self.contentView addSubview:_titleLabel];
-    [_titleLabel setFont:[UIFont systemFontOfSize:18]];
+    [_titleLabel setFont:[UIFont systemFontOfSize:14]];
     [_titleLabel setTextColor:[UIColor whiteColor]];
     [_titleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_titleLabel]-8-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_titleLabel)]];
     [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_titleLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+    
+    self.contentView.backgroundColor = [UIColor colorWithRed:0.175f green:0.458f blue:0.831f alpha:1];
+}
+
+- (void)setHeaderTitle:(NSString *)title{
+    [self.titleLabel setText:[self stringConvertToSectionTitleText:title]];
 }
 
 - (NSString*)stringConvertToSectionTitleText:(NSString*)str {

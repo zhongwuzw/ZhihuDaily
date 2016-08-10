@@ -7,14 +7,12 @@
 //
 
 #import <Mantle/Mantle.h>
+#import "NewsListResponseModel.h"
 
-@class NewsResponseModel;
 @class TopNewsResponseModel;
 
-@interface LatestNewsResponseModel : MTLModel <MTLJSONSerializing>
+@interface LatestNewsResponseModel : NewsListResponseModel
 
-@property (nonnull, copy, readonly) NSString *date;
-@property (nonatomic, copy, readonly, nullable) NSArray<NewsResponseModel *> *stories;
 @property (nonatomic, copy, readonly, nullable) NSArray<TopNewsResponseModel *> *topStories;
 
 @end

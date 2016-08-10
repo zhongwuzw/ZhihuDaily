@@ -8,10 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
+@class NewsResponseModel;
+@class NewsListResponseModel;
+@class TopNewsResponseModel;
+
 @interface HomePageDataManager : NSObject
 
-SYNTHESIZE_SINGLETON_FOR_CLASS_HEADER(HomePageDataManager)
+@property (nonatomic, strong) NSMutableArray<NewsListResponseModel *> *homePageArray;
+@property (nonatomic, copy) NSArray<TopNewsResponseModel *> *topNewsArray;
 
+SYNTHESIZE_SINGLETON_FOR_CLASS_HEADER(HomePageDataManager)
 - (NSURLSessionDataTask *)getLatestNewsWithSuccess:(HttpClientSuccessBlock)success
                                               fail:(HttpClientFailureBlock)fail;
+- (NSURLSessionDataTask *)getPreviousNewsWithSuccess:(HttpClientSuccessBlock)success
+                                              fail:(HttpClientFailureBlock)fail;
+- (NSInteger)numberofSections;
+- (NSInteger)numberofRowsInSection:(NSInteger)section;
+- (NewsResponseModel *)modelForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (NSString *)headerTitleForSection:(NSInteger)section;
+
 @end

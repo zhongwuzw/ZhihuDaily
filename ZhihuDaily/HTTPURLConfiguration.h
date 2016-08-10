@@ -10,7 +10,8 @@
 
 @interface HTTPURLConfiguration : NSObject
 
-@property (nonatomic, copy) NSString *latestNews;
+@property (nonatomic, copy, readonly) NSString *latestNews;
+@property (nonatomic, copy, readonly) NSString *previousNews;
 
 SYNTHESIZE_SINGLETON_FOR_CLASS_HEADER(HTTPURLConfiguration)
 

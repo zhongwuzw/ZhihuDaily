@@ -10,6 +10,7 @@
 #import "HTTPURLConfiguration.h"
 #import "HTTPManager.h"
 #import "LatestNewsResponseModel.h"
+#import "NewsListResponseModel.h"
 
 @interface HTTPClient ()
 
@@ -34,6 +35,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HTTPClient)
     NSString *relativePath = [[HTTPURLConfiguration sharedInstance] latestNews];
 
     return [_httpManager GET:relativePath parameters:nil modelClass:[LatestNewsResponseModel class] success:success failure:fail];
+}
+
+- (NSURLSessionDataTask *)getPreviousNewsWithDate:(NSString *)date success:(HttpClientSuccessBlock)success
+                                             fail:(HttpClientFailureBlock)fail{
+    NSString *relativePath = [[HTTPURLConfiguration sharedInstance] previousNews];
+    relativePath = [relativePath stringByAppendingFormat:@"/%@",date];
+    
+    return [_httpManager GET:relativePath parameters:nil modelClass:[NewsListResponseModel class] success:success failure:fail];
 }
 
 @end

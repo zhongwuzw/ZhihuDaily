@@ -10,14 +10,16 @@
 
 @class BaseResponseModel;
 
-typedef void (^HttpClientSuccessBlock)(NSURLSessionDataTask *operation, BaseResponseModel *model);
-typedef void (^HttpClientFailureBlock)(NSURLSessionDataTask *operation, BaseResponseModel *model);
+typedef void (^HttpClientSuccessBlock)(NSURLSessionDataTask *task, BaseResponseModel *model);
+typedef void (^HttpClientFailureBlock)(NSURLSessionDataTask *task, BaseResponseModel *model);
 
 @interface HTTPClient : NSObject
 
 SYNTHESIZE_SINGLETON_FOR_CLASS_HEADER(HTTPClient)
 
 - (NSURLSessionDataTask *)getLatestNewsWithSuccess:(HttpClientSuccessBlock)success
+                                         fail:(HttpClientFailureBlock)fail;
+- (NSURLSessionDataTask *)getPreviousNewsWithDate:(NSString *)date success:(HttpClientSuccessBlock)success
                                          fail:(HttpClientFailureBlock)fail;
 
 @end

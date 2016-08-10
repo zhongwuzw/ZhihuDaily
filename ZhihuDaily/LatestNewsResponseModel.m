@@ -7,21 +7,17 @@
 //
 
 #import "LatestNewsResponseModel.h"
-#import "NewsResponseModel.h"
 #import "TopNewsResponseModel.h"
 
 @implementation LatestNewsResponseModel
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey{
-    return @{
-             @"date":@"date",
-             @"stories":@"stories",
-             @"topStories":@"top_stories"
-             };
-}
-
-+ (NSValueTransformer *)storiesJSONTransformer{
-    return [MTLJSONAdapter arrayTransformerWithModelClass:[NewsResponseModel class]];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:3];
+    
+    [dic addEntriesFromDictionary:[super JSONKeyPathsByPropertyKey]];
+    [dic setObject:@"top_stories" forKey:@"topStories"];
+    
+    return dic;
 }
 
 + (NSValueTransformer *)topStoriesJSONTransformer{

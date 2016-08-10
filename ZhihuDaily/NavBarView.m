@@ -49,7 +49,7 @@
     self.titleLabel = [UILabel new];
     [_titleLabel setTextColor:[UIColor whiteColor]];
     [_titleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [_titleLabel setFont:[UIFont systemFontOfSize:18]];
+    [_titleLabel setFont:[UIFont systemFontOfSize:16]];
     [_titleLabel setText:@"今日热点"];
     
     [self addSubview:_titleLabel];
