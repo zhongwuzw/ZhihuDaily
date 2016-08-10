@@ -75,6 +75,20 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_navBarView(50)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_navBarView)]];
     [_navBarView.leftButton addTarget:self action:@selector(menuButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleStatusBarTapNotification:) name:STATUS_BAR_TAP_NOTIFICATION object:nil];
+    
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:STATUS_BAR_TAP_NOTIFICATION object:nil];
+}
+
+#pragma Observer Method
+
+- (void)handleStatusBarTapNotification:(NSNotification *)notification{
+    if (self.navigationController.visibleViewController == self) {
+        [_tableView setContentOffset:CGPointZero animated:YES];
+    }
 }
 
 #pragma Controller Transition

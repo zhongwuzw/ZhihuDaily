@@ -62,4 +62,6 @@ if ([NSThread isMainThread]) {\
     dispatch_async(dispatch_get_main_queue(), block);\
 }
 
+#define STATUS_BAR_TAP_NOTIFICATION @"STATUS_BAR_TAP_NOTIFICATION"
+
 #endif /* CommonMacros_h */

@@ -348,6 +348,7 @@
 		0E62D6E51D4F0A5300F61530 /* ZhihuDaily */ = {
 			isa = PBXGroup;
 			children = (
+				0EE1B9E21D5B0A6800A835D9 /* NewsDetail */,
 				0E1307991D51E1D7000C90A2 /* Network */,
 				0E006E301D506D4C00308651 /* HomePage */,
 				0E006E2F1D506D3C00308651 /* LeftMenu */,
@@ -389,6 +390,13 @@
 				0E62D70D1D4F0A5300F61530 /* Info.plist */,
 			);
 			path = ZhihuDailyUITests;
+			sourceTree = "<group>";
+		};
+		0EE1B9E21D5B0A6800A835D9 /* NewsDetail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = NewsDetail;
 			sourceTree = "<group>";
 		};
 		6C728E53D1FDAAE8DB39A855 /* Pods */ = {

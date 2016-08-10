@@ -42,6 +42,19 @@
     [self.window makeKeyAndVisible];
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [super touchesBegan:touches withEvent:event];
+    
+    NSSet<UITouch *> *events = [event allTouches];
+    UITouch *touch = [events anyObject];
+    CGPoint location = [touch locationInView:self.window];
+    CGRect statusBarFrame = [UIApplication sharedApplication].statusBarFrame;
+    
+    if (CGRectContainsPoint(statusBarFrame, location)) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:STATUS_BAR_TAP_NOTIFICATION object:nil];
+    }
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
