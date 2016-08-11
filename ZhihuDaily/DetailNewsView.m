@@ -16,8 +16,6 @@
 
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) DetailNewsHeaderView *headerView;
-@property (nonatomic, weak) NSLayoutConstraint *headerViewTopConstraint;
-@property (nonatomic, weak) NSLayoutConstraint *headerViewHeightConstraint;
 @property (nonatomic, strong) DetailNewsResponseModel *newsModel;
 
 @end
@@ -42,18 +40,8 @@
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_webView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_webView)]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_webView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_webView)]];
     
-    self.headerView = [DetailNewsHeaderView new];
-    [self addSubview:_headerView];
-    
-    [_headerView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_headerView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_headerView)]];
-    
-    self.headerViewTopConstraint = [NSLayoutConstraint constraintWithItem:_headerView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1 constant:0];
-    [self addConstraint:_headerViewTopConstraint];
-    
-    self.headerViewHeightConstraint = [NSLayoutConstraint constraintWithItem:_headerView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:DetailHeaderViewHeight];
-    
-    [self addConstraint:_headerViewHeightConstraint];
+    self.headerView = [[DetailNewsHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, DetailHeaderViewHeight)];
+    [_webView.scrollView addSubview:_headerView];
 }
 
 - (void)updateNewsWithModel:(DetailNewsResponseModel *)model{
@@ -69,18 +57,12 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     CGFloat yOffset = scrollView.contentOffset.y;
-    if (yOffset < 0) {
-        [self.headerViewHeightConstraint setConstant:DetailHeaderViewHeight - yOffset];
+    if (yOffset <= 0) {
+        CGRect f = _headerView.frame;
+        f.origin.y = yOffset;
+        f.size.height = DetailHeaderViewHeight - yOffset;
+        _headerView.frame = f;
     }
-    else if(yOffset > 0){
-        [self.headerViewTopConstraint setConstant:-yOffset];
-    }
-    else{
-        [self.headerViewHeightConstraint setConstant:DetailHeaderViewHeight];
-        [self.headerViewTopConstraint setConstant:0];
-    }
-    [_headerView setNeedsUpdateConstraints];
-    [_headerView updateConstraintsIfNeeded];
 }
 
 @end

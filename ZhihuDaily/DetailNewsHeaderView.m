@@ -63,4 +63,12 @@
     _titleLabel.text = model.title;
 }
 
+- (void)setFrame:(CGRect)frame{
+    if (self.frame.size.height != frame.size.width) {
+        [self.imageView setNeedsUpdateConstraints];
+        [self.imageView updateConstraintsIfNeeded];
+    }
+    [super setFrame:frame];
+}
+
 @end
