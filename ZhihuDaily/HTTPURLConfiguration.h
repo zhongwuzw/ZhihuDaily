@@ -12,6 +12,7 @@
 
 @property (nonatomic, copy, readonly) NSString *latestNews;
 @property (nonatomic, copy, readonly) NSString *previousNews;
+@property (nonatomic, copy, readonly) NSString *detailNews;
 
 SYNTHESIZE_SINGLETON_FOR_CLASS_HEADER(HTTPURLConfiguration)
 

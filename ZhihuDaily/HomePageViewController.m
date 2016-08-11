@@ -17,6 +17,7 @@
 #import "HomeNewsTableHeaderView.h"
 #import "SideMenuViewController.h"
 #import "HomePageDataManager.h"
+#import "NewsDetailViewController.h"
 
 #define NAVBAR_CHANGE_POINT 50
 #define TABLE_HEADER_VIEW_HEIGHT 34
@@ -172,6 +173,16 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
         return CGFLOAT_MIN;
     }
     return TABLE_HEADER_VIEW_HEIGHT;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NewsResponseModel *model = [self.homePageDataManager modelForRowAtIndexPath:indexPath];
+    
+    NewsDetailViewController *detailVC = [NewsDetailViewController new];
+    detailVC.storyID = model.storyID;
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingHeaderView:(UIView *)view forSection:(NSInteger)section{

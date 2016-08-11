@@ -11,6 +11,7 @@
 #import "HTTPManager.h"
 #import "LatestNewsResponseModel.h"
 #import "NewsListResponseModel.h"
+#import "DetailNewsResponseModel.h"
 
 @interface HTTPClient ()
 
@@ -40,9 +41,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HTTPClient)
 - (NSURLSessionDataTask *)getPreviousNewsWithDate:(NSString *)date success:(HttpClientSuccessBlock)success
                                              fail:(HttpClientFailureBlock)fail{
     NSString *relativePath = [[HTTPURLConfiguration sharedInstance] previousNews];
-    relativePath = [relativePath stringByAppendingFormat:@"/%@",date];
+    relativePath = [relativePath stringByAppendingString:date];
     
     return [_httpManager GET:relativePath parameters:nil modelClass:[NewsListResponseModel class] success:success failure:fail];
+}
+
+- (NSURLSessionDataTask *)getDetailNewsWithID:(NSInteger)storyID success:(HttpClientSuccessBlock)success fail:(HttpClientFailureBlock)fail{
+    NSString *relativePath = [[HTTPURLConfiguration sharedInstance] detailNews];
+    relativePath = [relativePath stringByAppendingFormat:@"%ld",(long)storyID];
+    
+    return [_httpManager GET:relativePath parameters:nil modelClass:[DetailNewsResponseModel class] success:success failure:fail];
 }
 
 @end

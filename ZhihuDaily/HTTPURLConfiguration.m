@@ -29,7 +29,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HTTPURLConfiguration)
 
 - (void)configureRestfulURL{
     _latestNews = [self zhiHuURLWithPath:@"news/latest"];
-    _previousNews = [self zhiHuURLWithPath:@"news/before"];
+    _previousNews = [self zhiHuURLWithPath:@"news/before/"];
+    _detailNews = [self zhiHuURLWithPath:@"news/"];
 }
 
 - (NSString *)zhiHuURLWithPath:(NSString *)path{
