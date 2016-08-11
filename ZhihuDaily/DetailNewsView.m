@@ -9,6 +9,7 @@
 #import "DetailNewsView.h"
 #import "DetailNewsHeaderView.h"
 #import "DetailNewsResponseModel.h"
+#import "NewsDetailViewController.h"
 
 #define DetailHeaderViewHeight 190.0f
 

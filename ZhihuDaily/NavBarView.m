@@ -101,4 +101,8 @@
     return _activityView.isAnimating;
 }
 
+- (void)setProgressViewHidden:(BOOL)hidden{
+    [_progressView setHidden:hidden];
+}
+
 @end

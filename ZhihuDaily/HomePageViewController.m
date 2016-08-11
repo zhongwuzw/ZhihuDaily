@@ -18,6 +18,8 @@
 #import "SideMenuViewController.h"
 #import "HomePageDataManager.h"
 #import "NewsDetailViewController.h"
+#import "PushAnimator.h"
+#import "PopAnimator.h"
 
 #define NAVBAR_CHANGE_POINT 50
 #define TABLE_HEADER_VIEW_HEIGHT 34
@@ -29,7 +31,7 @@
 
 static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
 
-@interface HomePageViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface HomePageViewController ()<UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate,UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) HomeTopNewsCircularView *circularView;
 @property (nonatomic, strong) NSLayoutConstraint *heightConstraint;
@@ -38,6 +40,7 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
 @property (nonatomic, copy, readonly) NSArray<TopNewsResponseModel *> *topNewsArray;
 @property (nonatomic, strong, readonly) HomePageDataManager *homePageDataManager;
 @property (nonatomic, strong) NavBarView *navBarView;
+@property (nonatomic, strong) UIPercentDrivenInteractiveTransition *interactionController;
 
 @end
 
@@ -63,6 +66,12 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     [self.navigationController setNavigationBarHidden:YES];
+    self.navigationController.delegate = self;
+    
+    UIPanGestureRecognizer *edge = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFromLeftEdge:)];
+    edge.delegate = self;
+    [self.navigationController.view addGestureRecognizer:edge];
+    
     [self setNeedsStatusBarAppearanceUpdate];
     
     [self initTableView];
@@ -92,10 +101,66 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
     }
 }
 
-#pragma Controller Transition
+#pragma mark - UINavigationControllerDelegate
+
+- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
+                                  animationControllerForOperation:(UINavigationControllerOperation)operation
+                                               fromViewController:(UIViewController*)fromVC
+                                                 toViewController:(UIViewController*)toVC
+{
+    if (operation == UINavigationControllerOperationPush)
+        return [[PushAnimator alloc] init];
+    
+    if (operation == UINavigationControllerOperationPop)
+        return [[PopAnimator alloc] init];
+    
+    return nil;
+}
+
+- (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
+                         interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController {
+    return self.interactionController;
+}
+
+#pragma mark - Controller Transition
 
 - (void)menuButtonClicked:(UIButton *)button{
     [self.sideMenuController showMenuViewController];
+}
+
+/**
+ *  @brief 解决与滑出菜单页的手势冲突
+ *
+ *  @param gestureRecognizer
+ *
+ *  @return
+ */
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
+    if (self.navigationController.visibleViewController == self) {
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (void)handleSwipeFromLeftEdge:(UIScreenEdgePanGestureRecognizer *)gesture {
+    CGPoint translate = [gesture translationInView:[UIApplication sharedApplication].delegate.window];
+    CGFloat percent   = translate.x / self.view.bounds.size.width;
+    
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        self.interactionController = [[UIPercentDrivenInteractiveTransition alloc] init];
+        [self.navigationController popViewControllerAnimated:YES];
+    } else if (gesture.state == UIGestureRecognizerStateChanged) {
+        [self.interactionController updateInteractiveTransition:percent];
+    } else if (gesture.state == UIGestureRecognizerStateEnded) {
+        CGPoint velocity = [gesture velocityInView:gesture.view];
+        if (velocity.x > 0) {
+            [self.interactionController finishInteractiveTransition];
+        } else {
+            [self.interactionController cancelInteractiveTransition];
+        }
+        self.interactionController = nil;
+    }
 }
 
 #pragma mark - Controller UI Init
@@ -246,6 +311,8 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
         self.circularView.frame = f;
     }
     else{
+        [_navBarView setProgressViewHidden:YES];
+        
         if (yOffset > NAVBAR_CHANGE_POINT) {
             CGFloat alpha = MIN(1, 1 - ((NAVBAR_CHANGE_POINT + 64 - yOffset) / 64));
             [_navBarView setBackgroundViewColor:[UIColor colorWithRed:0.175f green:0.458f blue:0.831f alpha:alpha]];

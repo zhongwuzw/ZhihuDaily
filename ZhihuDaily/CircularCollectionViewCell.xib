@@ -13,24 +13,32 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="328" height="133"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WAe-5d-uCE" userLabel="title">
-                        <rect key="frame" x="0.0" y="92" width="328" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rR9-PU-vKI">
                         <rect key="frame" x="0.0" y="0.0" width="328" height="133"/>
                     </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Home_Image_Mask" translatesAutoresizingMaskIntoConstraints="NO" id="HUS-Pz-XNw" userLabel="mask">
+                        <rect key="frame" x="0.0" y="0.0" width="328" height="133"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WAe-5d-uCE" userLabel="title">
+                        <rect key="frame" x="10" y="89" width="308" height="24"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="HUS-Pz-XNw" secondAttribute="trailing" id="1p3-Il-QEh"/>
                 <constraint firstItem="rR9-PU-vKI" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="42q-Sd-Tsz"/>
-                <constraint firstItem="WAe-5d-uCE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="DMh-vR-e5p"/>
-                <constraint firstAttribute="trailing" secondItem="WAe-5d-uCE" secondAttribute="trailing" id="Sr5-wl-KKP"/>
+                <constraint firstItem="WAe-5d-uCE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="DMh-vR-e5p"/>
+                <constraint firstItem="HUS-Pz-XNw" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Iuh-Bx-aMH"/>
+                <constraint firstAttribute="trailing" secondItem="WAe-5d-uCE" secondAttribute="trailing" constant="10" id="Sr5-wl-KKP"/>
                 <constraint firstItem="WAe-5d-uCE" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="a2y-BA-XLT"/>
+                <constraint firstItem="HUS-Pz-XNw" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="aoK-Zj-5I1"/>
                 <constraint firstItem="rR9-PU-vKI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="exu-eU-LsX"/>
+                <constraint firstAttribute="bottom" secondItem="HUS-Pz-XNw" secondAttribute="bottom" id="igT-SH-nRV"/>
                 <constraint firstAttribute="bottom" secondItem="WAe-5d-uCE" secondAttribute="bottom" constant="20" id="rr7-M7-ZeL"/>
                 <constraint firstAttribute="trailing" secondItem="rR9-PU-vKI" secondAttribute="trailing" id="udl-Iz-JjQ"/>
                 <constraint firstAttribute="bottom" secondItem="rR9-PU-vKI" secondAttribute="bottom" id="vxv-EP-zDx"/>
@@ -48,4 +56,7 @@
             <point key="canvasLocation" x="276" y="245.5"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="Home_Image_Mask" width="320" height="150"/>
+    </resources>
 </document>

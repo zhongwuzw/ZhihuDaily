@@ -15,6 +15,7 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *imageSourceLabel;
 @property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) UIImageView *coverImageView;
 
 @end
 
@@ -30,6 +31,7 @@
 
 - (void)initUI{
     [self setClipsToBounds:YES];
+    
     self.imageView = [UIImageView new];
     _imageView.contentMode = UIViewContentModeScaleAspectFill;
     [self addSubview:_imageView];
@@ -37,6 +39,15 @@
     [_imageView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_imageView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_imageView)]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_imageView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_imageView)]];
+    
+    self.coverImageView = [UIImageView new];
+    _coverImageView.contentMode = UIViewContentModeScaleAspectFill;
+    [_coverImageView setImage:[UIImage imageNamed:@"Home_Image_Mask"]];
+    [self addSubview:_coverImageView];
+    
+    [_coverImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_coverImageView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_coverImageView)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_coverImageView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_coverImageView)]];
     
     self.imageSourceLabel = [UILabel new];
     _imageSourceLabel.textColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
@@ -61,14 +72,6 @@
     [_imageView sd_setImageWithURL:[NSURL URLWithString:model.image]];
     _imageSourceLabel.text = model.image_source;
     _titleLabel.text = model.title;
-}
-
-- (void)setFrame:(CGRect)frame{
-    if (self.frame.size.height != frame.size.width) {
-        [self.imageView setNeedsUpdateConstraints];
-        [self.imageView updateConstraintsIfNeeded];
-    }
-    [super setFrame:frame];
 }
 
 @end

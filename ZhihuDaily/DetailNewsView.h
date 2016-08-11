@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class DetailNewsResponseModel;
+@class NewsDetailViewController;
 
 @interface DetailNewsView : UIView
 
