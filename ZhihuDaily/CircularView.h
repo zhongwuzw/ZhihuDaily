@@ -15,7 +15,10 @@
 
 @property (nonatomic , copy) void (^TapActionBlock)(MTLModel <MTLJSONSerializing> * indexModel);
 @property (nonatomic, strong) NSMutableArray<MTLModel<MTLJSONSerializing> *> *dataArray;
+@property (nonatomic, readonly, weak) UIScrollView *scrollView;
 
--(void)setupDataForCollectionViewWithArray:(NSArray <MTLModel<MTLJSONSerializing> *> *)array;
+- (void)setupDataForCollectionViewWithArray:(NSArray <MTLModel<MTLJSONSerializing> *> *)array;
+- (void)startTimerIfNeeded;
+- (void)stopTimer;
 
 @end

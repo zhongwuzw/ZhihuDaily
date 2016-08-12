@@ -24,7 +24,7 @@
 #define NAVBAR_CHANGE_POINT 50
 #define TABLE_HEADER_VIEW_HEIGHT 34
 #define TABLE_VIEW_CELL_HEIGHT 82
-#define PROGRESS_THRESHOLD 40
+#define PROGRESS_THRESHOLD 60
 
 #define REUSE_TABLE_VIEW_CELL @"REUSE_TABLE_VIEW_CELL"
 #define REUSE_TABLE_Header_VIEW_CELL @"REUSE_TABLE_Header_VIEW_CELL"
@@ -41,6 +41,7 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
 @property (nonatomic, strong, readonly) HomePageDataManager *homePageDataManager;
 @property (nonatomic, strong) NavBarView *navBarView;
 @property (nonatomic, strong) UIPercentDrivenInteractiveTransition *interactionController;
+@property (nonatomic, assign) BOOL isLoading;
 
 @end
 
@@ -89,6 +90,16 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
     
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [_circularView startTimerIfNeeded];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [_circularView stopTimer];
+}
+
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:STATUS_BAR_TAP_NOTIFICATION object:nil];
 }
@@ -128,6 +139,12 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
     [self.sideMenuController showMenuViewController];
 }
 
+- (void)transitionToDetailNewsVC:(NSInteger)storyID{
+    NewsDetailViewController *detailVC = [NewsDetailViewController new];
+    detailVC.storyID = storyID;
+    [self.navigationController pushViewController:detailVC animated:YES];
+}
+
 /**
  *  @brief 解决与滑出菜单页的手势冲突
  *
@@ -142,6 +159,22 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
     
     return YES;
 }
+
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
+////    if ([gestureRecognizer isEqual:_circularView.scrollView.panGestureRecognizer]) {
+////        return YES;
+////    }
+//    return NO;
+//}
+//
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
+//    return NO;
+////    if ([otherGestureRecognizer isEqual:_circularView.scrollView.panGestureRecognizer]) {
+////        return YES;
+////    }
+////    
+////    return NO;
+//}
 
 - (void)handleSwipeFromLeftEdge:(UIScreenEdgePanGestureRecognizer *)gesture {
     CGPoint translate = [gesture translationInView:[UIApplication sharedApplication].delegate.window];
@@ -194,6 +227,8 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
     
     self.circularView = [[HomeTopNewsCircularView alloc] initWithFrame:CGRectMake(0, -16, CGRectGetWidth(self.view.bounds), TestViewControllerHeadScrollHeight + 16)];
     
+//    [_tableView.panGestureRecognizer requireGestureRecognizerToFail:_circularView.scrollView.panGestureRecognizer];
+    
     [self.tableView addSubview:self.circularView];
     [self.tableView setClipsToBounds:NO];
 }
@@ -209,7 +244,13 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
             [self__.circularView setupDataForCollectionViewWithArray:self__.topNewsArray];
             
             self__.circularView.TapActionBlock = ^(MTLModel <MTLJSONSerializing> * indexModel){
-                NSLog(@"click model is %@",indexModel);
+                STRONG_REF(self_)
+                if (self__) {
+                    if ([indexModel isKindOfClass:[TopNewsResponseModel class]]) {
+                        TopNewsResponseModel *topNewsModel = (TopNewsResponseModel *)indexModel;
+                        [self__ transitionToDetailNewsVC:topNewsModel.storyID];
+                    }
+                }
             };
             [self__.tableView reloadData];
             [_navBarView stopActivityIndicator];
@@ -245,9 +286,7 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
     
     NewsResponseModel *model = [self.homePageDataManager modelForRowAtIndexPath:indexPath];
     
-    NewsDetailViewController *detailVC = [NewsDetailViewController new];
-    detailVC.storyID = model.storyID;
-    [self.navigationController pushViewController:detailVC animated:YES];
+    [self transitionToDetailNewsVC:model.storyID];
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingHeaderView:(UIView *)view forSection:(NSInteger)section{
@@ -292,9 +331,14 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
     if (yoffset < 0 && -yoffset >= PROGRESS_THRESHOLD) {
         if (![_navBarView isActivityIndicatorAnimating]) {
             [_navBarView startActivityIndicator];
+            _isLoading = YES;
             [self loadData];
         }
     }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    _isLoading = NO;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -302,9 +346,11 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
     CGFloat yOffset  = scrollView.contentOffset.y;
     if (yOffset <= 0) {
         
-        CGFloat progress = -yOffset / PROGRESS_THRESHOLD;
-        [_navBarView updateProgress:progress];
-        
+        if (!_isLoading) {
+            CGFloat progress = -yOffset / PROGRESS_THRESHOLD;
+            [_navBarView updateProgress:progress];
+        }
+
         CGRect f = self.circularView.frame;
         f.origin.y = -16 + yOffset;
         f.size.height = TestViewControllerHeadScrollHeight + 16 - yOffset;

@@ -14,6 +14,7 @@
 @interface NewsDetailViewController ()
 
 @property (nonatomic, strong) DetailNewsView *detailNewsView;
+@property (weak, nonatomic) IBOutlet UIView *toolBarView;
 
 @end
 
@@ -37,6 +38,19 @@
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_detailNewsView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_detailNewsView)]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_detailNewsView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_detailNewsView)]];
+    
+    [self.view bringSubviewToFront:_toolBarView];
+}
+
+- (IBAction)handleToolbarButtonClicked:(UIButton *)sender {
+    switch (sender.tag) {
+        case 0:
+            [self.navigationController popViewControllerAnimated:YES];
+            break;
+            
+        default:
+            break;
+    }
 }
 
 - (void)loadData{

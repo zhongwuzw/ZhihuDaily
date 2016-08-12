@@ -29,6 +29,10 @@
     return self;
 }
 
+- (UIScrollView *)scrollView{
+    return _collectionView;
+}
+
 - (void)initUI{
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
@@ -44,7 +48,7 @@
     self.collectionView.bounces = NO;
     self.collectionView.showsHorizontalScrollIndicator = NO;
     
-    [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CircularCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:@"cell"];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"CircularCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
     
     [_collectionView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_collectionView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_collectionView)]];
@@ -86,14 +90,18 @@
     }
     else{
         self.collectionView.scrollEnabled = YES;
-        if (_timer) {
-            [_timer invalidate];
-            _timer = nil;
-        }
-        WeakTarget *target = [[WeakTarget alloc] initWithTarget:self selector:@selector(timerFireMethod:)];
-        _timer = [NSTimer scheduledTimerWithTimeInterval:4 target:target selector:@selector(timerDidFire:) userInfo:nil repeats:YES];
+        [self configTimer];
     }
 
+}
+
+- (void)configTimer{
+    if (_timer) {
+        [_timer invalidate];
+        _timer = nil;
+    }
+    WeakTarget *target = [[WeakTarget alloc] initWithTarget:self selector:@selector(timerFireMethod:)];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:4 target:target selector:@selector(timerDidFire:) userInfo:nil repeats:YES];
 }
 
 - (void)timerFireMethod:(NSTimer *)timer{
@@ -103,6 +111,19 @@
     NSIndexPath *newPath = [NSIndexPath indexPathForItem:path.row + 1 inSection:path.section];
     [_collectionView scrollToItemAtIndexPath:newPath atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
     [self setPageControlIndex:newPath];
+}
+
+- (void)startTimerIfNeeded{
+    if (_dataArray.count > 1) {
+        [self configTimer];
+    }
+}
+
+- (void)stopTimer{
+    if (_timer) {
+        [_timer invalidate];
+        _timer = nil;
+    }
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -148,6 +169,10 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self scrollCollectionViewToCorrectIndexPath];
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    
 }
 
 - (void)scrollCollectionViewToCorrectIndexPath{

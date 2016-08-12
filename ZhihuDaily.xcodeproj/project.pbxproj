@@ -10,7 +10,6 @@
 		0E006E2A1D503EE700308651 /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E6CD08B1D4F20900099D816 /* SideMenuViewController.m */; };
 		0E006E371D50892800308651 /* CircularView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E006E361D50892800308651 /* CircularView.m */; };
 		0E006E3B1D508DD600308651 /* CircularCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E006E391D508DD600308651 /* CircularCollectionViewCell.m */; };
-		0E006E3C1D508DD600308651 /* CircularCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E006E3A1D508DD600308651 /* CircularCollectionViewCell.xib */; };
 		0E006E411D50928100308651 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E006E401D50928100308651 /* HomePageViewController.m */; };
 		0E0DE6F31D5883DC0069A2C2 /* WeakTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0DE6F21D5883DC0069A2C2 /* WeakTarget.m */; };
 		0E1307981D51C4EE000C90A2 /* UINavigationBar+BackgroundColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E1307971D51C4EE000C90A2 /* UINavigationBar+BackgroundColor.m */; };
@@ -22,6 +21,7 @@
 		0E14CAF11D5C5C81008C74A5 /* DetailNewsResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E14CAF01D5C5C81008C74A5 /* DetailNewsResponseModel.m */; };
 		0E14CAF61D5C8489008C74A5 /* PopAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E14CAF31D5C8489008C74A5 /* PopAnimator.m */; };
 		0E14CAF71D5C8489008C74A5 /* PushAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E14CAF51D5C8489008C74A5 /* PushAnimator.m */; };
+		0E2AC30F1D5D61C200B51363 /* CircularCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E2AC30E1D5D61C200B51363 /* CircularCollectionCell.xib */; };
 		0E2EBF831D52D54500CC9B24 /* NewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2EBF821D52D54500CC9B24 /* NewsTableViewCell.m */; };
 		0E2EBF881D530A9500CC9B24 /* NavigationbarCenterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2EBF871D530A9500CC9B24 /* NavigationbarCenterView.m */; };
 		0E5973551D59B20400D216BB /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5973531D59B20400D216BB /* LeftMenuViewController.m */; };
@@ -74,7 +74,6 @@
 		0E006E361D50892800308651 /* CircularView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularView.m; sourceTree = "<group>"; };
 		0E006E381D508DD600308651 /* CircularCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularCollectionViewCell.h; sourceTree = "<group>"; };
 		0E006E391D508DD600308651 /* CircularCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularCollectionViewCell.m; sourceTree = "<group>"; };
-		0E006E3A1D508DD600308651 /* CircularCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircularCollectionViewCell.xib; sourceTree = "<group>"; };
 		0E006E3F1D50928100308651 /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
 		0E006E401D50928100308651 /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
 		0E0DE6F11D5883DC0069A2C2 /* WeakTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeakTarget.h; sourceTree = "<group>"; };
@@ -97,6 +96,7 @@
 		0E14CAF31D5C8489008C74A5 /* PopAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopAnimator.m; sourceTree = "<group>"; };
 		0E14CAF41D5C8489008C74A5 /* PushAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushAnimator.h; sourceTree = "<group>"; };
 		0E14CAF51D5C8489008C74A5 /* PushAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushAnimator.m; sourceTree = "<group>"; };
+		0E2AC30E1D5D61C200B51363 /* CircularCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircularCollectionCell.xib; sourceTree = "<group>"; };
 		0E2EBF811D52D54500CC9B24 /* NewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsTableViewCell.h; sourceTree = "<group>"; };
 		0E2EBF821D52D54500CC9B24 /* NewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsTableViewCell.m; sourceTree = "<group>"; };
 		0E2EBF861D530A9500CC9B24 /* NavigationbarCenterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationbarCenterView.h; sourceTree = "<group>"; };
@@ -245,7 +245,7 @@
 				0E006E361D50892800308651 /* CircularView.m */,
 				0E006E381D508DD600308651 /* CircularCollectionViewCell.h */,
 				0E006E391D508DD600308651 /* CircularCollectionViewCell.m */,
-				0E006E3A1D508DD600308651 /* CircularCollectionViewCell.xib */,
+				0E2AC30E1D5D61C200B51363 /* CircularCollectionCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -583,9 +583,9 @@
 				0EE1B9E71D5B343800A835D9 /* NewsDetailViewController.xib in Resources */,
 				0E62D6F61D4F0A5300F61530 /* LaunchScreen.storyboard in Resources */,
 				0E62D6F31D4F0A5300F61530 /* Assets.xcassets in Resources */,
+				0E2AC30F1D5D61C200B51363 /* CircularCollectionCell.xib in Resources */,
 				0E62D6F11D4F0A5300F61530 /* Main.storyboard in Resources */,
 				0E5973561D59B20400D216BB /* LeftMenuViewController.xib in Resources */,
-				0E006E3C1D508DD600308651 /* CircularCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

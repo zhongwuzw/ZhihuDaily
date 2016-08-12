@@ -37,18 +37,34 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageDataManager)
                                               fail:(HttpClientFailureBlock)fail{
     return [[HTTPClient sharedInstance] getLatestNewsWithSuccess:^(NSURLSessionDataTask *task, BaseResponseModel *model){
         LatestNewsResponseModel *latestNewsModel = (LatestNewsResponseModel *)model;
-        if (latestNewsModel.date && ![_newsIndexDic objectForKey:latestNewsModel.date]) {
-            [_newsIndexDic setValue:[NSNumber numberWithInteger:0] forKey:latestNewsModel.date];
+        
+        if ([[_homePageArray firstObject].date isEqualToString:latestNewsModel.date]) {
+            if ([_homePageArray firstObject].stories.count != latestNewsModel.stories.count) {
+                [_homePageArray removeObjectAtIndex:0];
+                [_homePageArray insertObject:latestNewsModel atIndex:0];
+                self.topNewsArray = latestNewsModel.topStories;
+                
+                if (success) {
+                    success(task,model);
+                }
+            }
+            else{
+                //小的trick，内容相同时不重新reload collectionview
+                if (fail) {
+                    fail(task,model);
+                }
+            }
+        }
+        else{
             [_homePageArray insertObject:latestNewsModel atIndex:0];
+            self.currentDate = latestNewsModel.date;
+            self.topNewsArray = latestNewsModel.topStories;
+            
+            if (success) {
+                success(task,model);
+            }
         }
-        
-        self.currentDate = latestNewsModel.date;
-        
-        self.topNewsArray = latestNewsModel.topStories;
-        
-        if (success) {
-            success(task,model);
-        }
+    
         //            NSRange range;
         //            NSArray *newArray;
         //            if (self__.circularView.dataArray.count > 0) {
