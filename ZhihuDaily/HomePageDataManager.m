@@ -115,4 +115,51 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageDataManager)
     return self.homePageArray[section].date;
 }
 
+- (NSInteger)getNextNewsWithSection:(NSInteger *)section currentID:(NSInteger)currentID{
+    NewsListResponseModel *model = _homePageArray[*section];
+    
+    __block NSInteger nextNews = -1;
+    __block BOOL isFound = NO;
+    
+    [model.stories enumerateObjectsUsingBlock:^(NewsResponseModel *model, NSUInteger idx, BOOL *stop){
+        if (isFound) {
+            nextNews = model.storyID;
+            *stop = YES;
+        }
+        if (model.storyID == currentID) {
+            isFound = YES;
+        }
+    }];
+    
+    if (nextNews > 0) {
+        return nextNews;
+    }
+    
+    if (*section + 1 < _homePageArray.count) {
+        nextNews = [_homePageArray[*section + 1].stories firstObject].storyID;
+        *section += 1;
+        return nextNews;
+    }
+    
+    [self getPreviousNewsWithSuccess:nil fail:nil];
+    
+    return nextNews;
+}
+
+- (NSInteger)getPreviousNewsWithSection:(NSInteger)section currentID:(NSInteger)currentID{
+    NewsListResponseModel *model = _homePageArray[section];
+    
+    __block NSInteger previousNews = -1;
+    
+    [model.stories enumerateObjectsUsingBlock:^(NewsResponseModel *model, NSUInteger idx, BOOL *stop){
+        if (model.storyID == currentID) {
+            *stop = YES;
+        }
+        else
+            previousNews = model.storyID;
+    }];
+    
+    return previousNews;
+}
+
 @end

@@ -10,15 +10,20 @@
 #import "DetailNewsView.h"
 #import "HTTPClient.h"
 #import "BaseResponseModel.h"
+#import "HomePageDataManager.h"
 
 @interface NewsDetailViewController ()
 
 @property (nonatomic, strong) DetailNewsView *detailNewsView;
-@property (weak, nonatomic) IBOutlet UIView *toolBarView;
-
+@property (nonatomic, weak) IBOutlet UIView *toolBarView;
+@property (nonatomic, weak, readonly) HomePageDataManager *homePageDataManager;
 @end
 
 @implementation NewsDetailViewController
+
+- (HomePageDataManager *)homePageDataManager{
+    return [HomePageDataManager sharedInstance];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,13 +36,8 @@
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
     [self.navigationController setNavigationBarHidden:YES];
     
-    self.detailNewsView = [DetailNewsView new];
-    _detailNewsView.backgroundColor = [UIColor blackColor];
-    [_detailNewsView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    self.detailNewsView = [[DetailNewsView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 43)];
     [self.view addSubview:_detailNewsView];
-    
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_detailNewsView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_detailNewsView)]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_detailNewsView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_detailNewsView)]];
     
     [self.view bringSubviewToFront:_toolBarView];
 }
@@ -47,10 +47,36 @@
         case 0:
             [self.navigationController popViewControllerAnimated:YES];
             break;
-            
+        case 1:
+            [self switchToNextStoryWithCurrentSection:&_section storyID:_storyID];
+            break;
         default:
             break;
     }
+}
+
+- (void)switchToNextStoryWithCurrentSection:(NSInteger *)section storyID:(NSInteger)storyID{
+    NSInteger nextStoryID = [self.homePageDataManager getNextNewsWithSection:section currentID:storyID];
+    
+    if (nextStoryID != -1) {
+        DetailNewsView *detailNewsView = [[DetailNewsView alloc] initWithFrame:CGRectMake(0, kScreenHeight, kScreenWidth, kScreenHeight - 43)];
+        
+        [self.view addSubview:detailNewsView];
+        
+        DetailNewsView *previousDetailNewsView = _detailNewsView;
+        
+        _detailNewsView = detailNewsView;
+        _storyID = nextStoryID;
+        [self loadData];
+        
+        [UIView animateWithDuration:.5 animations:^{
+            detailNewsView.top = 0;
+            previousDetailNewsView.top = -kScreenHeight + 43;
+        }completion:^(BOOL finished){
+            [previousDetailNewsView removeFromSuperview];
+        }];
+    }
+
 }
 
 - (void)loadData{

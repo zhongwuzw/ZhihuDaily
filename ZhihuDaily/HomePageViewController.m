@@ -95,6 +95,12 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
     [_circularView startTimerIfNeeded];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    if (self.newsArray.count > 0) {
+        [_tableView reloadData];
+    }
+}
+
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [_circularView stopTimer];
@@ -139,9 +145,10 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
     [self.sideMenuController showMenuViewController];
 }
 
-- (void)transitionToDetailNewsVC:(NSInteger)storyID{
+- (void)transitionToDetailNewsVC:(NSInteger)storyID section:(NSInteger)section{
     NewsDetailViewController *detailVC = [NewsDetailViewController new];
     detailVC.storyID = storyID;
+    detailVC.section = section;
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
@@ -248,7 +255,7 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
                 if (self__) {
                     if ([indexModel isKindOfClass:[TopNewsResponseModel class]]) {
                         TopNewsResponseModel *topNewsModel = (TopNewsResponseModel *)indexModel;
-                        [self__ transitionToDetailNewsVC:topNewsModel.storyID];
+                        [self__ transitionToDetailNewsVC:topNewsModel.storyID section:0];
                     }
                 }
             };
@@ -286,7 +293,7 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
     
     NewsResponseModel *model = [self.homePageDataManager modelForRowAtIndexPath:indexPath];
     
-    [self transitionToDetailNewsVC:model.storyID];
+    [self transitionToDetailNewsVC:model.storyID section:indexPath.section];
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingHeaderView:(UIView *)view forSection:(NSInteger)section{

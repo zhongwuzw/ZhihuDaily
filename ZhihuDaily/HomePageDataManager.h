@@ -26,5 +26,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_HEADER(HomePageDataManager)
 - (NSInteger)numberofRowsInSection:(NSInteger)section;
 - (NewsResponseModel *)modelForRowAtIndexPath:(NSIndexPath *)indexPath;
 - (NSString *)headerTitleForSection:(NSInteger)section;
+- (NSInteger)getPreviousNewsWithSection:(NSInteger)section currentID:(NSInteger)currentID;
+- (NSInteger)getNextNewsWithSection:(NSInteger *)section currentID:(NSInteger)currentID;
 
 @end
