@@ -39,7 +39,6 @@
     toViewController.view.frame = f;
     
     [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
-        fromViewController.view.transform = CGAffineTransformMakeScale(0.9, 0.9);
         toViewController.view.frame = originRect;
     } completion:^(BOOL finished) {
         [transitionContext completeTransition:![transitionContext transitionWasCancelled]];

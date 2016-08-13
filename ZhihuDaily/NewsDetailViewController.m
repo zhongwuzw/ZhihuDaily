@@ -12,7 +12,7 @@
 #import "BaseResponseModel.h"
 #import "HomePageDataManager.h"
 
-@interface NewsDetailViewController ()
+@interface NewsDetailViewController ()<SwitchNewsDelegate>
 
 @property (nonatomic, strong) DetailNewsView *detailNewsView;
 @property (nonatomic, weak) IBOutlet UIView *toolBarView;
@@ -37,6 +37,7 @@
     [self.navigationController setNavigationBarHidden:YES];
     
     self.detailNewsView = [[DetailNewsView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 43)];
+    _detailNewsView.delegate = self;
     [self.view addSubview:_detailNewsView];
     
     [self.view bringSubviewToFront:_toolBarView];
@@ -61,6 +62,8 @@
     if (nextStoryID != -1) {
         DetailNewsView *detailNewsView = [[DetailNewsView alloc] initWithFrame:CGRectMake(0, kScreenHeight, kScreenWidth, kScreenHeight - 43)];
         
+        detailNewsView.delegate = self;
+        
         [self.view addSubview:detailNewsView];
         
         DetailNewsView *previousDetailNewsView = _detailNewsView;
@@ -77,6 +80,40 @@
         }];
     }
 
+}
+
+- (void)switchToPreviousStoryWithCurrentSection:(NSInteger *)section storyID:(NSInteger)storyID{
+    NSInteger nextStoryID = [self.homePageDataManager getPreviousNewsWithSection:section currentID:storyID];
+    
+    if (nextStoryID != -1) {
+        DetailNewsView *detailNewsView = [[DetailNewsView alloc] initWithFrame:CGRectMake(0, -kScreenHeight, kScreenWidth, kScreenHeight - 43)];
+        
+        detailNewsView.delegate = self;
+        
+        [self.view addSubview:detailNewsView];
+        
+        DetailNewsView *previousDetailNewsView = _detailNewsView;
+        
+        _detailNewsView = detailNewsView;
+        _storyID = nextStoryID;
+        [self loadData];
+        
+        [UIView animateWithDuration:.5 animations:^{
+            detailNewsView.top = 0;
+            previousDetailNewsView.top = kScreenHeight;
+        }completion:^(BOOL finished){
+            [previousDetailNewsView removeFromSuperview];
+        }];
+    }
+    
+}
+
+- (void)switchToPreviousNews{
+    [self switchToPreviousStoryWithCurrentSection:&_section storyID:_storyID];
+}
+
+- (void)switchToNextNews{
+    [self switchToNextStoryWithCurrentSection:&_section storyID:_storyID];
 }
 
 - (void)loadData{

@@ -69,10 +69,6 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
     [self.navigationController setNavigationBarHidden:YES];
     self.navigationController.delegate = self;
     
-    UIPanGestureRecognizer *edge = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFromLeftEdge:)];
-    edge.delegate = self;
-    [self.navigationController.view addGestureRecognizer:edge];
-    
     [self setNeedsStatusBarAppearanceUpdate];
     
     [self initTableView];
@@ -88,6 +84,10 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleStatusBarTapNotification:) name:STATUS_BAR_TAP_NOTIFICATION object:nil];
     
+    UIPanGestureRecognizer *edge = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFromLeftEdge:)];
+    edge.delegate = self;
+    [self.navigationController.view addGestureRecognizer:edge];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -96,6 +96,7 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     if (self.newsArray.count > 0) {
         [_tableView reloadData];
     }
@@ -175,7 +176,7 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
 //}
 //
 //- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
-//    return NO;
+//    return YES;
 ////    if ([otherGestureRecognizer isEqual:_circularView.scrollView.panGestureRecognizer]) {
 ////        return YES;
 ////    }

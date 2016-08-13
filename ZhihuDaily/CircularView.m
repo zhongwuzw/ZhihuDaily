@@ -171,10 +171,6 @@
     [self scrollCollectionViewToCorrectIndexPath];
 }
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    
-}
-
 - (void)scrollCollectionViewToCorrectIndexPath{
     float contentOffsetWhenFullyScrolledRight = self.frame.size.width * ([self.dataArray count] -1);
     

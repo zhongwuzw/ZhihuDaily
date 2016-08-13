@@ -13,11 +13,12 @@
 
 #define DetailHeaderViewHeight 190.0f
 
-@interface DetailNewsView () <UIScrollViewDelegate>
+@interface DetailNewsView () <UIScrollViewDelegate, UIWebViewDelegate>
 
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) DetailNewsHeaderView *headerView;
 @property (nonatomic, strong) DetailNewsResponseModel *newsModel;
+@property (nonatomic, strong) UILabel *nextLabel;
 
 @end
 
@@ -43,6 +44,18 @@
     
     self.headerView = [[DetailNewsHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, DetailHeaderViewHeight)];
     [_webView.scrollView addSubview:_headerView];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+    label.center = CGPointMake(kScreenWidth/2, -20);
+    [label setText:@"载入上一篇"];
+    [_webView.scrollView addSubview:label];
+    
+    self.nextLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+    _nextLabel.center = CGPointMake(kScreenWidth/2, kScreenHeight + 20);
+    [_nextLabel setText:@"载入下一篇"];
+    [_webView.scrollView addSubview:_nextLabel];
+    
+    _webView.delegate = self;
 }
 
 - (void)updateNewsWithModel:(DetailNewsResponseModel *)model{
@@ -63,7 +76,36 @@
         f.origin.y = yOffset;
         f.size.height = DetailHeaderViewHeight - yOffset;
         _headerView.frame = f;
+        
+        if (yOffset < -40) {
+            [scrollView setContentOffset:CGPointMake(0, -40) animated:NO];
+        }
     }
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    CGFloat yoffset = scrollView.contentOffset.y;
+    
+    if (yoffset <= -40) {
+        if ([self.delegate respondsToSelector:@selector(switchToPreviousNews)]) {
+            [self.delegate switchToPreviousNews];
+        }
+    }
+    else if (yoffset + kScreenHeight - 35 >= scrollView.contentSize.height + 40){
+        if ([self.delegate respondsToSelector:@selector(switchToNextNews)]) {
+            [self.delegate switchToNextNews];
+        }
+    }
+}
+
+- (void)dealloc{
+    DDLogDebug(@"DetailNewsView dealloc");
+    _webView.delegate = nil;
+    _webView = nil;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    _nextLabel.center = CGPointMake(kScreenWidth/2, webView.scrollView.contentSize.height + 20);
 }
 
 @end

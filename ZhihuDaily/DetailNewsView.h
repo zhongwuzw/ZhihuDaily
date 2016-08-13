@@ -11,7 +11,16 @@
 @class DetailNewsResponseModel;
 @class NewsDetailViewController;
 
+@protocol SwitchNewsDelegate <NSObject>
+
+- (void)switchToPreviousNews;
+- (void)switchToNextNews;
+
+@end
+
 @interface DetailNewsView : UIView
+
+@property (nonatomic, weak) id<SwitchNewsDelegate> delegate;
 
 - (void)updateNewsWithModel:(DetailNewsResponseModel *)model;
 
