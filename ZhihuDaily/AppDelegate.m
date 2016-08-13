@@ -11,6 +11,7 @@
 #import "SideMenuViewController.h"
 #import "HomePageViewController.h"
 #import "LeftMenuViewController.h"
+#import <CocoaLumberjack/CocoaLumberjack.h>
 
 @interface AppDelegate ()
 
@@ -20,6 +21,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    [DDLog addLogger:[DDASLLogger sharedInstance]];
+
     [self configureRootVC];
     
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];

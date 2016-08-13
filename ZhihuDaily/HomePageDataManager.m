@@ -146,8 +146,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageDataManager)
     return nextNews;
 }
 
-- (NSInteger)getPreviousNewsWithSection:(NSInteger)section currentID:(NSInteger)currentID{
-    NewsListResponseModel *model = _homePageArray[section];
+- (NSInteger)getPreviousNewsWithSection:(NSInteger *)section currentID:(NSInteger)currentID{
+    NewsListResponseModel *model = _homePageArray[*section];
     
     __block NSInteger previousNews = -1;
     
@@ -158,6 +158,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageDataManager)
         else
             previousNews = model.storyID;
     }];
+    
+    if (previousNews > 0) {
+        return previousNews;
+    }
+    
+    if (*section - 1 >= 0) {
+        previousNews = [_homePageArray[*section - 1].stories lastObject].storyID;
+        *section -= 1;
+        return previousNews;
+    }
     
     return previousNews;
 }

@@ -10,11 +10,18 @@
 #define ZhihuDaily_pch
 
 #import <UIKit/UIKit.h>
+#import <CocoaLumberjack/DDLog.h>
 
 #import "CommonMacros.h"
 #import "HTTPClient.h"
 #import "BaseResponseModel.h"
 
 #import "UIView+Additions.h"
+
+#if DEBUG
+static const DDLogLevel ddLogLevel = DDLogLevelDebug;
+#else
+static const DDLogLevel ddLogLevel = DDLogLevelError;
+#endif
 
 #endif /* ZhihuDaily_pch */

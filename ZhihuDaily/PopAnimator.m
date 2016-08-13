@@ -28,7 +28,6 @@
     f.origin.x = f.origin.x + f.size.width;
     
     [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
-        toViewController.view.transform = CGAffineTransformIdentity;
         fromViewController.view.frame = f;
     } completion:^(BOOL finished) {
         [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
