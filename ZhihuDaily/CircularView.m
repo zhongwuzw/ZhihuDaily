@@ -188,7 +188,7 @@
 
 - (void)setFrame:(CGRect)frame
 {
-    if (self.frame.size.height != frame.size.width) {
+    if (self.frame.size.height != frame.size.height) {
         [self.collectionView.collectionViewLayout invalidateLayout];
     }
     [super setFrame:frame];

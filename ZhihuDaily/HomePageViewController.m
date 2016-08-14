@@ -29,7 +29,7 @@
 #define REUSE_TABLE_VIEW_CELL @"REUSE_TABLE_VIEW_CELL"
 #define REUSE_TABLE_Header_VIEW_CELL @"REUSE_TABLE_Header_VIEW_CELL"
 
-static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
+static const CGFloat TestViewControllerHeadScrollHeight = 190.0f;
 
 @interface HomePageViewController ()<UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate,UIGestureRecognizerDelegate>
 
@@ -217,7 +217,7 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
     [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_tableView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-16-[_tableView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[_tableView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
     
     self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.tableView.bounds), TestViewControllerHeadScrollHeight)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -233,12 +233,9 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
 
 - (void)initCircularView{
     
-    self.circularView = [[HomeTopNewsCircularView alloc] initWithFrame:CGRectMake(0, -16, CGRectGetWidth(self.view.bounds), TestViewControllerHeadScrollHeight + 16)];
+    self.circularView = [[HomeTopNewsCircularView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), TestViewControllerHeadScrollHeight + 20)];
     
-//    [_tableView.panGestureRecognizer requireGestureRecognizerToFail:_circularView.scrollView.panGestureRecognizer];
-    
-    [self.tableView addSubview:self.circularView];
-    [self.tableView setClipsToBounds:NO];
+    [self.view addSubview:_circularView];
 }
 
 #pragma mark - loadData Method
@@ -358,13 +355,18 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
             CGFloat progress = -yOffset / PROGRESS_THRESHOLD;
             [_navBarView updateProgress:progress];
         }
-
+        
         CGRect f = self.circularView.frame;
-        f.origin.y = -16 + yOffset;
-        f.size.height = TestViewControllerHeadScrollHeight + 16 - yOffset;
+        f.origin.y = 0;
+        f.size.height = TestViewControllerHeadScrollHeight + 20 - yOffset;
         self.circularView.frame = f;
     }
     else{
+        CGRect f = self.circularView.frame;
+        f.origin.y = -yOffset;
+        f.size.height = TestViewControllerHeadScrollHeight + 20;
+        self.circularView.frame = f;
+        
         [_navBarView setProgressViewHidden:YES];
         
         if (yOffset > NAVBAR_CHANGE_POINT) {
@@ -387,7 +389,6 @@ static const CGFloat TestViewControllerHeadScrollHeight = 176.0f;
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

@@ -11,7 +11,7 @@
 #import "DetailNewsResponseModel.h"
 #import "NewsDetailViewController.h"
 
-#define DetailHeaderViewHeight 190.0f
+#define DetailHeaderViewHeight 210.0f
 
 @interface DetailNewsView () <UIScrollViewDelegate, UIWebViewDelegate>
 
