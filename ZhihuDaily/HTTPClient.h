@@ -21,5 +21,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_HEADER(HTTPClient)
                                          fail:(HttpClientFailureBlock)fail;
 - (NSURLSessionDataTask *)getPreviousNewsWithDate:(NSString *)date success:(HttpClientSuccessBlock)success fail:(HttpClientFailureBlock)fail;
 - (NSURLSessionDataTask *)getDetailNewsWithID:(NSInteger)storyID success:(HttpClientSuccessBlock)success fail:(HttpClientFailureBlock)fail;
+- (NSURLSessionDataTask *)getThemesListWithSuccess:(HttpClientSuccessBlock)success
+                                              fail:(HttpClientFailureBlock)fail;
 
 @end

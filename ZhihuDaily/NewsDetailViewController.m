@@ -27,8 +27,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initUI];
-    [self loadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -51,8 +49,6 @@
 
 - (void)initUI{
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    [self setAutomaticallyAdjustsScrollViewInsets:NO];
-    [self.navigationController setNavigationBarHidden:YES];
     
     self.detailNewsView = [[DetailNewsView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 43)];
     _detailNewsView.delegate = self;
@@ -61,7 +57,7 @@
     [self.view bringSubviewToFront:_toolBarView];
 }
 
-- (void)loadData{
+- (void)initData{
     [[HTTPClient sharedInstance] getDetailNewsWithID:_storyID success:^(NSURLSessionDataTask *task, BaseResponseModel *model){
         DetailNewsResponseModel *detailNewsModel = (DetailNewsResponseModel *)model;
         [_detailNewsView updateNewsWithModel:detailNewsModel];
@@ -101,7 +97,7 @@
         
         _detailNewsView = detailNewsView;
         _storyID = nextStoryID;
-        [self loadData];
+        [self initData];
         
         [UIView animateWithDuration:.5 animations:^{
             detailNewsView.top = 0;
@@ -127,7 +123,7 @@
         
         _detailNewsView = detailNewsView;
         _storyID = nextStoryID;
-        [self loadData];
+        [self initData];
         
         [UIView animateWithDuration:.5 animations:^{
             detailNewsView.top = 0;

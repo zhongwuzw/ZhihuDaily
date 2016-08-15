@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface NewsDetailViewController : UIViewController
+@interface NewsDetailViewController : BaseViewController
 
 @property (nonatomic, assign) NSInteger storyID;
 @property (nonatomic, assign) NSInteger section;

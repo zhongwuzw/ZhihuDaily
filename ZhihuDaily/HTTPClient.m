@@ -12,6 +12,7 @@
 #import "LatestNewsResponseModel.h"
 #import "NewsListResponseModel.h"
 #import "DetailNewsResponseModel.h"
+#import "ThemesResponseModel.h"
 
 @interface HTTPClient ()
 
@@ -54,6 +55,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HTTPClient)
     relativePath = [relativePath stringByAppendingFormat:@"%ld",(long)storyID];
     
     return [_httpManager GET:relativePath parameters:nil modelClass:[DetailNewsResponseModel class] success:success failure:fail];
+}
+
+- (NSURLSessionDataTask *)getThemesListWithSuccess:(HttpClientSuccessBlock)success fail:(HttpClientFailureBlock)fail{
+    NSString *relativePath = [[HTTPURLConfiguration sharedInstance] themesList];
+    
+    return [_httpManager GET:relativePath parameters:nil modelClass:[ThemesResponseModel class] success:success failure:fail];
 }
 
 @end

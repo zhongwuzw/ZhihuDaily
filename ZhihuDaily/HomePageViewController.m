@@ -20,6 +20,7 @@
 #import "NewsDetailViewController.h"
 #import "PushAnimator.h"
 #import "PopAnimator.h"
+#import "ThemeDailyViewController.h"
 
 #define NAVBAR_CHANGE_POINT 50
 #define TABLE_HEADER_VIEW_HEIGHT 34
@@ -47,6 +48,8 @@ static const CGFloat TestViewControllerHeadScrollHeight = 190.0f;
 
 @implementation HomePageViewController
 
+SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageViewController)
+
 #pragma mark - Getter Method
 - (NSMutableArray *)newsArray{
     return self.homePageDataManager.homePageArray;
@@ -66,22 +69,10 @@ static const CGFloat TestViewControllerHeadScrollHeight = 190.0f;
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view setClipsToBounds:YES];
-    
-    [self.navigationController setNavigationBarHidden:YES];
+
     self.navigationController.delegate = self;
     
     [self setNeedsStatusBarAppearanceUpdate];
-    
-    [self initTableView];
-    [self initCircularView];
-    [self loadData];
-    
-    self.navBarView = [NavBarView new];
-    [_navBarView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.view addSubview:_navBarView];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_navBarView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_navBarView)]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_navBarView(50)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_navBarView)]];
-    [_navBarView.leftButton addTarget:self action:@selector(menuButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     UIPanGestureRecognizer *edge = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFromLeftEdge:)];
     edge.delegate = self;
@@ -157,7 +148,7 @@ static const CGFloat TestViewControllerHeadScrollHeight = 190.0f;
  *  @return
  */
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
-    if (self.navigationController.visibleViewController == self) {
+    if (self.navigationController.visibleViewController == [self.navigationController.viewControllers firstObject] || [self.navigationController.visibleViewController isKindOfClass:[ThemeDailyViewController class]]) {
         return NO;
     }
     
@@ -190,6 +181,18 @@ static const CGFloat TestViewControllerHeadScrollHeight = 190.0f;
     return UIStatusBarStyleLightContent;
 }
 
+- (void)initUI{
+    [self initTableView];
+    [self initCircularView];
+    
+    self.navBarView = [NavBarView new];
+    [_navBarView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addSubview:_navBarView];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_navBarView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_navBarView)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_navBarView(50)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_navBarView)]];
+    [_navBarView.leftButton addTarget:self action:@selector(menuButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+}
+
 - (void)initTableView{
     self.tableView = [UITableView new];
     [self.view addSubview:_tableView];
@@ -220,7 +223,7 @@ static const CGFloat TestViewControllerHeadScrollHeight = 190.0f;
 
 #pragma mark - loadData Method
 
-- (void)loadData{
+- (void)initData{
     WEAK_REF(self)
     
     [self.homePageDataManager getLatestNewsWithSuccess:^(NSURLSessionDataTask *task, BaseResponseModel *model){
@@ -317,7 +320,7 @@ static const CGFloat TestViewControllerHeadScrollHeight = 190.0f;
         if (![_navBarView isActivityIndicatorAnimating]) {
             [_navBarView startActivityIndicator];
             _isLoading = YES;
-            [self loadData];
+            [self initData];
         }
     }
 }

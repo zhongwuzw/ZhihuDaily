@@ -40,6 +40,10 @@
     
     SideMenuViewController *sideMenu = [[SideMenuViewController alloc] initWithContentViewController:navigationController menuViewController:leftVC];
     rightVC.sideMenuController = sideMenu;
+    leftVC.sideMenuController = sideMenu;
+    
+    leftVC.homePageViewController = rightVC;
+    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = sideMenu;
     [self.window makeKeyAndVisible];

@@ -58,7 +58,7 @@
                         <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="atc-DS-smw" userLabel="comment">
                             <rect key="frame" x="300" y="0.0" width="75" height="48"/>
                             <fontDescription key="fontDescription" type="system" pointSize="8"/>
-                            <inset key="titleEdgeInsets" minX="-57" minY="-15" maxX="0.0" maxY="0.0"/>
+                            <inset key="titleEdgeInsets" minX="-54" minY="-15" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="822" image="News_Navigation_Comment"/>
                             <state key="highlighted" image="News_Navigation_Comment_Highlight"/>
                             <connections>

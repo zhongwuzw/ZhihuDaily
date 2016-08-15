@@ -7,13 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
 @class BaseResponseModel;
 @class SideMenuViewController;
 
-@interface HomePageViewController : UIViewController
+@interface HomePageViewController : BaseViewController
 
 @property (nonatomic, strong) BaseResponseModel *newsModel;
 @property (nonatomic, weak) SideMenuViewController *sideMenuController;
+
+SYNTHESIZE_SINGLETON_FOR_CLASS_HEADER(HomePageViewController)
 
 @end
