@@ -23,5 +23,6 @@
 @property (nonatomic, weak) id<SwitchNewsDelegate> delegate;
 
 - (void)updateNewsWithModel:(DetailNewsResponseModel *)model;
+- (void)setContentOffset:(CGPoint)point animated:(BOOL)animated;
 
 @end

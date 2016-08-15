@@ -33,6 +33,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageDataManager)
     return self;
 }
 
+#pragma mark - NetWork Requests Method
+
 - (NSURLSessionDataTask *)getLatestNewsWithSuccess:(HttpClientSuccessBlock)success
                                               fail:(HttpClientFailureBlock)fail{
     return [[HTTPClient sharedInstance] getLatestNewsWithSuccess:^(NSURLSessionDataTask *task, BaseResponseModel *model){
@@ -100,6 +102,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageDataManager)
         }
     }];
 }
+
+#pragma DataSource Method
 
 - (NSInteger)numberofSections{
     return self.homePageArray.count;

@@ -37,6 +37,8 @@
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     layout.minimumInteritemSpacing = 0;
+    layout.minimumLineSpacing = 0;
+    layout.sectionInset = UIEdgeInsetsZero;
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     [self addSubview:_collectionView];
@@ -95,6 +97,18 @@
 
 }
 
+- (void)setPageControlIndex:(NSIndexPath *)path{
+    if (path.row == [_dataArray count] - 1) {
+        _pageControl.currentPage = 0;
+    }
+    else if (path.row == 0)
+        _pageControl.currentPage = [_dataArray count] - 3;
+    else
+        _pageControl.currentPage = path.row - 1;
+}
+
+#pragma mark - Timer Method
+
 - (void)configTimer{
     if (_timer) {
         [_timer invalidate];
@@ -126,45 +140,29 @@
     }
 }
 
+#pragma mark - UICollectionViewDataSource Method
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return self.dataArray.count;
 }
 
-- (void)setPageControlIndex:(NSIndexPath *)path{
-    if (path.row == [_dataArray count] - 1) {
-        _pageControl.currentPage = 0;
-    }
-    else if (path.row == 0)
-        _pageControl.currentPage = [_dataArray count] - 3;
-    else
-        _pageControl.currentPage = path.row - 1;
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    CircularCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    
+    return cell;
 }
+
+#pragma mark - UICollectionViewDelegateFlowLayout Method
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    return self.size;
+}
+
+#pragma mark - ScrollViewDelegate Method
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
     NSIndexPath *path = [_collectionView indexPathForItemAtPoint:*targetContentOffset];
     [self setPageControlIndex:path];
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    CircularCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-
-    return cell;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return self.frame.size;
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return 0.f;
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    return 0.f;
-}
-
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsZero;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -186,11 +184,14 @@
     }
 }
 
+#pragma mark - setFrame
+
 - (void)setFrame:(CGRect)frame
 {
-    if (self.frame.size.height != frame.size.height) {
+    if (self.height != frame.size.height) {
         [self.collectionView.collectionViewLayout invalidateLayout];
     }
+    
     [super setFrame:frame];
 }
 

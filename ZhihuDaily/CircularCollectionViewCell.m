@@ -10,9 +10,4 @@
 
 @implementation CircularCollectionViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
 @end

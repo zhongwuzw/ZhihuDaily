@@ -58,6 +58,12 @@
     _webView.delegate = self;
 }
 
+- (void)setContentOffset:(CGPoint)point animated:(BOOL)animated{
+    [_webView.scrollView setContentOffset:point animated:animated];
+}
+
+#pragma mark - DataSource Method
+
 - (void)updateNewsWithModel:(DetailNewsResponseModel *)model{
     if ([model isEqual:_newsModel] || !model) {
         return;
@@ -68,6 +74,8 @@
     [_webView loadHTMLString:[NSString stringWithFormat:@"<html><head><link rel=\"stylesheet\" href=%@></head><body>%@</body></html>",[model.css firstObject],model.body] baseURL:nil];
     [_headerView updateNewsWithModel:model];
 }
+
+#pragma mark - Scrollview Delegate Method
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     CGFloat yOffset = scrollView.contentOffset.y;
@@ -98,14 +106,18 @@
     }
 }
 
+#pragma mark - WebView Delegate Method
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    _nextLabel.center = CGPointMake(kScreenWidth/2, webView.scrollView.contentSize.height + 20);
+}
+
+#pragma mark - Dealloc Method
+
 - (void)dealloc{
     DDLogDebug(@"DetailNewsView dealloc");
     _webView.delegate = nil;
     _webView = nil;
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView{
-    _nextLabel.center = CGPointMake(kScreenWidth/2, webView.scrollView.contentSize.height + 20);
 }
 
 @end

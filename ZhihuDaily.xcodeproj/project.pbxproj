@@ -23,13 +23,11 @@
 		0E14CAF71D5C8489008C74A5 /* PushAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E14CAF51D5C8489008C74A5 /* PushAnimator.m */; };
 		0E2AC30F1D5D61C200B51363 /* CircularCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E2AC30E1D5D61C200B51363 /* CircularCollectionCell.xib */; };
 		0E2EBF831D52D54500CC9B24 /* NewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2EBF821D52D54500CC9B24 /* NewsTableViewCell.m */; };
-		0E2EBF881D530A9500CC9B24 /* NavigationbarCenterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2EBF871D530A9500CC9B24 /* NavigationbarCenterView.m */; };
 		0E5973551D59B20400D216BB /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5973531D59B20400D216BB /* LeftMenuViewController.m */; };
 		0E5973561D59B20400D216BB /* LeftMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E5973541D59B20400D216BB /* LeftMenuViewController.xib */; };
 		0E59735A1D59CBCE00D216BB /* HomePageDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5973591D59CBCE00D216BB /* HomePageDataManager.m */; };
 		0E62D6E81D4F0A5300F61530 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E62D6E71D4F0A5300F61530 /* main.m */; };
 		0E62D6EB1D4F0A5300F61530 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E62D6EA1D4F0A5300F61530 /* AppDelegate.m */; };
-		0E62D6EE1D4F0A5300F61530 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E62D6ED1D4F0A5300F61530 /* ViewController.m */; };
 		0E62D6F11D4F0A5300F61530 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E62D6EF1D4F0A5300F61530 /* Main.storyboard */; };
 		0E62D6F31D4F0A5300F61530 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E62D6F21D4F0A5300F61530 /* Assets.xcassets */; };
 		0E62D6F61D4F0A5300F61530 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E62D6F41D4F0A5300F61530 /* LaunchScreen.storyboard */; };
@@ -99,8 +97,6 @@
 		0E2AC30E1D5D61C200B51363 /* CircularCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircularCollectionCell.xib; sourceTree = "<group>"; };
 		0E2EBF811D52D54500CC9B24 /* NewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsTableViewCell.h; sourceTree = "<group>"; };
 		0E2EBF821D52D54500CC9B24 /* NewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsTableViewCell.m; sourceTree = "<group>"; };
-		0E2EBF861D530A9500CC9B24 /* NavigationbarCenterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationbarCenterView.h; sourceTree = "<group>"; };
-		0E2EBF871D530A9500CC9B24 /* NavigationbarCenterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationbarCenterView.m; sourceTree = "<group>"; };
 		0E5973521D59B20400D216BB /* LeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuViewController.h; sourceTree = "<group>"; };
 		0E5973531D59B20400D216BB /* LeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenuViewController.m; sourceTree = "<group>"; };
 		0E5973541D59B20400D216BB /* LeftMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftMenuViewController.xib; sourceTree = "<group>"; };
@@ -110,8 +106,6 @@
 		0E62D6E71D4F0A5300F61530 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0E62D6E91D4F0A5300F61530 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0E62D6EA1D4F0A5300F61530 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		0E62D6EC1D4F0A5300F61530 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		0E62D6ED1D4F0A5300F61530 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		0E62D6F01D4F0A5300F61530 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0E62D6F21D4F0A5300F61530 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E62D6F51D4F0A5300F61530 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -324,8 +318,6 @@
 			children = (
 				0E2EBF811D52D54500CC9B24 /* NewsTableViewCell.h */,
 				0E2EBF821D52D54500CC9B24 /* NewsTableViewCell.m */,
-				0E2EBF861D530A9500CC9B24 /* NavigationbarCenterView.h */,
-				0E2EBF871D530A9500CC9B24 /* NavigationbarCenterView.m */,
 				0EBCDE631D5464AE008E3420 /* NavBarView.h */,
 				0EBCDE641D5464AE008E3420 /* NavBarView.m */,
 				0EBCDE661D54680F008E3420 /* CircleProgressView.h */,
@@ -378,8 +370,6 @@
 				0E006E2F1D506D3C00308651 /* LeftMenu */,
 				0E006E2E1D506D1D00308651 /* Application */,
 				0E006E2B1D503FC600308651 /* Utils */,
-				0E62D6EC1D4F0A5300F61530 /* ViewController.h */,
-				0E62D6ED1D4F0A5300F61530 /* ViewController.m */,
 				0E62D6EF1D4F0A5300F61530 /* Main.storyboard */,
 				0E62D6F21D4F0A5300F61530 /* Assets.xcassets */,
 				0E62D6F41D4F0A5300F61530 /* LaunchScreen.storyboard */,
@@ -678,9 +668,7 @@
 				0EAF0C0C1D56CEE400479F54 /* UIView+Additions.m in Sources */,
 				0E13079F1D51E3DD000C90A2 /* HTTPManager.m in Sources */,
 				0E14CAF61D5C8489008C74A5 /* PopAnimator.m in Sources */,
-				0E2EBF881D530A9500CC9B24 /* NavigationbarCenterView.m in Sources */,
 				0E5973551D59B20400D216BB /* LeftMenuViewController.m in Sources */,
-				0E62D6EE1D4F0A5300F61530 /* ViewController.m in Sources */,
 				0E0DE6F31D5883DC0069A2C2 /* WeakTarget.m in Sources */,
 				0E1307A61D51F63B000C90A2 /* HTTPURLConfiguration.m in Sources */,
 				0EBCDE6D1D549A81008E3420 /* HomeNewsTableHeaderView.m in Sources */,

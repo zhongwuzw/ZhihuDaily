@@ -31,6 +31,24 @@
     [self loadData];
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleStatusBarTapNotification:) name:STATUS_BAR_TAP_NOTIFICATION object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:STATUS_BAR_TAP_NOTIFICATION object:nil];
+}
+
+#pragma Observer Method
+
+- (void)handleStatusBarTapNotification:(NSNotification *)notification{
+    [_detailNewsView setContentOffset:CGPointZero animated:YES];
+}
+
 - (void)initUI{
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
@@ -42,6 +60,17 @@
     
     [self.view bringSubviewToFront:_toolBarView];
 }
+
+- (void)loadData{
+    [[HTTPClient sharedInstance] getDetailNewsWithID:_storyID success:^(NSURLSessionDataTask *task, BaseResponseModel *model){
+        DetailNewsResponseModel *detailNewsModel = (DetailNewsResponseModel *)model;
+        [_detailNewsView updateNewsWithModel:detailNewsModel];
+    }fail:^(NSURLSessionDataTask *task, BaseResponseModel *model){
+        ;
+    }];
+}
+
+#pragma mark - ToolBar Clicked Handle
 
 - (IBAction)handleToolbarButtonClicked:(UIButton *)sender {
     switch (sender.tag) {
@@ -55,6 +84,8 @@
             break;
     }
 }
+
+#pragma mark - Previous/Next News Switch Method
 
 - (void)switchToNextStoryWithCurrentSection:(NSInteger *)section storyID:(NSInteger)storyID{
     NSInteger nextStoryID = [self.homePageDataManager getNextNewsWithSection:section currentID:storyID];
@@ -114,15 +145,6 @@
 
 - (void)switchToNextNews{
     [self switchToNextStoryWithCurrentSection:&_section storyID:_storyID];
-}
-
-- (void)loadData{
-    [[HTTPClient sharedInstance] getDetailNewsWithID:_storyID success:^(NSURLSessionDataTask *task, BaseResponseModel *model){
-        DetailNewsResponseModel *detailNewsModel = (DetailNewsResponseModel *)model;
-        [_detailNewsView updateNewsWithModel:detailNewsModel];
-    }fail:^(NSURLSessionDataTask *task, BaseResponseModel *model){
-        ;
-    }];
 }
 
 - (void)didReceiveMemoryWarning {

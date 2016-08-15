@@ -65,7 +65,8 @@ static const CGFloat TestViewControllerHeadScrollHeight = 190.0f;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
-
+    [self.view setClipsToBounds:YES];
+    
     [self.navigationController setNavigationBarHidden:YES];
     self.navigationController.delegate = self;
     
@@ -82,8 +83,6 @@ static const CGFloat TestViewControllerHeadScrollHeight = 190.0f;
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_navBarView(50)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_navBarView)]];
     [_navBarView.leftButton addTarget:self action:@selector(menuButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleStatusBarTapNotification:) name:STATUS_BAR_TAP_NOTIFICATION object:nil];
-    
     UIPanGestureRecognizer *edge = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFromLeftEdge:)];
     edge.delegate = self;
     [self.navigationController.view addGestureRecognizer:edge];
@@ -92,7 +91,9 @@ static const CGFloat TestViewControllerHeadScrollHeight = 190.0f;
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    
     [_circularView startTimerIfNeeded];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleStatusBarTapNotification:) name:STATUS_BAR_TAP_NOTIFICATION object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -105,18 +106,13 @@ static const CGFloat TestViewControllerHeadScrollHeight = 190.0f;
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [_circularView stopTimer];
-}
-
-- (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:STATUS_BAR_TAP_NOTIFICATION object:nil];
 }
 
 #pragma Observer Method
 
 - (void)handleStatusBarTapNotification:(NSNotification *)notification{
-    if (self.navigationController.visibleViewController == self) {
-        [_tableView setContentOffset:CGPointZero animated:YES];
-    }
+    [_tableView setContentOffset:CGPointZero animated:YES];
 }
 
 #pragma mark - UINavigationControllerDelegate
@@ -167,22 +163,6 @@ static const CGFloat TestViewControllerHeadScrollHeight = 190.0f;
     
     return YES;
 }
-
-//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
-////    if ([gestureRecognizer isEqual:_circularView.scrollView.panGestureRecognizer]) {
-////        return YES;
-////    }
-//    return NO;
-//}
-//
-//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
-//    return YES;
-////    if ([otherGestureRecognizer isEqual:_circularView.scrollView.panGestureRecognizer]) {
-////        return YES;
-////    }
-////    
-////    return NO;
-//}
 
 - (void)handleSwipeFromLeftEdge:(UIScreenEdgePanGestureRecognizer *)gesture {
     CGPoint translate = [gesture translationInView:[UIApplication sharedApplication].delegate.window];
