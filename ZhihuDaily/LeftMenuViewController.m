@@ -8,7 +8,7 @@
 
 #import "LeftMenuViewController.h"
 #import "LeftMenuTableViewCell.h"
-#import "ThemesResponseModel.h"
+#import "ThemesListResponseModel.h"
 #import "SingleThemeResponseModel.h"
 #import "HomePageViewController.h"
 #import "ThemeDailyViewController.h"
@@ -50,7 +50,7 @@
     [_dataArray addObject:homeModel];
 
     [[HTTPClient sharedInstance] getThemesListWithSuccess:^(NSURLSessionDataTask *task,BaseResponseModel *model){
-        ThemesResponseModel *themesModel = (ThemesResponseModel *)model;
+        ThemesListResponseModel *themesModel = (ThemesListResponseModel *)model;
         [self.dataArray addObjectsFromArray:themesModel.others];
         [self.tableView reloadData];
     }fail:^(NSURLSessionDataTask *task, BaseResponseModel *model){
@@ -89,6 +89,7 @@
     if (indexPath.row != 0) {
         controller = [ThemeDailyViewController new];
         controller.themeID = _dataArray[indexPath.row].themeID;
+        controller.sideMenuViewController = self.sideMenuController;
         
         [self.homePageViewController.navigationController setViewControllers:@[self.homePageViewController,controller] animated:NO];
     }

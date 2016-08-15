@@ -10,7 +10,7 @@
 
 @class SingleThemeResponseModel;
 
-@interface ThemesResponseModel : MTLModel <MTLJSONSerializing>
+@interface ThemesListResponseModel : MTLModel <MTLJSONSerializing>
 
 @property (nonatomic, copy, readonly) NSArray<SingleThemeResponseModel *> *others;
 @property (nonatomic, copy, readonly) NSArray<SingleThemeResponseModel *> *subscribed;

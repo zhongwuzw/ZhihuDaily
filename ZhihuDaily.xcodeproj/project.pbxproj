@@ -47,10 +47,14 @@
 		0EE1B9F21D523A2F000AC44B /* NewsResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE1B9F11D523A2F000AC44B /* NewsResponseModel.m */; };
 		0EE1B9F51D523A4B000AC44B /* TopNewsResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE1B9F41D523A4B000AC44B /* TopNewsResponseModel.m */; };
 		0EEED5021D6168FA00E5838F /* LeftMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEED5011D6168FA00E5838F /* LeftMenuTableViewCell.m */; };
-		0EEED5051D616DA900E5838F /* ThemesResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEED5041D616DA900E5838F /* ThemesResponseModel.m */; };
+		0EEED5051D616DA900E5838F /* ThemesListResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEED5041D616DA900E5838F /* ThemesListResponseModel.m */; };
 		0EEED5081D616DFF00E5838F /* SingleThemeResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEED5071D616DFF00E5838F /* SingleThemeResponseModel.m */; };
 		0EEED50D1D61BE0A00E5838F /* ThemeDailyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEED50C1D61BE0A00E5838F /* ThemeDailyViewController.m */; };
 		0EEED5101D61C54F00E5838F /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEED50F1D61C54F00E5838F /* BaseViewController.m */; };
+		0EEED5141D61CA6000E5838F /* ThemeNavBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEED5131D61CA6000E5838F /* ThemeNavBarView.m */; };
+		0EEED51B1D61CF1600E5838F /* ThemeDailyDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEED51A1D61CF1600E5838F /* ThemeDailyDataManager.m */; };
+		0EEED51E1D61D26A00E5838F /* ThemeDetailResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEED51D1D61D26A00E5838F /* ThemeDetailResponseModel.m */; };
+		0EEED5211D61D2D400E5838F /* ThemeEditorResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EEED5201D61D2D400E5838F /* ThemeEditorResponseModel.m */; };
 		A7BF8EB070CB32E760C5DAFE /* libPods-ZhihuDaily.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F2A2427616E77FCCA1CCA9 /* libPods-ZhihuDaily.a */; };
 /* End PBXBuildFile section */
 
@@ -152,14 +156,22 @@
 		0EE1B9F41D523A4B000AC44B /* TopNewsResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopNewsResponseModel.m; sourceTree = "<group>"; };
 		0EEED5001D6168FA00E5838F /* LeftMenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuTableViewCell.h; sourceTree = "<group>"; };
 		0EEED5011D6168FA00E5838F /* LeftMenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenuTableViewCell.m; sourceTree = "<group>"; };
-		0EEED5031D616DA900E5838F /* ThemesResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemesResponseModel.h; sourceTree = "<group>"; };
-		0EEED5041D616DA900E5838F /* ThemesResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemesResponseModel.m; sourceTree = "<group>"; };
+		0EEED5031D616DA900E5838F /* ThemesListResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemesListResponseModel.h; sourceTree = "<group>"; };
+		0EEED5041D616DA900E5838F /* ThemesListResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemesListResponseModel.m; sourceTree = "<group>"; };
 		0EEED5061D616DFF00E5838F /* SingleThemeResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleThemeResponseModel.h; sourceTree = "<group>"; };
 		0EEED5071D616DFF00E5838F /* SingleThemeResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleThemeResponseModel.m; sourceTree = "<group>"; };
 		0EEED50B1D61BE0A00E5838F /* ThemeDailyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeDailyViewController.h; sourceTree = "<group>"; };
 		0EEED50C1D61BE0A00E5838F /* ThemeDailyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeDailyViewController.m; sourceTree = "<group>"; };
 		0EEED50E1D61C54F00E5838F /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		0EEED50F1D61C54F00E5838F /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		0EEED5121D61CA6000E5838F /* ThemeNavBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeNavBarView.h; sourceTree = "<group>"; };
+		0EEED5131D61CA6000E5838F /* ThemeNavBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeNavBarView.m; sourceTree = "<group>"; };
+		0EEED5191D61CF1600E5838F /* ThemeDailyDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeDailyDataManager.h; sourceTree = "<group>"; };
+		0EEED51A1D61CF1600E5838F /* ThemeDailyDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeDailyDataManager.m; sourceTree = "<group>"; };
+		0EEED51C1D61D26A00E5838F /* ThemeDetailResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeDetailResponseModel.h; sourceTree = "<group>"; };
+		0EEED51D1D61D26A00E5838F /* ThemeDetailResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeDetailResponseModel.m; sourceTree = "<group>"; };
+		0EEED51F1D61D2D400E5838F /* ThemeEditorResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeEditorResponseModel.h; sourceTree = "<group>"; };
+		0EEED5201D61D2D400E5838F /* ThemeEditorResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeEditorResponseModel.m; sourceTree = "<group>"; };
 		22F2A2427616E77FCCA1CCA9 /* libPods-ZhihuDaily.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZhihuDaily.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		69E594D9C3263D067750D25C /* Pods-ZhihuDaily.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZhihuDaily.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZhihuDaily/Pods-ZhihuDaily.release.xcconfig"; sourceTree = "<group>"; };
 		9DBFE71924A18B8192F1927E /* Pods-ZhihuDaily.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZhihuDaily.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZhihuDaily/Pods-ZhihuDaily.debug.xcconfig"; sourceTree = "<group>"; };
@@ -318,10 +330,14 @@
 				0EE1B9D91D5AD52E00A835D9 /* NewsListResponseModel.m */,
 				0E14CAEF1D5C5C81008C74A5 /* DetailNewsResponseModel.h */,
 				0E14CAF01D5C5C81008C74A5 /* DetailNewsResponseModel.m */,
-				0EEED5031D616DA900E5838F /* ThemesResponseModel.h */,
-				0EEED5041D616DA900E5838F /* ThemesResponseModel.m */,
+				0EEED5031D616DA900E5838F /* ThemesListResponseModel.h */,
+				0EEED5041D616DA900E5838F /* ThemesListResponseModel.m */,
 				0EEED5061D616DFF00E5838F /* SingleThemeResponseModel.h */,
 				0EEED5071D616DFF00E5838F /* SingleThemeResponseModel.m */,
+				0EEED51C1D61D26A00E5838F /* ThemeDetailResponseModel.h */,
+				0EEED51D1D61D26A00E5838F /* ThemeDetailResponseModel.m */,
+				0EEED51F1D61D2D400E5838F /* ThemeEditorResponseModel.h */,
+				0EEED5201D61D2D400E5838F /* ThemeEditorResponseModel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -481,6 +497,8 @@
 		0EEED5091D61BCB900E5838F /* ThemeDaily */ = {
 			isa = PBXGroup;
 			children = (
+				0EEED5151D61CEB500E5838F /* Model */,
+				0EEED5111D61CA4A00E5838F /* View */,
 				0EEED50A1D61BDCF00E5838F /* Controller */,
 			);
 			name = ThemeDaily;
@@ -493,6 +511,24 @@
 				0EEED50C1D61BE0A00E5838F /* ThemeDailyViewController.m */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		0EEED5111D61CA4A00E5838F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0EEED5121D61CA6000E5838F /* ThemeNavBarView.h */,
+				0EEED5131D61CA6000E5838F /* ThemeNavBarView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		0EEED5151D61CEB500E5838F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0EEED5191D61CF1600E5838F /* ThemeDailyDataManager.h */,
+				0EEED51A1D61CF1600E5838F /* ThemeDailyDataManager.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		6C728E53D1FDAAE8DB39A855 /* Pods */ = {
@@ -701,8 +737,9 @@
 				0EEED5101D61C54F00E5838F /* BaseViewController.m in Sources */,
 				0E59735A1D59CBCE00D216BB /* HomePageDataManager.m in Sources */,
 				0EE1B9EF1D523840000AC44B /* LatestNewsResponseModel.m in Sources */,
-				0EEED5051D616DA900E5838F /* ThemesResponseModel.m in Sources */,
+				0EEED5051D616DA900E5838F /* ThemesListResponseModel.m in Sources */,
 				0E14CAEE1D5C1427008C74A5 /* DetailNewsHeaderView.m in Sources */,
+				0EEED51E1D61D26A00E5838F /* ThemeDetailResponseModel.m in Sources */,
 				0E14CAF71D5C8489008C74A5 /* PushAnimator.m in Sources */,
 				0EE1B9DA1D5AD52E00A835D9 /* NewsListResponseModel.m in Sources */,
 				0EE1B9ED1D5B374400A835D9 /* DetailNewsView.m in Sources */,
@@ -719,6 +756,7 @@
 				0EAF0C0C1D56CEE400479F54 /* UIView+Additions.m in Sources */,
 				0E13079F1D51E3DD000C90A2 /* HTTPManager.m in Sources */,
 				0E14CAF61D5C8489008C74A5 /* PopAnimator.m in Sources */,
+				0EEED5141D61CA6000E5838F /* ThemeNavBarView.m in Sources */,
 				0E5973551D59B20400D216BB /* LeftMenuViewController.m in Sources */,
 				0EEED5021D6168FA00E5838F /* LeftMenuTableViewCell.m in Sources */,
 				0E0DE6F31D5883DC0069A2C2 /* WeakTarget.m in Sources */,
@@ -726,9 +764,11 @@
 				0EBCDE6D1D549A81008E3420 /* HomeNewsTableHeaderView.m in Sources */,
 				0EEED5081D616DFF00E5838F /* SingleThemeResponseModel.m in Sources */,
 				0EEED50D1D61BE0A00E5838F /* ThemeDailyViewController.m in Sources */,
+				0EEED5211D61D2D400E5838F /* ThemeEditorResponseModel.m in Sources */,
 				0E62D6EB1D4F0A5300F61530 /* AppDelegate.m in Sources */,
 				0E62D6E81D4F0A5300F61530 /* main.m in Sources */,
 				0EE1B9F51D523A4B000AC44B /* TopNewsResponseModel.m in Sources */,
+				0EEED51B1D61CF1600E5838F /* ThemeDailyDataManager.m in Sources */,
 				0E2EBF831D52D54500CC9B24 /* NewsTableViewCell.m in Sources */,
 				0EBCDE701D549F0D008E3420 /* NSDateFormatter+Util.m in Sources */,
 				0E006E3B1D508DD600308651 /* CircularCollectionViewCell.m in Sources */,

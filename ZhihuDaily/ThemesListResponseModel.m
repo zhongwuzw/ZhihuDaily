@@ -6,10 +6,10 @@
 //  Copyright © 2016年 钟武. All rights reserved.
 //
 
-#import "ThemesResponseModel.h"
+#import "ThemesListResponseModel.h"
 #import "SingleThemeResponseModel.h"
 
-@implementation ThemesResponseModel
+@implementation ThemesListResponseModel
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey{
     return @{

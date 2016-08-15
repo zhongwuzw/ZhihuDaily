@@ -12,7 +12,7 @@
 #import "LatestNewsResponseModel.h"
 #import "NewsListResponseModel.h"
 #import "DetailNewsResponseModel.h"
-#import "ThemesResponseModel.h"
+#import "ThemesListResponseModel.h"
 
 @interface HTTPClient ()
 
@@ -60,7 +60,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HTTPClient)
 - (NSURLSessionDataTask *)getThemesListWithSuccess:(HttpClientSuccessBlock)success fail:(HttpClientFailureBlock)fail{
     NSString *relativePath = [[HTTPURLConfiguration sharedInstance] themesList];
     
-    return [_httpManager GET:relativePath parameters:nil modelClass:[ThemesResponseModel class] success:success failure:fail];
+    return [_httpManager GET:relativePath parameters:nil modelClass:[ThemesListResponseModel class] success:success failure:fail];
 }
 
 @end

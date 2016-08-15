@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
+@class SideMenuViewController;
+
 @interface ThemeDailyViewController : BaseViewController
 
 @property (nonatomic, assign) NSInteger themeID;
+@property (nonatomic, weak) SideMenuViewController *sideMenuViewController;
 
 @end
