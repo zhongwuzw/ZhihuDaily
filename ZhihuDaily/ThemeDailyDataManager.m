@@ -12,4 +12,8 @@
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(ThemeDailyDataManager)
 
+- (NSURLSessionDataTask *)getThemeWithThemeID:(NSInteger)themeID success:(HttpClientSuccessBlock)success fail:(HttpClientFailureBlock)fail{
+    return [[HTTPClient sharedInstance] getThemeWithThemeID:themeID success:success fail:fail];
+}
+
 @end

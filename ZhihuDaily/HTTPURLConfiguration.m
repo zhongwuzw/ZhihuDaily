@@ -32,6 +32,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HTTPURLConfiguration)
     _previousNews = [self zhiHuURLWithPath:@"news/before/"];
     _detailNews = [self zhiHuURLWithPath:@"news/"];
     _themesList = [self zhiHuURLWithPath:@"themes"];
+    _themesList = [self zhiHuURLWithPath:@"theme/"];
 }
 
 - (NSString *)zhiHuURLWithPath:(NSString *)path{

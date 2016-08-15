@@ -11,5 +11,6 @@
 @interface ThemeDailyDataManager : NSObject
 
 SYNTHESIZE_SINGLETON_FOR_CLASS_HEADER(ThemeDailyDataManager)
+- (NSURLSessionDataTask *)getThemeWithThemeID:(NSInteger)themeID success:(HttpClientSuccessBlock)success fail:(HttpClientFailureBlock)fail;
 
 @end
