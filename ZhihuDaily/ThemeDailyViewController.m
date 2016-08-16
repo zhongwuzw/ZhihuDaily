@@ -120,7 +120,7 @@
     [self.themeDataManager getThemeWithThemeID:_themeID success:^(NSURLSessionDataTask *task, BaseResponseModel *model){
         ThemeEditorTableHeaderView *headerView = [[ThemeEditorTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 40)];
         [headerView installEditorListWithArray:self.editorsArray];
-        [_topBackImageView sd_setImageWithURL:[NSURL URLWithString:self.background]];
+        [_topBackImageView sd_setImageWithURL:[NSURL URLWithString:self.background] placeholderImage:_topBackImageView.image];
         _tableView.tableHeaderView = headerView;
         [_tableView reloadData];
     }fail:^(NSURLSessionDataTask *task, BaseResponseModel *model){
