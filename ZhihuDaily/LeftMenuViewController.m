@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray<SingleThemeResponseModel *> *dataArray;
 @property (assign, nonatomic) NSInteger selectedIndex;
+@property (strong, nonatomic) ThemeDailyViewController *themeDailyViewController;
 
 @end
 
@@ -80,14 +81,21 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     _selectedIndex = indexPath.row;
     
-    ThemeDailyViewController *controller = nil;
     if (indexPath.row != 0) {
-        controller = [ThemeDailyViewController new];
-        controller.themeID = _dataArray[indexPath.row].themeID;
-        controller.titleName = _dataArray[indexPath.row].name;
-        controller.sideMenuViewController = self.sideMenuController;
-        
-        [self.homePageViewController.navigationController setViewControllers:@[self.homePageViewController,controller] animated:NO];
+
+        if (self.themeDailyViewController) {
+            self.themeDailyViewController.themeID = _dataArray[indexPath.row].themeID;
+            self.themeDailyViewController.titleName = _dataArray[indexPath.row].name;
+            self.themeDailyViewController.sideMenuViewController = self.sideMenuController;
+            [self.themeDailyViewController reloadData];
+        }
+        else{
+            self.themeDailyViewController = [ThemeDailyViewController new];
+            self.themeDailyViewController.themeID = _dataArray[indexPath.row].themeID;
+            self.themeDailyViewController.titleName = _dataArray[indexPath.row].name;
+            self.themeDailyViewController.sideMenuViewController = self.sideMenuController;
+            [self.homePageViewController.navigationController setViewControllers:@[self.homePageViewController,self.themeDailyViewController] animated:NO];
+        }
     }
     else{
         [self.homePageViewController.navigationController popToRootViewControllerAnimated:NO];

@@ -17,4 +17,6 @@
 @property (nonatomic, copy) NSString *titleName;
 @property (nonatomic, weak) SideMenuViewController *sideMenuViewController;
 
+- (void)reloadData;
+
 @end

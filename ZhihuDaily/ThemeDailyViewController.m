@@ -102,7 +102,6 @@
     
     self.navBarView = [ThemeNavBarView new];
     [self.view addSubview:_navBarView];
-    [_navBarView setTitle:_titleName];
     
     [_navBarView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_navBarView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_navBarView)]];
@@ -116,6 +115,8 @@
 }
 
 - (void)initData{
+    [_navBarView setTitle:_titleName];
+    
     [self.themeDataManager getThemeWithThemeID:_themeID success:^(NSURLSessionDataTask *task, BaseResponseModel *model){
         ThemeEditorTableHeaderView *headerView = [[ThemeEditorTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 40)];
         [headerView installEditorListWithArray:self.editorsArray];
@@ -125,6 +126,10 @@
     }fail:^(NSURLSessionDataTask *task, BaseResponseModel *model){
         
     }];
+}
+
+- (void)reloadData{
+    [self initData];
 }
 
 #pragma mark - UITableViewDelegate Method
