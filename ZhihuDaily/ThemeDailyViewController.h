@@ -14,6 +14,7 @@
 @interface ThemeDailyViewController : BaseViewController
 
 @property (nonatomic, assign) NSInteger themeID;
+@property (nonatomic, copy) NSString *titleName;
 @property (nonatomic, weak) SideMenuViewController *sideMenuViewController;
 
 @end

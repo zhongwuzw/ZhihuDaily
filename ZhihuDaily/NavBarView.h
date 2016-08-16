@@ -15,6 +15,7 @@
 
 - (void)setBackgroundViewColor:(UIColor *)color;
 - (void)setTitleLabelHidden:(BOOL)hidden;
+- (void)setTitle:(NSString *)title;
 - (void)updateProgress:(CGFloat)progress;
 - (void)setProgressViewHidden:(BOOL)hidden;
 - (void)startActivityIndicator;

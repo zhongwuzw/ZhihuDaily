@@ -33,14 +33,6 @@
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-
 - (void)initUI{
     [self.tableView registerClass:[LeftMenuTableViewCell class] forCellReuseIdentifier:@"cell"];
 }
@@ -73,6 +65,9 @@
     if (indexPath.row == 0) {
         [cell.imageView setImage:[UIImage imageNamed:@"Menu_Icon_Home"]];
     }
+    else
+        [cell.imageView setImage:nil];
+    
     if (_selectedIndex == indexPath.row) {
         [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
     }
@@ -89,6 +84,7 @@
     if (indexPath.row != 0) {
         controller = [ThemeDailyViewController new];
         controller.themeID = _dataArray[indexPath.row].themeID;
+        controller.titleName = _dataArray[indexPath.row].name;
         controller.sideMenuViewController = self.sideMenuController;
         
         [self.homePageViewController.navigationController setViewControllers:@[self.homePageViewController,controller] animated:NO];

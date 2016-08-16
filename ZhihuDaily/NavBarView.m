@@ -72,6 +72,10 @@
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[_activityView(20)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_activityView)]];
 }
 
+- (void)setTitle:(NSString *)title{
+    [_titleLabel setText:title];
+}
+
 - (void)setBackgroundViewColor:(UIColor *)color{
     _backgroundView.backgroundColor = color;
 }

@@ -52,9 +52,8 @@
     
     self.detailNewsView = [[DetailNewsView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 43)];
     _detailNewsView.delegate = self;
-    [self.view addSubview:_detailNewsView];
-    
-    [self.view bringSubviewToFront:_toolBarView];
+
+    [self.view insertSubview:_detailNewsView belowSubview:_toolBarView];
 }
 
 - (void)initData{
@@ -90,8 +89,8 @@
         DetailNewsView *detailNewsView = [[DetailNewsView alloc] initWithFrame:CGRectMake(0, kScreenHeight, kScreenWidth, kScreenHeight - 43)];
         
         detailNewsView.delegate = self;
-        
-        [self.view addSubview:detailNewsView];
+    
+        [self.view insertSubview:detailNewsView belowSubview:_toolBarView];
         
         DetailNewsView *previousDetailNewsView = _detailNewsView;
         
@@ -117,7 +116,7 @@
         
         detailNewsView.delegate = self;
         
-        [self.view addSubview:detailNewsView];
+        [self.view insertSubview:detailNewsView belowSubview:_toolBarView];
         
         DetailNewsView *previousDetailNewsView = _detailNewsView;
         

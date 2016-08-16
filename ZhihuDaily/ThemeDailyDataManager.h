@@ -8,7 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+@class NewsResponseModel;
+@class ThemeEditorResponseModel;
+
 @interface ThemeDailyDataManager : NSObject
+
+@property (nonatomic, copy) NSArray<NewsResponseModel *> *themesArray;
+@property (nonatomic, copy) NSArray<ThemeEditorResponseModel *> *editorsArray;
+@property (nonatomic, copy) NSString *background;
+@property (nonatomic, copy) NSString *name;
 
 SYNTHESIZE_SINGLETON_FOR_CLASS_HEADER(ThemeDailyDataManager)
 - (NSURLSessionDataTask *)getThemeWithThemeID:(NSInteger)themeID success:(HttpClientSuccessBlock)success fail:(HttpClientFailureBlock)fail;

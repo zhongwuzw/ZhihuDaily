@@ -12,6 +12,8 @@
 		0E006E3B1D508DD600308651 /* CircularCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E006E391D508DD600308651 /* CircularCollectionViewCell.m */; };
 		0E006E411D50928100308651 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E006E401D50928100308651 /* HomePageViewController.m */; };
 		0E0DE6F31D5883DC0069A2C2 /* WeakTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0DE6F21D5883DC0069A2C2 /* WeakTarget.m */; };
+		0E0E91DE1D62B04200F4B8F4 /* ThemeEditorTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0E91DD1D62B04200F4B8F4 /* ThemeEditorTableHeaderView.m */; };
+		0E0E91E11D62C1DA00F4B8F4 /* ThemeDailyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E0E91E01D62C1DA00F4B8F4 /* ThemeDailyTableViewCell.m */; };
 		0E1307981D51C4EE000C90A2 /* UINavigationBar+BackgroundColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E1307971D51C4EE000C90A2 /* UINavigationBar+BackgroundColor.m */; };
 		0E13079C1D51E3D1000C90A2 /* HTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E13079B1D51E3D1000C90A2 /* HTTPClient.m */; };
 		0E13079F1D51E3DD000C90A2 /* HTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E13079E1D51E3DD000C90A2 /* HTTPManager.m */; };
@@ -85,6 +87,10 @@
 		0E006E401D50928100308651 /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
 		0E0DE6F11D5883DC0069A2C2 /* WeakTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeakTarget.h; sourceTree = "<group>"; };
 		0E0DE6F21D5883DC0069A2C2 /* WeakTarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeakTarget.m; sourceTree = "<group>"; };
+		0E0E91DC1D62B04200F4B8F4 /* ThemeEditorTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeEditorTableHeaderView.h; sourceTree = "<group>"; };
+		0E0E91DD1D62B04200F4B8F4 /* ThemeEditorTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeEditorTableHeaderView.m; sourceTree = "<group>"; };
+		0E0E91DF1D62C1DA00F4B8F4 /* ThemeDailyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeDailyTableViewCell.h; sourceTree = "<group>"; };
+		0E0E91E01D62C1DA00F4B8F4 /* ThemeDailyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeDailyTableViewCell.m; sourceTree = "<group>"; };
 		0E1307961D51C4EE000C90A2 /* UINavigationBar+BackgroundColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+BackgroundColor.h"; sourceTree = "<group>"; };
 		0E1307971D51C4EE000C90A2 /* UINavigationBar+BackgroundColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+BackgroundColor.m"; sourceTree = "<group>"; };
 		0E13079A1D51E3D1000C90A2 /* HTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPClient.h; sourceTree = "<group>"; };
@@ -518,6 +524,10 @@
 			children = (
 				0EEED5121D61CA6000E5838F /* ThemeNavBarView.h */,
 				0EEED5131D61CA6000E5838F /* ThemeNavBarView.m */,
+				0E0E91DC1D62B04200F4B8F4 /* ThemeEditorTableHeaderView.h */,
+				0E0E91DD1D62B04200F4B8F4 /* ThemeEditorTableHeaderView.m */,
+				0E0E91DF1D62C1DA00F4B8F4 /* ThemeDailyTableViewCell.h */,
+				0E0E91E01D62C1DA00F4B8F4 /* ThemeDailyTableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -764,6 +774,7 @@
 				0EBCDE6D1D549A81008E3420 /* HomeNewsTableHeaderView.m in Sources */,
 				0EEED5081D616DFF00E5838F /* SingleThemeResponseModel.m in Sources */,
 				0EEED50D1D61BE0A00E5838F /* ThemeDailyViewController.m in Sources */,
+				0E0E91E11D62C1DA00F4B8F4 /* ThemeDailyTableViewCell.m in Sources */,
 				0EEED5211D61D2D400E5838F /* ThemeEditorResponseModel.m in Sources */,
 				0E62D6EB1D4F0A5300F61530 /* AppDelegate.m in Sources */,
 				0E62D6E81D4F0A5300F61530 /* main.m in Sources */,
@@ -771,6 +782,7 @@
 				0EEED51B1D61CF1600E5838F /* ThemeDailyDataManager.m in Sources */,
 				0E2EBF831D52D54500CC9B24 /* NewsTableViewCell.m in Sources */,
 				0EBCDE701D549F0D008E3420 /* NSDateFormatter+Util.m in Sources */,
+				0E0E91DE1D62B04200F4B8F4 /* ThemeEditorTableHeaderView.m in Sources */,
 				0E006E3B1D508DD600308651 /* CircularCollectionViewCell.m in Sources */,
 				0EAF0C0F1D577D8700479F54 /* HomeTopNewsCircularView.m in Sources */,
 			);

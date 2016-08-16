@@ -67,6 +67,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HTTPClient)
 - (NSURLSessionDataTask *)getThemeWithThemeID:(NSInteger)themeID success:(HttpClientSuccessBlock)success fail:(HttpClientFailureBlock)fail{
     NSString *relativePath = [[HTTPURLConfiguration sharedInstance] theme];
     
+    relativePath = [relativePath stringByAppendingFormat:@"%ld",(long)themeID];
+    
     return [_httpManager GET:relativePath parameters:nil modelClass:[ThemeDetailResponseModel class] success:success failure:fail];
 }
 
