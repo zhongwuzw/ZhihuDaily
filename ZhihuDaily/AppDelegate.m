@@ -7,9 +7,11 @@
 //
 
 #import "AppDelegate.h"
-#import "SideMenuViewController.h"
+#import "ZhiHuSideMenuViewController.h"
 #import "HomePageViewController.h"
 #import "LeftMenuViewController.h"
+#import "LaunchViewController.h"
+
 #import <CocoaLumberjack/CocoaLumberjack.h>
 
 @interface AppDelegate ()
@@ -38,11 +40,13 @@
     HomePageViewController *rightVC = [HomePageViewController new];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:rightVC];
     
-    SideMenuViewController *sideMenu = [[SideMenuViewController alloc] initWithContentViewController:navigationController menuViewController:leftVC];
+    ZhiHuSideMenuViewController *sideMenu = [[ZhiHuSideMenuViewController alloc] initWithContentViewController:navigationController menuViewController:leftVC];
     rightVC.sideMenuController = sideMenu;
     leftVC.sideMenuController = sideMenu;
     
     leftVC.homePageViewController = rightVC;
+    
+//    LaunchViewController *launchVC = [LaunchViewController new];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = sideMenu;

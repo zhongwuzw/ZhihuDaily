@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LaunchViewController">
+            <connections>
+                <outlet property="imageView" destination="65e-9Z-zco" id="fsk-Kq-Tj9"/>
+                <outlet property="launchView" destination="Cex-I6-GaB" id="j7o-Cg-hb1"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="65e-9Z-zco">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Splash_Plus" translatesAutoresizingMaskIntoConstraints="NO" id="Cex-I6-GaB" userLabel="default view">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="65e-9Z-zco" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="1WV-i3-MYP"/>
+                <constraint firstAttribute="bottom" secondItem="65e-9Z-zco" secondAttribute="bottom" id="QQu-nZ-o1q"/>
+                <constraint firstItem="65e-9Z-zco" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="VL4-Ke-DGk"/>
+                <constraint firstAttribute="trailing" secondItem="65e-9Z-zco" secondAttribute="trailing" id="k5O-Xh-GrP"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <point key="canvasLocation" x="279.5" y="320.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Splash_Plus" width="768" height="1024"/>
+    </resources>
+</document>

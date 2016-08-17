@@ -14,6 +14,7 @@
 #import "DetailNewsResponseModel.h"
 #import "ThemesListResponseModel.h"
 #import "ThemeDetailResponseModel.h"
+#import "LaunchImageResponseModel.h"
 
 @interface HTTPClient ()
 
@@ -70,6 +71,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HTTPClient)
     relativePath = [relativePath stringByAppendingFormat:@"%ld",(long)themeID];
     
     return [_httpManager GET:relativePath parameters:nil modelClass:[ThemeDetailResponseModel class] success:success failure:fail];
+}
+
+- (NSURLSessionDataTask *)getLaunchImageWithResolution:(NSString *)resolution success:(HttpClientSuccessBlock)success fail:(HttpClientFailureBlock)fail{
+    NSString *relativePath = [[HTTPURLConfiguration sharedInstance] launchImage];
+    
+    relativePath = [relativePath stringByAppendingString:resolution];
+    
+    return [_httpManager GET:relativePath parameters:nil modelClass:[LaunchImageResponseModel class] success:success failure:fail];
 }
 
 @end

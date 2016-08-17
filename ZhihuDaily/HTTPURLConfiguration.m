@@ -33,6 +33,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HTTPURLConfiguration)
     _detailNews = [self zhiHuURLWithPath:@"news/"];
     _themesList = [self zhiHuURLWithPath:@"themes"];
     _theme = [self zhiHuURLWithPath:@"theme/"];
+    _launchImage = [self zhiHuURLWithPath:@"start-image/"];
 }
 
 - (NSString *)zhiHuURLWithPath:(NSString *)path{

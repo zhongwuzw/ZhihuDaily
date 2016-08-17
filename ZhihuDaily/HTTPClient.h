@@ -24,5 +24,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_HEADER(HTTPClient)
 - (NSURLSessionDataTask *)getThemesListWithSuccess:(HttpClientSuccessBlock)success
                                               fail:(HttpClientFailureBlock)fail;
 - (NSURLSessionDataTask *)getThemeWithThemeID:(NSInteger)themeID success:(HttpClientSuccessBlock)success fail:(HttpClientFailureBlock)fail;
+- (NSURLSessionDataTask *)getLaunchImageWithResolution:(NSString *)resolution success:(HttpClientSuccessBlock)success
+                                              fail:(HttpClientFailureBlock)fail;
+
 
 @end
