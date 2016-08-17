@@ -31,6 +31,11 @@
     self.launchController = [LaunchViewController new];
     [self addChildViewController:_launchController];
     [self.view addSubview:_launchController.view];
+    UIView *view = _launchController.view;
+    [view setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[view]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(view)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[view]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(view)]];
+    
     [_launchController didMoveToParentViewController:self];
 }
 

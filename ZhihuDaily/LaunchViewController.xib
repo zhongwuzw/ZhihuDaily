@@ -20,16 +20,20 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="65e-9Z-zco">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Splash_Plus" translatesAutoresizingMaskIntoConstraints="NO" id="Cex-I6-GaB" userLabel="default view">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash_Plus" translatesAutoresizingMaskIntoConstraints="NO" id="Cex-I6-GaB" userLabel="default view">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="65e-9Z-zco" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="1WV-i3-MYP"/>
+                <constraint firstItem="Cex-I6-GaB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="HWW-C9-u8l"/>
                 <constraint firstAttribute="bottom" secondItem="65e-9Z-zco" secondAttribute="bottom" id="QQu-nZ-o1q"/>
                 <constraint firstItem="65e-9Z-zco" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="VL4-Ke-DGk"/>
+                <constraint firstAttribute="bottom" secondItem="Cex-I6-GaB" secondAttribute="bottom" id="eOV-b8-qXV"/>
                 <constraint firstAttribute="trailing" secondItem="65e-9Z-zco" secondAttribute="trailing" id="k5O-Xh-GrP"/>
+                <constraint firstAttribute="trailing" secondItem="Cex-I6-GaB" secondAttribute="trailing" id="mat-ng-YHZ"/>
+                <constraint firstItem="Cex-I6-GaB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="vkb-sg-hZf"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="279.5" y="320.5"/>
