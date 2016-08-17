@@ -63,8 +63,6 @@
     [_nextButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     _nextButton.titleLabel.font = [UIFont systemFontOfSize:12];
     [_nextButton setImage:[UIImage imageNamed:@"ZHAnswerViewPrevIcon"] forState:UIControlStateNormal];
-    
-    _webView.delegate = self;
 }
 
 - (void)setContentOffset:(CGPoint)point animated:(BOOL)animated{
@@ -112,6 +110,9 @@
         }
     }
     else{
+        if(scrollView.contentSize.height + 20 > _nextButton.centerY)
+            _nextButton.centerY = scrollView.contentSize.height + 20;
+        
         if (yOffset + kScreenHeight - 35 >= scrollView.contentSize.height + 40) {
             [UIView animateWithDuration:.3 animations:^{
                 _nextButton.imageView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, M_PI);
@@ -139,12 +140,6 @@
             [self.delegate switchToNextNews];
         }
     }
-}
-
-#pragma mark - WebView Delegate Method
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView{
-    _nextButton.center = CGPointMake(kScreenWidth/2, webView.scrollView.contentSize.height + 20);
 }
 
 #pragma mark - Dealloc Method
