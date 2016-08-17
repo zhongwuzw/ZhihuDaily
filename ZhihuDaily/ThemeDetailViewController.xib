@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ThemeDetailViewController">
+            <connections>
+                <outlet property="toolBarView" destination="vlY-gb-OSX" id="R28-Bt-cAk"/>
+                <outlet property="view" destination="jlb-pf-aqi" id="DRv-fz-gPD"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="jlb-pf-aqi">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vlY-gb-OSX" userLabel="ToolBar">
+                    <rect key="frame" x="0.0" y="619" width="375" height="48"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAR-A6-OQU" userLabel="back">
+                            <rect key="frame" x="0.0" y="0.0" width="75" height="48"/>
+                            <state key="normal" image="News_Navigation_Arrow"/>
+                            <state key="highlighted" image="News_Navigation_Arrow_Highlight"/>
+                            <connections>
+                                <action selector="handleToolbarButtonClicked:" destination="-1" eventType="touchUpInside" id="TzN-zL-EuQ"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OdK-bu-Hst" userLabel="next">
+                            <rect key="frame" x="75" y="0.0" width="75" height="48"/>
+                            <state key="normal" image="News_Navigation_Next"/>
+                            <state key="highlighted" image="News_Navigation_Next_Highlight"/>
+                            <connections>
+                                <action selector="handleToolbarButtonClicked:" destination="-1" eventType="touchUpInside" id="Sol-Qh-6Z3"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYF-wu-Jod" userLabel="zan">
+                            <rect key="frame" x="150" y="0.0" width="75" height="48"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                            <inset key="titleEdgeInsets" minX="-41" minY="-16" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="354" image="News_Navigation_Vote">
+                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted" image="News_Navigation_Vote"/>
+                            <connections>
+                                <action selector="handleToolbarButtonClicked:" destination="-1" eventType="touchUpInside" id="d5D-Po-Eax"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ko3-YC-vor" userLabel="forward">
+                            <rect key="frame" x="225" y="0.0" width="75" height="48"/>
+                            <state key="normal" image="News_Navigation_Share"/>
+                            <state key="highlighted" image="News_Navigation_Share_Highlight"/>
+                            <connections>
+                                <action selector="handleToolbarButtonClicked:" destination="-1" eventType="touchUpInside" id="Y0C-AP-FQP"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BNS-gM-S2s" userLabel="comment">
+                            <rect key="frame" x="300" y="0.0" width="75" height="48"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                            <inset key="titleEdgeInsets" minX="-54" minY="-15" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="822" image="News_Navigation_Comment"/>
+                            <state key="highlighted" image="News_Navigation_Comment_Highlight"/>
+                            <connections>
+                                <action selector="handleToolbarButtonClicked:" destination="-1" eventType="touchUpInside" id="aqY-FO-R0S"/>
+                            </connections>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NfY-mZ-Dn4">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" id="BEo-D6-ZG8"/>
+                                <constraint firstAttribute="height" constant="0.5" id="wBP-pQ-5oI"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="BEo-D6-ZG8"/>
+                                </mask>
+                            </variation>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="Ko3-YC-vor" firstAttribute="leading" secondItem="cYF-wu-Jod" secondAttribute="trailing" id="2w6-Fx-Bm3"/>
+                        <constraint firstItem="cAR-A6-OQU" firstAttribute="leading" secondItem="vlY-gb-OSX" secondAttribute="leading" id="36C-Yg-fwI"/>
+                        <constraint firstItem="cYF-wu-Jod" firstAttribute="leading" secondItem="vlY-gb-OSX" secondAttribute="leading" constant="152" id="4vm-BM-sla"/>
+                        <constraint firstItem="OdK-bu-Hst" firstAttribute="height" secondItem="cYF-wu-Jod" secondAttribute="height" id="5fh-B3-1Du"/>
+                        <constraint firstItem="cAR-A6-OQU" firstAttribute="width" secondItem="OdK-bu-Hst" secondAttribute="width" id="6W3-8T-Odu"/>
+                        <constraint firstItem="OdK-bu-Hst" firstAttribute="bottom" secondItem="cYF-wu-Jod" secondAttribute="bottom" id="8QL-YA-Zj2"/>
+                        <constraint firstItem="cAR-A6-OQU" firstAttribute="height" secondItem="OdK-bu-Hst" secondAttribute="height" id="APU-j4-R7w"/>
+                        <constraint firstItem="OdK-bu-Hst" firstAttribute="leading" secondItem="cAR-A6-OQU" secondAttribute="trailing" id="AvY-bP-XhW"/>
+                        <constraint firstItem="Ko3-YC-vor" firstAttribute="height" secondItem="BNS-gM-S2s" secondAttribute="height" id="EOp-TM-WvI"/>
+                        <constraint firstAttribute="bottom" secondItem="cAR-A6-OQU" secondAttribute="bottom" id="F6q-Zy-cXk"/>
+                        <constraint firstItem="cYF-wu-Jod" firstAttribute="width" secondItem="Ko3-YC-vor" secondAttribute="width" id="HCP-iW-TJd"/>
+                        <constraint firstItem="cYF-wu-Jod" firstAttribute="leading" secondItem="OdK-bu-Hst" secondAttribute="trailing" id="Ka9-Hz-mxM"/>
+                        <constraint firstItem="OdK-bu-Hst" firstAttribute="width" secondItem="cYF-wu-Jod" secondAttribute="width" id="OLg-7Q-i4r"/>
+                        <constraint firstItem="OdK-bu-Hst" firstAttribute="top" secondItem="cYF-wu-Jod" secondAttribute="top" id="QM9-MM-bbI"/>
+                        <constraint firstItem="NfY-mZ-Dn4" firstAttribute="leading" secondItem="vlY-gb-OSX" secondAttribute="leading" id="SzG-fy-wEu"/>
+                        <constraint firstItem="Ko3-YC-vor" firstAttribute="width" secondItem="BNS-gM-S2s" secondAttribute="width" id="Z8y-Ko-gJg"/>
+                        <constraint firstAttribute="trailing" secondItem="NfY-mZ-Dn4" secondAttribute="trailing" id="eXq-MO-Mw8"/>
+                        <constraint firstAttribute="trailing" secondItem="BNS-gM-S2s" secondAttribute="trailing" id="fVW-yV-hCo"/>
+                        <constraint firstItem="Ko3-YC-vor" firstAttribute="top" secondItem="BNS-gM-S2s" secondAttribute="top" id="ffw-GI-Nta"/>
+                        <constraint firstItem="Ko3-YC-vor" firstAttribute="bottom" secondItem="BNS-gM-S2s" secondAttribute="bottom" id="gbH-7l-RYv"/>
+                        <constraint firstItem="cYF-wu-Jod" firstAttribute="height" secondItem="Ko3-YC-vor" secondAttribute="height" id="h2O-tZ-lYw"/>
+                        <constraint firstItem="NfY-mZ-Dn4" firstAttribute="top" secondItem="vlY-gb-OSX" secondAttribute="top" id="idY-jZ-8uN"/>
+                        <constraint firstAttribute="height" constant="48" id="iuC-I4-UkJ"/>
+                        <constraint firstItem="cAR-A6-OQU" firstAttribute="bottom" secondItem="OdK-bu-Hst" secondAttribute="bottom" id="iuu-3X-38U"/>
+                        <constraint firstItem="cYF-wu-Jod" firstAttribute="top" secondItem="Ko3-YC-vor" secondAttribute="top" id="lOm-kR-yus"/>
+                        <constraint firstItem="cAR-A6-OQU" firstAttribute="top" secondItem="vlY-gb-OSX" secondAttribute="top" id="mvt-vV-lVE"/>
+                        <constraint firstItem="cYF-wu-Jod" firstAttribute="bottom" secondItem="Ko3-YC-vor" secondAttribute="bottom" id="uHl-LR-9a4"/>
+                        <constraint firstItem="cAR-A6-OQU" firstAttribute="top" secondItem="OdK-bu-Hst" secondAttribute="top" id="w2n-fZ-Nbg"/>
+                        <constraint firstItem="BNS-gM-S2s" firstAttribute="leading" secondItem="Ko3-YC-vor" secondAttribute="trailing" id="zBH-6a-Ruw"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="4vm-BM-sla"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="vlY-gb-OSX" firstAttribute="leading" secondItem="jlb-pf-aqi" secondAttribute="leading" id="BX9-2P-2sA"/>
+                <constraint firstAttribute="trailing" secondItem="vlY-gb-OSX" secondAttribute="trailing" id="ZDd-ix-ExJ"/>
+                <constraint firstAttribute="bottom" secondItem="vlY-gb-OSX" secondAttribute="bottom" id="kWd-j3-49h"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="News_Navigation_Arrow" width="64" height="43"/>
+        <image name="News_Navigation_Arrow_Highlight" width="64" height="43"/>
+        <image name="News_Navigation_Comment" width="64" height="43"/>
+        <image name="News_Navigation_Comment_Highlight" width="64" height="43"/>
+        <image name="News_Navigation_Next" width="64" height="43"/>
+        <image name="News_Navigation_Next_Highlight" width="64" height="43"/>
+        <image name="News_Navigation_Share" width="64" height="43"/>
+        <image name="News_Navigation_Share_Highlight" width="64" height="43"/>
+        <image name="News_Navigation_Vote" width="64" height="43"/>
+    </resources>
+</document>

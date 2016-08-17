@@ -1,28 +1,28 @@
 //
-//  NewsDetailViewController.m
+//  ThemeDetailViewController.m
 //  ZhihuDaily
 //
-//  Created by 钟武 on 16/8/10.
+//  Created by 钟武 on 16/8/17.
 //  Copyright © 2016年 钟武. All rights reserved.
 //
 
-#import "NewsDetailViewController.h"
-#import "DetailNewsView.h"
-#import "HTTPClient.h"
-#import "BaseResponseModel.h"
-#import "HomePageDataManager.h"
+#import "ThemeDetailViewController.h"
+#import "ThemeDailyDataManager.h"
+#import "ThemeDailyView.h"
+#import "DetailNewsResponseModel.h"
 
-@interface NewsDetailViewController () <SwitchNewsDelegate>
+@interface ThemeDetailViewController () <SwitchNewsDelegate>
 
-@property (nonatomic, strong) DetailNewsView *detailNewsView;
-@property (nonatomic, weak) IBOutlet UIView *toolBarView;
-@property (nonatomic, weak, readonly) HomePageDataManager *homePageDataManager;
+@property (weak, nonatomic) IBOutlet UIView *toolBarView;
+@property (nonatomic, weak, readonly) ThemeDailyDataManager *themeDailyDataManager;
+@property (nonatomic, strong) ThemeDailyView *detailNewsView;
+
 @end
 
-@implementation NewsDetailViewController
+@implementation ThemeDetailViewController
 
-- (HomePageDataManager *)homePageDataManager{
-    return [HomePageDataManager sharedInstance];
+- (ThemeDailyDataManager *)themeDailyDataManager{
+    return [ThemeDailyDataManager sharedInstance];
 }
 
 - (void)viewDidLoad {
@@ -50,9 +50,9 @@
 - (void)initUI{
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    self.detailNewsView = [[DetailNewsView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 43)];
+    self.detailNewsView = [[ThemeDailyView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 43)];
     _detailNewsView.delegate = self;
-
+    
     [self.view insertSubview:_detailNewsView belowSubview:_toolBarView];
 }
 
@@ -73,7 +73,7 @@
             [self.navigationController popViewControllerAnimated:YES];
             break;
         case 1:
-            [self switchToNextStoryWithCurrentSection:&_section storyID:_storyID];
+            [self switchToNextStoryWithStoryID:_storyID];
             break;
         default:
             break;
@@ -82,17 +82,17 @@
 
 #pragma mark - Previous/Next News Switch Method
 
-- (void)switchToNextStoryWithCurrentSection:(NSInteger *)section storyID:(NSInteger)storyID{
-    NSInteger nextStoryID = [self.homePageDataManager getNextNewsWithSection:section currentID:storyID];
+- (void)switchToNextStoryWithStoryID:(NSInteger)storyID{
+    NSInteger nextStoryID = [self.themeDailyDataManager getNextNewsWithCurrentID:storyID];
     
     if (nextStoryID != -1) {
-        DetailNewsView *detailNewsView = [[DetailNewsView alloc] initWithFrame:CGRectMake(0, kScreenHeight, kScreenWidth, kScreenHeight - 43)];
-        
+        ThemeDailyView *detailNewsView = [[ThemeDailyView alloc] initWithFrame:CGRectMake(0, kScreenHeight, kScreenWidth, kScreenHeight - 43)];
+
         detailNewsView.delegate = self;
-    
+        
         [self.view insertSubview:detailNewsView belowSubview:_toolBarView];
         
-        DetailNewsView *previousDetailNewsView = _detailNewsView;
+        ThemeDailyView *previousDetailNewsView = _detailNewsView;
         
         _detailNewsView = detailNewsView;
         _storyID = nextStoryID;
@@ -105,20 +105,20 @@
             [previousDetailNewsView removeFromSuperview];
         }];
     }
-
+    
 }
 
-- (void)switchToPreviousStoryWithCurrentSection:(NSInteger *)section storyID:(NSInteger)storyID{
-    NSInteger nextStoryID = [self.homePageDataManager getPreviousNewsWithSection:section currentID:storyID];
+- (void)switchToPreviousStoryWithStoryID:(NSInteger)storyID{
+    NSInteger nextStoryID = [self.themeDailyDataManager getPreviousNewsWithCurrentID:storyID];
     
     if (nextStoryID != -1) {
-        DetailNewsView *detailNewsView = [[DetailNewsView alloc] initWithFrame:CGRectMake(0, -kScreenHeight, kScreenWidth, kScreenHeight - 43)];
+        ThemeDailyView *detailNewsView = [[ThemeDailyView alloc] initWithFrame:CGRectMake(0, -kScreenHeight, kScreenWidth, kScreenHeight - 43)];
         
         detailNewsView.delegate = self;
         
         [self.view insertSubview:detailNewsView belowSubview:_toolBarView];
         
-        DetailNewsView *previousDetailNewsView = _detailNewsView;
+        ThemeDailyView *previousDetailNewsView = _detailNewsView;
         
         _detailNewsView = detailNewsView;
         _storyID = nextStoryID;
@@ -135,16 +135,15 @@
 }
 
 - (void)switchToPreviousNews{
-    [self switchToPreviousStoryWithCurrentSection:&_section storyID:_storyID];
+    [self switchToPreviousStoryWithStoryID:_storyID];
 }
 
 - (void)switchToNextNews{
-    [self switchToNextStoryWithCurrentSection:&_section storyID:_storyID];
+    [self switchToNextStoryWithStoryID:_storyID];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

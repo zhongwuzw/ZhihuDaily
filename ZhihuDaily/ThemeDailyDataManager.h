@@ -20,5 +20,9 @@
 
 SYNTHESIZE_SINGLETON_FOR_CLASS_HEADER(ThemeDailyDataManager)
 - (NSURLSessionDataTask *)getThemeWithThemeID:(NSInteger)themeID success:(HttpClientSuccessBlock)success fail:(HttpClientFailureBlock)fail;
+- (NSInteger)numberofRows;
+- (NSInteger)getPreviousNewsWithCurrentID:(NSInteger)currentID;
+- (NSInteger)getNextNewsWithCurrentID:(NSInteger)currentID;
+- (NewsResponseModel *)modelForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

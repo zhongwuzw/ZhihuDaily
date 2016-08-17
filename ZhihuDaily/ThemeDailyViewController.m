@@ -15,6 +15,7 @@
 #import "BaseResponseModel.h"
 #import "ThemeDailyTableViewCell.h"
 #import "ThemeEditorTableHeaderView.h"
+#import "ThemeDetailViewController.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 
@@ -135,7 +136,11 @@
 #pragma mark - UITableViewDelegate Method
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    NewsResponseModel *model = [self.themeDataManager modelForRowAtIndexPath:indexPath];
+    
+    [self transitionToDetailNewsVC:model.storyID];
 }
 
 #pragma mark - UITableViewDataSource Method
@@ -169,6 +174,12 @@
 
 - (void)menuButtonClicked:(UIButton *)button{
     [self.sideMenuViewController showMenuViewController];
+}
+     
+- (void)transitionToDetailNewsVC:(NSInteger)storyID{
+    ThemeDetailViewController *detailVC = [ThemeDetailViewController new];
+    detailVC.storyID = storyID;
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

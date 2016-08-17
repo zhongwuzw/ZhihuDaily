@@ -29,6 +29,9 @@
 		0E2AC30F1D5D61C200B51363 /* CircularCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E2AC30E1D5D61C200B51363 /* CircularCollectionCell.xib */; };
 		0E2EBF831D52D54500CC9B24 /* NewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2EBF821D52D54500CC9B24 /* NewsTableViewCell.m */; };
 		0E3970181D63F995002695C3 /* ZhiHuSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E3970171D63F995002695C3 /* ZhiHuSideMenuViewController.m */; };
+		0E39701C1D640562002695C3 /* ThemeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E39701A1D640562002695C3 /* ThemeDetailViewController.m */; };
+		0E39701D1D640562002695C3 /* ThemeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E39701B1D640562002695C3 /* ThemeDetailViewController.xib */; };
+		0E3970201D640DE2002695C3 /* ThemeDailyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E39701F1D640DE2002695C3 /* ThemeDailyView.m */; };
 		0E5973551D59B20400D216BB /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5973531D59B20400D216BB /* LeftMenuViewController.m */; };
 		0E5973561D59B20400D216BB /* LeftMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E5973541D59B20400D216BB /* LeftMenuViewController.xib */; };
 		0E59735A1D59CBCE00D216BB /* HomePageDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5973591D59CBCE00D216BB /* HomePageDataManager.m */; };
@@ -123,6 +126,11 @@
 		0E2EBF821D52D54500CC9B24 /* NewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsTableViewCell.m; sourceTree = "<group>"; };
 		0E3970161D63F995002695C3 /* ZhiHuSideMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZhiHuSideMenuViewController.h; sourceTree = "<group>"; };
 		0E3970171D63F995002695C3 /* ZhiHuSideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZhiHuSideMenuViewController.m; sourceTree = "<group>"; };
+		0E3970191D640562002695C3 /* ThemeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeDetailViewController.h; sourceTree = "<group>"; };
+		0E39701A1D640562002695C3 /* ThemeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeDetailViewController.m; sourceTree = "<group>"; };
+		0E39701B1D640562002695C3 /* ThemeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThemeDetailViewController.xib; sourceTree = "<group>"; };
+		0E39701E1D640DE2002695C3 /* ThemeDailyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeDailyView.h; sourceTree = "<group>"; };
+		0E39701F1D640DE2002695C3 /* ThemeDailyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeDailyView.m; sourceTree = "<group>"; };
 		0E5973521D59B20400D216BB /* LeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuViewController.h; sourceTree = "<group>"; };
 		0E5973531D59B20400D216BB /* LeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenuViewController.m; sourceTree = "<group>"; };
 		0E5973541D59B20400D216BB /* LeftMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftMenuViewController.xib; sourceTree = "<group>"; };
@@ -549,6 +557,9 @@
 			children = (
 				0EEED50B1D61BE0A00E5838F /* ThemeDailyViewController.h */,
 				0EEED50C1D61BE0A00E5838F /* ThemeDailyViewController.m */,
+				0E3970191D640562002695C3 /* ThemeDetailViewController.h */,
+				0E39701A1D640562002695C3 /* ThemeDetailViewController.m */,
+				0E39701B1D640562002695C3 /* ThemeDetailViewController.xib */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -562,6 +573,8 @@
 				0E0E91DD1D62B04200F4B8F4 /* ThemeEditorTableHeaderView.m */,
 				0E0E91DF1D62C1DA00F4B8F4 /* ThemeDailyTableViewCell.h */,
 				0E0E91E01D62C1DA00F4B8F4 /* ThemeDailyTableViewCell.m */,
+				0E39701E1D640DE2002695C3 /* ThemeDailyView.h */,
+				0E39701F1D640DE2002695C3 /* ThemeDailyView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -702,6 +715,7 @@
 				0EE1B9E71D5B343800A835D9 /* NewsDetailViewController.xib in Resources */,
 				0E62D6F61D4F0A5300F61530 /* LaunchScreen.storyboard in Resources */,
 				0E62D6F31D4F0A5300F61530 /* Assets.xcassets in Resources */,
+				0E39701D1D640562002695C3 /* ThemeDetailViewController.xib in Resources */,
 				0E2AC30F1D5D61C200B51363 /* CircularCollectionCell.xib in Resources */,
 				0E107B5C1D6365080056320F /* LaunchViewController.xib in Resources */,
 				0E62D6F11D4F0A5300F61530 /* Main.storyboard in Resources */,
@@ -789,6 +803,7 @@
 				0EE1B9DA1D5AD52E00A835D9 /* NewsListResponseModel.m in Sources */,
 				0EE1B9ED1D5B374400A835D9 /* DetailNewsView.m in Sources */,
 				0EBCDE651D5464AE008E3420 /* NavBarView.m in Sources */,
+				0E39701C1D640562002695C3 /* ThemeDetailViewController.m in Sources */,
 				0E006E371D50892800308651 /* CircularView.m in Sources */,
 				0E14CAF11D5C5C81008C74A5 /* DetailNewsResponseModel.m in Sources */,
 				0EBCDE681D54680F008E3420 /* CircleProgressView.m in Sources */,
@@ -805,6 +820,7 @@
 				0E14CAF61D5C8489008C74A5 /* PopAnimator.m in Sources */,
 				0EEED5141D61CA6000E5838F /* ThemeNavBarView.m in Sources */,
 				0E5973551D59B20400D216BB /* LeftMenuViewController.m in Sources */,
+				0E3970201D640DE2002695C3 /* ThemeDailyView.m in Sources */,
 				0EEED5021D6168FA00E5838F /* LeftMenuTableViewCell.m in Sources */,
 				0E0DE6F31D5883DC0069A2C2 /* WeakTarget.m in Sources */,
 				0E1307A61D51F63B000C90A2 /* HTTPURLConfiguration.m in Sources */,
