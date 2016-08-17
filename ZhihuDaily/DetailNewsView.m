@@ -11,6 +11,8 @@
 #import "DetailNewsResponseModel.h"
 #import "NewsDetailViewController.h"
 
+#import <TOWebViewController.h>
+
 #define DetailHeaderViewHeight 210.0f
 
 @interface DetailNewsView () <UIScrollViewDelegate, UIWebViewDelegate>
@@ -36,6 +38,7 @@
 - (void)initUI{
     self.webView = [UIWebView new];
     _webView.scrollView.delegate = self;
+    _webView.delegate = self;
     _webView.scrollView.backgroundColor = [UIColor whiteColor];
     [self addSubview:_webView];
     
@@ -140,6 +143,18 @@
             [self.delegate switchToNextNews];
         }
     }
+}
+
+#pragma mark - UIWebViewDelegate Method
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+        if ([self.delegate respondsToSelector:@selector(handleWebViewClickedWithURL:)]) {
+            [self.delegate handleWebViewClickedWithURL:request.URL];
+        }
+        return NO;
+    }
+    return YES;
 }
 
 #pragma mark - Dealloc Method

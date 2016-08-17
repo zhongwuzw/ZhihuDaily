@@ -12,6 +12,8 @@
 #import "BaseResponseModel.h"
 #import "HomePageDataManager.h"
 
+#import <TOWebViewController.h>
+
 @interface NewsDetailViewController () <SwitchNewsDelegate>
 
 @property (nonatomic, strong) DetailNewsView *detailNewsView;
@@ -25,8 +27,11 @@
     return [HomePageDataManager sharedInstance];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -134,6 +139,8 @@
     
 }
 
+#pragma mark - SwitchNewsDelegate Method
+
 - (void)switchToPreviousNews{
     [self switchToPreviousStoryWithCurrentSection:&_section storyID:_storyID];
 }
@@ -142,9 +149,16 @@
     [self switchToNextStoryWithCurrentSection:&_section storyID:_storyID];
 }
 
+- (void)handleWebViewClickedWithURL:(NSURL *)url{
+    TOWebViewController *safariVC = [[TOWebViewController alloc] initWithURL:url];
+    safariVC.showUrlWhileLoading = NO;
+    
+    [self.navigationController pushViewController:safariVC animated:YES];
+    [safariVC.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

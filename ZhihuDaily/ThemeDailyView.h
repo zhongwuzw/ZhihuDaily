@@ -15,6 +15,7 @@
 
 - (void)switchToPreviousNews;
 - (void)switchToNextNews;
+- (void)handleWebViewClickedWithURL:(NSURL *)url;
 
 @end
 

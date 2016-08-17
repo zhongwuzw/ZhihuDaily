@@ -11,6 +11,8 @@
 #import "ThemeDailyView.h"
 #import "DetailNewsResponseModel.h"
 
+#import <TOWebViewController.h>
+
 @interface ThemeDetailViewController () <SwitchNewsDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *toolBarView;
@@ -25,8 +27,11 @@
     return [ThemeDailyDataManager sharedInstance];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -134,12 +139,22 @@
     
 }
 
+#pragma mark - SwitchNewsDelegate Method
+
 - (void)switchToPreviousNews{
     [self switchToPreviousStoryWithStoryID:_storyID];
 }
 
 - (void)switchToNextNews{
     [self switchToNextStoryWithStoryID:_storyID];
+}
+
+- (void)handleWebViewClickedWithURL:(NSURL *)url{
+    TOWebViewController *safariVC = [[TOWebViewController alloc] initWithURL:url];
+    safariVC.showUrlWhileLoading = NO;
+    
+    [self.navigationController pushViewController:safariVC animated:YES];
+    [safariVC.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

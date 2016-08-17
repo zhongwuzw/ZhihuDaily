@@ -9,13 +9,20 @@ __Disclaimer - 声明__
 『知乎』是 *知乎. Inc* 的注册商标。本软件与其代码非由知乎创作或维护。软件中所包含的信息与内容皆违反版权与知乎用户协议。它是一个免费软件，使用它不收取您任何费用。其中的所有内容均可在[知乎](http://www.zhihu.com)获取。
 
 ## Demo 展示
+* 应用主页部分：
+![](https://raw.githubusercontent.com/zhongwuzw/ZhihuDaily/master/demo1.gif)
+* 新闻详细页部分：
+![](https://raw.githubusercontent.com/zhongwuzw/ZhihuDaily/master/demo2.gif)
+![](https://raw.githubusercontent.com/zhongwuzw/ZhihuDaily/master/demo3.gif)
+* 主题日报部分：
+![](https://raw.githubusercontent.com/zhongwuzw/ZhihuDaily/master/demo4.gif)
 
 ## Features - 特性
   - 实现知乎日报大多数功能
   - 没有广告
   
 ## TODO - 后续实现
-  - 网络切换管理
+  - 网络状况切换管理
   - 夜间模式
   
 ## Usage - 用法
