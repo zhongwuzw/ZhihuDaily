@@ -13,6 +13,7 @@
 static void *kNSObject_DeallocBlocks;
 
 @implementation NSObject (DeallocBlock)
+
 - (id)addDeallocBlock:(void (^)())deallocBlock
 {
     if (deallocBlock == nil) {

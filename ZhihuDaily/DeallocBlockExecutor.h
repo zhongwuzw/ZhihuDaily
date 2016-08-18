@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface DeallocBlockExecutor : NSObject
-+ (instancetype)executorWithDeallocBlock:(void (^)())deallocBlock;
+
 @property (nonatomic, copy) void (^deallocBlock)();
+
++ (instancetype)executorWithDeallocBlock:(void (^)())deallocBlock;
+
 @end

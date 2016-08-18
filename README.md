@@ -16,6 +16,8 @@ __Disclaimer - 声明__
 ![](https://raw.githubusercontent.com/zhongwuzw/ZhihuDaily/master/images/demo3.gif)
 #### 3.主题日报部分：
 ![](https://raw.githubusercontent.com/zhongwuzw/ZhihuDaily/master/images/demo4.gif)
+#### 3.夜间部分：
+![](https://raw.githubusercontent.com/zhongwuzw/ZhihuDaily/master/images/demo5.gif)
 
 ## Features - 特性
   - 实现知乎日报大多数功能
@@ -23,7 +25,6 @@ __Disclaimer - 声明__
   
 ## TODO - 后续实现
   - 网络状况切换管理
-  - 夜间模式
   
 ## Usage - 用法
   - clone或直接下载zip，运行即可

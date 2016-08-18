@@ -9,6 +9,7 @@
 #import "DeallocBlockExecutor.h"
 
 @implementation DeallocBlockExecutor
+
 + (instancetype)executorWithDeallocBlock:(void (^)())deallocBlock
 {
     DeallocBlockExecutor *o = [DeallocBlockExecutor new];
@@ -23,4 +24,5 @@
         self.deallocBlock = nil;
     }
 }
+
 @end
