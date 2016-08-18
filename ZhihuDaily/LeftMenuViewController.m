@@ -13,6 +13,8 @@
 #import "HomePageViewController.h"
 #import "ThemeDailyViewController.h"
 #import "SideMenuViewController.h"
+#import "ThemeManager.h"
+#import "SkinStyle.h"
 
 @interface LeftMenuViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -35,6 +37,7 @@
 }
 
 - (void)initUI{
+    self.view.themeMap = @{kThemeMapKeyColorName : @"left_menu_bg"};
     [self.tableView registerClass:[LeftMenuTableViewCell class] forCellReuseIdentifier:@"cell"];
 }
 
@@ -49,6 +52,38 @@
     }fail:^(NSURLSessionDataTask *task, BaseResponseModel *model){
         
     }];
+}
+
+#pragma mark - Handle Button Cliked
+
+- (IBAction)handleButtonClicked:(UIButton *)sender {
+    switch (sender.tag) {
+        case 1:
+            
+            break;
+        case 2:
+            [self handleNightModeButtonClicked:sender];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)handleNightModeButtonClicked:(UIButton *)button{
+    NSInteger skinID = [ThemeManager sharedInstance].skinInstance.skinID;
+    switch (skinID) {
+        case 1:
+            [button setImage:[UIImage imageNamed:@"Menu_Day"] forState:UIControlStateNormal];
+            [button setTitle:@"白天" forState:UIControlStateNormal];
+            break;
+        case 2:
+            [button setImage:[UIImage imageNamed:@"Menu_Dark"] forState:UIControlStateNormal];
+            [button setTitle:@"夜间" forState:UIControlStateNormal];
+            break;
+        default:
+            break;
+    }
+    [[ThemeManager sharedInstance] switchToStyle];
 }
 
 #pragma mark - UITableViewDataSource Method

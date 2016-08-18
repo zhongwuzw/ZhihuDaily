@@ -84,6 +84,7 @@
 
 - (void)initUI{
     self.tableView = [UITableView new];
+    self.tableView.themeMap = @{kThemeMapKeyColorName : @"table_bg"};
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.showsVerticalScrollIndicator = NO;

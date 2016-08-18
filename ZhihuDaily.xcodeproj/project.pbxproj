@@ -26,6 +26,12 @@
 		0E14CAF11D5C5C81008C74A5 /* DetailNewsResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E14CAF01D5C5C81008C74A5 /* DetailNewsResponseModel.m */; };
 		0E14CAF61D5C8489008C74A5 /* PopAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E14CAF31D5C8489008C74A5 /* PopAnimator.m */; };
 		0E14CAF71D5C8489008C74A5 /* PushAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E14CAF51D5C8489008C74A5 /* PushAnimator.m */; };
+		0E1B7D2E1D65588800028C79 /* ThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E1B7D2D1D65588800028C79 /* ThemeManager.m */; };
+		0E1B7D311D6558A000028C79 /* SkinStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E1B7D301D6558A000028C79 /* SkinStyle.m */; };
+		0E1B7D341D65595C00028C79 /* res in Resources */ = {isa = PBXBuildFile; fileRef = 0E1B7D331D65595C00028C79 /* res */; };
+		0E1B7D371D6564F600028C79 /* UIView+Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E1B7D361D6564F600028C79 /* UIView+Theme.m */; };
+		0E1B7D3E1D657D2B00028C79 /* DeallocBlockExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E1B7D3B1D657D2B00028C79 /* DeallocBlockExecutor.m */; };
+		0E1B7D3F1D657D2B00028C79 /* NSObject+DeallocBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E1B7D3D1D657D2B00028C79 /* NSObject+DeallocBlock.m */; };
 		0E2AC30F1D5D61C200B51363 /* CircularCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E2AC30E1D5D61C200B51363 /* CircularCollectionCell.xib */; };
 		0E2EBF831D52D54500CC9B24 /* NewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E2EBF821D52D54500CC9B24 /* NewsTableViewCell.m */; };
 		0E3970181D63F995002695C3 /* ZhiHuSideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E3970171D63F995002695C3 /* ZhiHuSideMenuViewController.m */; };
@@ -121,6 +127,18 @@
 		0E14CAF31D5C8489008C74A5 /* PopAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopAnimator.m; sourceTree = "<group>"; };
 		0E14CAF41D5C8489008C74A5 /* PushAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushAnimator.h; sourceTree = "<group>"; };
 		0E14CAF51D5C8489008C74A5 /* PushAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushAnimator.m; sourceTree = "<group>"; };
+		0E1B7D2B1D6557AB00028C79 /* NigntModeConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NigntModeConstants.h; sourceTree = "<group>"; };
+		0E1B7D2C1D65588800028C79 /* ThemeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeManager.h; sourceTree = "<group>"; };
+		0E1B7D2D1D65588800028C79 /* ThemeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeManager.m; sourceTree = "<group>"; };
+		0E1B7D2F1D6558A000028C79 /* SkinStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkinStyle.h; sourceTree = "<group>"; };
+		0E1B7D301D6558A000028C79 /* SkinStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkinStyle.m; sourceTree = "<group>"; };
+		0E1B7D331D65595C00028C79 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
+		0E1B7D351D6564F600028C79 /* UIView+Theme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Theme.h"; sourceTree = "<group>"; };
+		0E1B7D361D6564F600028C79 /* UIView+Theme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Theme.m"; sourceTree = "<group>"; };
+		0E1B7D3A1D657D2B00028C79 /* DeallocBlockExecutor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeallocBlockExecutor.h; sourceTree = "<group>"; };
+		0E1B7D3B1D657D2B00028C79 /* DeallocBlockExecutor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeallocBlockExecutor.m; sourceTree = "<group>"; };
+		0E1B7D3C1D657D2B00028C79 /* NSObject+DeallocBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+DeallocBlock.h"; sourceTree = "<group>"; };
+		0E1B7D3D1D657D2B00028C79 /* NSObject+DeallocBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DeallocBlock.m"; sourceTree = "<group>"; };
 		0E2AC30E1D5D61C200B51363 /* CircularCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircularCollectionCell.xib; sourceTree = "<group>"; };
 		0E2EBF811D52D54500CC9B24 /* NewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsTableViewCell.h; sourceTree = "<group>"; };
 		0E2EBF821D52D54500CC9B24 /* NewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsTableViewCell.m; sourceTree = "<group>"; };
@@ -231,6 +249,7 @@
 		0E006E2B1D503FC600308651 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				0E1B7D381D657D0900028C79 /* ThirdParties */,
 				0E0DE6F01D5883C70069A2C2 /* Other */,
 				0E1307951D51C4BB000C90A2 /* Category */,
 				0E006E341D5088E500308651 /* View */,
@@ -389,6 +408,72 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		0E1B7D271D65572600028C79 /* NightMode */ = {
+			isa = PBXGroup;
+			children = (
+				0E1B7D321D65592A00028C79 /* Resource */,
+				0E1B7D2A1D65576F00028C79 /* Manager */,
+				0E1B7D291D65576700028C79 /* Category */,
+				0E1B7D281D65575600028C79 /* Header */,
+			);
+			name = NightMode;
+			sourceTree = "<group>";
+		};
+		0E1B7D281D65575600028C79 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				0E1B7D2B1D6557AB00028C79 /* NigntModeConstants.h */,
+			);
+			name = Header;
+			sourceTree = "<group>";
+		};
+		0E1B7D291D65576700028C79 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				0E1B7D351D6564F600028C79 /* UIView+Theme.h */,
+				0E1B7D361D6564F600028C79 /* UIView+Theme.m */,
+			);
+			name = Category;
+			sourceTree = "<group>";
+		};
+		0E1B7D2A1D65576F00028C79 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				0E1B7D2C1D65588800028C79 /* ThemeManager.h */,
+				0E1B7D2D1D65588800028C79 /* ThemeManager.m */,
+				0E1B7D2F1D6558A000028C79 /* SkinStyle.h */,
+				0E1B7D301D6558A000028C79 /* SkinStyle.m */,
+			);
+			name = Manager;
+			sourceTree = "<group>";
+		};
+		0E1B7D321D65592A00028C79 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				0E1B7D331D65595C00028C79 /* res */,
+			);
+			name = Resource;
+			sourceTree = "<group>";
+		};
+		0E1B7D381D657D0900028C79 /* ThirdParties */ = {
+			isa = PBXGroup;
+			children = (
+				0E1B7D391D657D1E00028C79 /* DeallocBlockExecutor */,
+			);
+			name = ThirdParties;
+			sourceTree = "<group>";
+		};
+		0E1B7D391D657D1E00028C79 /* DeallocBlockExecutor */ = {
+			isa = PBXGroup;
+			children = (
+				0E1B7D3A1D657D2B00028C79 /* DeallocBlockExecutor.h */,
+				0E1B7D3B1D657D2B00028C79 /* DeallocBlockExecutor.m */,
+				0E1B7D3C1D657D2B00028C79 /* NSObject+DeallocBlock.h */,
+				0E1B7D3D1D657D2B00028C79 /* NSObject+DeallocBlock.m */,
+			);
+			name = DeallocBlockExecutor;
+			sourceTree = "<group>";
+		};
 		0E2EBF841D52D95200CC9B24 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -450,6 +535,7 @@
 			isa = PBXGroup;
 			children = (
 				0E1307991D51E1D7000C90A2 /* Network */,
+				0E1B7D271D65572600028C79 /* NightMode */,
 				0E107B561D6364D10056320F /* Launch */,
 				0EEED5091D61BCB900E5838F /* ThemeDaily */,
 				0EE1B9E21D5B0A6800A835D9 /* NewsDetail */,
@@ -712,6 +798,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E1B7D341D65595C00028C79 /* res in Resources */,
 				0EE1B9E71D5B343800A835D9 /* NewsDetailViewController.xib in Resources */,
 				0E62D6F61D4F0A5300F61530 /* LaunchScreen.storyboard in Resources */,
 				0E62D6F31D4F0A5300F61530 /* Assets.xcassets in Resources */,
@@ -808,6 +895,7 @@
 				0E14CAF11D5C5C81008C74A5 /* DetailNewsResponseModel.m in Sources */,
 				0EBCDE681D54680F008E3420 /* CircleProgressView.m in Sources */,
 				0E13079C1D51E3D1000C90A2 /* HTTPClient.m in Sources */,
+				0E1B7D3F1D657D2B00028C79 /* NSObject+DeallocBlock.m in Sources */,
 				0EE1B9E61D5B343800A835D9 /* NewsDetailViewController.m in Sources */,
 				0E1307A31D51E716000C90A2 /* BaseResponseModel.m in Sources */,
 				0E006E411D50928100308651 /* HomePageViewController.m in Sources */,
@@ -815,12 +903,15 @@
 				0E107B5F1D636B880056320F /* LaunchImageResponseModel.m in Sources */,
 				0E107B5B1D6365080056320F /* LaunchViewController.m in Sources */,
 				0EE1B9F21D523A2F000AC44B /* NewsResponseModel.m in Sources */,
+				0E1B7D2E1D65588800028C79 /* ThemeManager.m in Sources */,
 				0EAF0C0C1D56CEE400479F54 /* UIView+Additions.m in Sources */,
 				0E13079F1D51E3DD000C90A2 /* HTTPManager.m in Sources */,
 				0E14CAF61D5C8489008C74A5 /* PopAnimator.m in Sources */,
 				0EEED5141D61CA6000E5838F /* ThemeNavBarView.m in Sources */,
+				0E1B7D311D6558A000028C79 /* SkinStyle.m in Sources */,
 				0E5973551D59B20400D216BB /* LeftMenuViewController.m in Sources */,
 				0E3970201D640DE2002695C3 /* ThemeDailyView.m in Sources */,
+				0E1B7D3E1D657D2B00028C79 /* DeallocBlockExecutor.m in Sources */,
 				0EEED5021D6168FA00E5838F /* LeftMenuTableViewCell.m in Sources */,
 				0E0DE6F31D5883DC0069A2C2 /* WeakTarget.m in Sources */,
 				0E1307A61D51F63B000C90A2 /* HTTPURLConfiguration.m in Sources */,
@@ -838,6 +929,7 @@
 				0E3970181D63F995002695C3 /* ZhiHuSideMenuViewController.m in Sources */,
 				0E0E91DE1D62B04200F4B8F4 /* ThemeEditorTableHeaderView.m in Sources */,
 				0E006E3B1D508DD600308651 /* CircularCollectionViewCell.m in Sources */,
+				0E1B7D371D6564F600028C79 /* UIView+Theme.m in Sources */,
 				0EAF0C0F1D577D8700479F54 /* HomeTopNewsCircularView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

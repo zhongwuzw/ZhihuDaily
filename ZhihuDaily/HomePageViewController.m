@@ -21,6 +21,8 @@
 #import "PushAnimator.h"
 #import "PopAnimator.h"
 #import "ThemeDailyViewController.h"
+#import "ThemeManager.h"
+#import "SkinStyle.h"
 
 #define NAVBAR_CHANGE_POINT 50
 #define TABLE_HEADER_VIEW_HEIGHT 34
@@ -43,6 +45,7 @@ static const CGFloat TestViewControllerHeadScrollHeight = 190.0f;
 @property (nonatomic, strong) NavBarView *navBarView;
 @property (nonatomic, strong) UIPercentDrivenInteractiveTransition *interactionController;
 @property (nonatomic, assign) BOOL isLoading;
+@property (nonatomic, assign) int navBarViewBGColor;
 
 @end
 
@@ -78,6 +81,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageViewController)
     edge.delegate = self;
     [self.navigationController.view addGestureRecognizer:edge];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNavBarNightMode) name:kThemeDidChangeNotification object:nil];
+    [self handleNavBarNightMode];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -100,10 +105,31 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageViewController)
     [[NSNotificationCenter defaultCenter] removeObserver:self name:STATUS_BAR_TAP_NOTIFICATION object:nil];
 }
 
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kThemeDidChangeNotification object:nil];
+}
+
 #pragma Observer Method
 
 - (void)handleStatusBarTapNotification:(NSNotification *)notification{
     [_tableView setContentOffset:CGPointZero animated:YES];
+}
+
+- (void)handleNavBarNightMode{
+    SkinStyle *skinStyle = nil;
+    if ((skinStyle = [[ThemeManager sharedInstance] skinInstance])) {
+        switch (skinStyle.skinID) {
+            case 1:
+                self.navBarViewBGColor = 0x2C74D3;
+                break;
+            case 2:
+                self.navBarViewBGColor = 0x555555;
+                break;
+            default:
+                break;
+        }
+        [self scrollViewDidScroll:_tableView];
+    }
 }
 
 #pragma mark - UINavigationControllerDelegate
@@ -207,6 +233,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageViewController)
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.themeMap = @{kThemeMapKeyColorName : @"table_bg"};
     
     [self.tableView registerClass:[NewsTableViewCell class] forCellReuseIdentifier:REUSE_TABLE_VIEW_CELL];
     [self.tableView registerClass:[HomeNewsTableHeaderView class] forHeaderFooterViewReuseIdentifier:REUSE_TABLE_Header_VIEW_CELL];
@@ -354,9 +381,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageViewController)
         
         if (yOffset > NAVBAR_CHANGE_POINT) {
             CGFloat alpha = MIN(1, 1 - ((NAVBAR_CHANGE_POINT + 64 - yOffset) / 64));
-            [_navBarView setBackgroundViewColor:[UIColor colorWithRed:0.175f green:0.458f blue:0.831f alpha:alpha]];
+//            [_navBarView setBackgroundViewColor:[UIColor colorWithRed:0.175f green:0.458f blue:0.831f alpha:alpha]];
+//            [_navBarView setBackgroundViewColor:UIColorFromRGBAndAlpha(0x2C74D3, alpha)];
+            [_navBarView setBackgroundViewColor:UIColorFromRGBAndAlpha(self.navBarViewBGColor, alpha)];
         } else {
-            [_navBarView setBackgroundViewColor:[UIColor colorWithRed:0.175f green:0.458f blue:0.831f alpha:0]];
+//            [_navBarView setBackgroundViewColor:[UIColor colorWithRed:0.175f green:0.458f blue:0.831f alpha:0]];
+            [_navBarView setBackgroundViewColor:UIColorFromRGBAndAlpha(self.navBarViewBGColor, 0)];
         }
         
         if (yOffset + _tableView.height + TABLE_VIEW_CELL_HEIGHT > _tableView.contentSize.height) {

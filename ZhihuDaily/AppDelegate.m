@@ -11,6 +11,7 @@
 #import "HomePageViewController.h"
 #import "LeftMenuViewController.h"
 #import "LaunchViewController.h"
+#import "ThemeManager.h"
 
 #import <CocoaLumberjack/CocoaLumberjack.h>
 
@@ -46,7 +47,7 @@
     
     leftVC.homePageViewController = rightVC;
     
-//    LaunchViewController *launchVC = [LaunchViewController new];
+    [[ThemeManager sharedInstance] switchToStyleByID:THEME_STYLE_CLASSIC];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = sideMenu;

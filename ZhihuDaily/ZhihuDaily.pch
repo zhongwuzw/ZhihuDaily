@@ -17,6 +17,7 @@
 #import "BaseResponseModel.h"
 
 #import "UIView+Additions.h"
+#import "UIView+Theme.h"
 
 #if DEBUG
 static const DDLogLevel ddLogLevel = DDLogLevelDebug;

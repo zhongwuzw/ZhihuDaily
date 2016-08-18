@@ -29,9 +29,12 @@
 }
 
 - (void)initUI{
+    self.backgroundColor = [UIColor clearColor];
+    
     self.titleLabel = [UILabel new];
     self.titleLabel.numberOfLines = 0;
     self.titleLabel.font = [UIFont systemFontOfSize:15];
+    self.titleLabel.themeMap = @{kThemeMapKeyColorName : @"cell_text"};
     [self.contentView addSubview:_titleLabel];
     
     [_titleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];

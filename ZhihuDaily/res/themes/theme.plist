@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>id</key>
+		<integer>1</integer>
+		<key>name</key>
+		<string>classic</string>
+		<key>detail</key>
+		<string>默认</string>
+		<key>version</key>
+		<integer>1</integer>
+		<key>channel</key>
+		<string>0</string>
+		<key>bid</key>
+		<integer>0</integer>
+		<key>resolution</key>
+		<string>640*960</string>
+		<key>predefine</key>
+		<true/>
+		<key>bNightMode</key>
+		<true/>
+		<key>icon</key>
+		<string>/res/themes/classic/icon.png</string>
+		<key>configPath</key>
+		<string>/res/themes/classic/config.plist</string>
+		<key>themePath</key>
+		<string>/res/themes/classic</string>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>2</integer>
+		<key>name</key>
+		<string>night</string>
+		<key>detail</key>
+		<string>Night</string>
+		<key>version</key>
+		<integer>1</integer>
+		<key>channel</key>
+		<string>0</string>
+		<key>bid</key>
+		<integer>0</integer>
+		<key>resolution</key>
+		<string>640*960</string>
+		<key>predefine</key>
+		<true/>
+		<key>bNightMode</key>
+		<true/>
+		<key>icon</key>
+		<string>/res/themes/night/icon.png</string>
+		<key>configPath</key>
+		<string>/res/themes/night/config.plist</string>
+		<key>themePath</key>
+		<string>/res/themes/night</string>
+	</dict>
+</array>
+</plist>
