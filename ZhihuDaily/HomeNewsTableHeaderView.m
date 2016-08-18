@@ -36,7 +36,7 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_titleLabel]-8-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_titleLabel)]];
     [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:_titleLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
     
-    self.contentView.backgroundColor = [UIColor colorWithRed:0.175f green:0.458f blue:0.831f alpha:1];
+    self.contentView.themeMap = @{kThemeMapKeyColorName : @"table_header_bg"};
 }
 
 - (void)setHeaderTitle:(NSString *)title{

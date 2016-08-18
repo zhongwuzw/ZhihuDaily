@@ -6,6 +6,8 @@
 	<string>0</string>
 	<key>constant</key>
 	<dict>
+		<key>table_header_bg</key>
+		<string>#FF555555</string>
 		<key>left_menu_bg</key>
 		<string>#FF1C1C1D</string>
 		<key>cell_text</key>

@@ -128,7 +128,20 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageViewController)
             default:
                 break;
         }
-        [self scrollViewDidScroll:_tableView];
+        
+        CGFloat yOffset  = _tableView.contentOffset.y;
+        if (yOffset > 0) {
+            if (yOffset > NAVBAR_CHANGE_POINT) {
+                CGFloat alpha = MIN(1, 1 - ((NAVBAR_CHANGE_POINT + 64 - yOffset) / 64));
+                [UIView animateWithDuration:0.5 animations:^{
+                   [_navBarView setBackgroundViewColor:UIColorFromRGBAndAlpha(self.navBarViewBGColor, alpha)];
+                }];
+            } else {
+                [UIView animateWithDuration:0.5 animations:^{
+                    [_navBarView setBackgroundViewColor:UIColorFromRGBAndAlpha(self.navBarViewBGColor, 0)];
+                }];
+            }
+        }
     }
 }
 
@@ -381,11 +394,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageViewController)
         
         if (yOffset > NAVBAR_CHANGE_POINT) {
             CGFloat alpha = MIN(1, 1 - ((NAVBAR_CHANGE_POINT + 64 - yOffset) / 64));
-//            [_navBarView setBackgroundViewColor:[UIColor colorWithRed:0.175f green:0.458f blue:0.831f alpha:alpha]];
-//            [_navBarView setBackgroundViewColor:UIColorFromRGBAndAlpha(0x2C74D3, alpha)];
             [_navBarView setBackgroundViewColor:UIColorFromRGBAndAlpha(self.navBarViewBGColor, alpha)];
         } else {
-//            [_navBarView setBackgroundViewColor:[UIColor colorWithRed:0.175f green:0.458f blue:0.831f alpha:0]];
             [_navBarView setBackgroundViewColor:UIColorFromRGBAndAlpha(self.navBarViewBGColor, 0)];
         }
         
