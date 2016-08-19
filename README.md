@@ -16,7 +16,7 @@ __Disclaimer - 声明__
 ![](https://raw.githubusercontent.com/zhongwuzw/ZhihuDaily/master/images/demo3.gif)
 #### 3.主题日报部分：
 ![](https://raw.githubusercontent.com/zhongwuzw/ZhihuDaily/master/images/demo4.gif)
-#### 3.夜间部分：
+#### 4.夜间部分：
 ![](https://raw.githubusercontent.com/zhongwuzw/ZhihuDaily/master/images/demo5.gif)
 
 ## Features - 特性
