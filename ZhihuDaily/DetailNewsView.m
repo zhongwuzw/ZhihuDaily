@@ -36,36 +36,45 @@
 }
 
 - (void)initUI{
-    self.webView = [UIWebView new];
-    _webView.scrollView.delegate = self;
-    _webView.delegate = self;
-    _webView.scrollView.backgroundColor = [UIColor whiteColor];
-    [self addSubview:_webView];
-    
-    [_webView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_webView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_webView)]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_webView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_webView)]];
+    self.webView = ({
+        UIWebView *webView = [UIWebView new];
+        webView.scrollView.delegate = self;
+        webView.delegate = self;
+        webView.scrollView.backgroundColor = [UIColor whiteColor];
+        [self addSubview:webView];
+        
+        [webView setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[webView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(webView)]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[webView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(webView)]];
+        webView;
+    });
     
     self.headerView = [[DetailNewsHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, DetailHeaderViewHeight)];
     [_webView.scrollView addSubview:_headerView];
     
-    self.previousButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-    _previousButton.center = CGPointMake(kScreenWidth/2, -20);
-    [_webView.scrollView addSubview:_previousButton];
-    _previousButton.enabled = NO;
-    [_previousButton setTitle:@"载入上一篇" forState:UIControlStateNormal];
-    [_previousButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    _previousButton.titleLabel.font = [UIFont systemFontOfSize:12];
-    [_previousButton setImage:[UIImage imageNamed:@"ZHAnswerViewBack"] forState:UIControlStateNormal];
+    self.previousButton = ({
+        UIButton *previousButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+        previousButton.center = CGPointMake(kScreenWidth/2, -20);
+        [_webView.scrollView addSubview:previousButton];
+        previousButton.enabled = NO;
+        [previousButton setTitle:@"载入上一篇" forState:UIControlStateNormal];
+        [previousButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        previousButton.titleLabel.font = [UIFont systemFontOfSize:12];
+        [previousButton setImage:[UIImage imageNamed:@"ZHAnswerViewBack"] forState:UIControlStateNormal];
+        previousButton;
+    });
     
-    self.nextButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-    _nextButton.center = CGPointMake(kScreenWidth/2, kScreenHeight + 20);
-    [_webView.scrollView addSubview:_nextButton];
-    _nextButton.enabled = NO;
-    [_nextButton setTitle:@"载入下一篇" forState:UIControlStateNormal];
-    [_nextButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    _nextButton.titleLabel.font = [UIFont systemFontOfSize:12];
-    [_nextButton setImage:[UIImage imageNamed:@"ZHAnswerViewPrevIcon"] forState:UIControlStateNormal];
+    self.nextButton = ({
+        UIButton *nextButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+        nextButton.center = CGPointMake(kScreenWidth/2, kScreenHeight + 20);
+        [_webView.scrollView addSubview:nextButton];
+        nextButton.enabled = NO;
+        [nextButton setTitle:@"载入下一篇" forState:UIControlStateNormal];
+        [nextButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        nextButton.titleLabel.font = [UIFont systemFontOfSize:12];
+        [nextButton setImage:[UIImage imageNamed:@"ZHAnswerViewPrevIcon"] forState:UIControlStateNormal];
+        nextButton;
+    });
 }
 
 - (void)setContentOffset:(CGPoint)point animated:(BOOL)animated{
