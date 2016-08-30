@@ -387,10 +387,9 @@
 		0E1307991D51E1D7000C90A2 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				0E1D5ABC1D75A1E600511C0F /* PictureBlockURLProtocol */,
 				0E1307A01D51E6FD000C90A2 /* Models */,
 				0EE1B9EC1D522D27000AC44B /* HTTPErrorCode.h */,
-				0E41B82B1D740C4F00D25C05 /* PictureBlockURLProtocol.h */,
-				0E41B82C1D740C4F00D25C05 /* PictureBlockURLProtocol.m */,
 				0E13079A1D51E3D1000C90A2 /* HTTPClient.h */,
 				0E13079B1D51E3D1000C90A2 /* HTTPClient.m */,
 				0E13079D1D51E3DD000C90A2 /* HTTPManager.h */,
@@ -524,6 +523,15 @@
 				0E1D5AB31D75711000511C0F /* SettingsTableViewCell.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		0E1D5ABC1D75A1E600511C0F /* PictureBlockURLProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				0E41B82B1D740C4F00D25C05 /* PictureBlockURLProtocol.h */,
+				0E41B82C1D740C4F00D25C05 /* PictureBlockURLProtocol.m */,
+			);
+			name = PictureBlockURLProtocol;
 			sourceTree = "<group>";
 		};
 		0E2EBF841D52D95200CC9B24 /* Controller */ = {
