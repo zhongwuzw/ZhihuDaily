@@ -16,6 +16,7 @@
 #import "ThemeDailyTableViewCell.h"
 #import "ThemeEditorTableHeaderView.h"
 #import "ThemeDetailViewController.h"
+#import "Reachability.h"
 
 #import <SDWebImage/UIImageView+WebCache.h>
 
@@ -72,12 +73,28 @@
     [super viewDidAppear:animated];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleStatusBarTapNotification:) name:STATUS_BAR_TAP_NOTIFICATION object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:STATUS_BAR_TAP_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
+}
+
+#pragma mark - Observer Method
+
+- (void)reachabilityChanged:(NSNotification *)notification{
+    Reachability *reachability = [notification object];
+    NetworkStatus netStatus = [reachability currentReachabilityStatus];
+    
+    if (netStatus == ReachableViaWiFi) {
+        dispatch_main_async_safe(^{
+            [self.tableView reloadData];
+        });
+    }
 }
 
 #pragma mark - VC Init Method
@@ -181,10 +198,6 @@
     ThemeDetailViewController *detailVC = [ThemeDetailViewController new];
     detailVC.storyID = storyID;
     [self.navigationController pushViewController:detailVC animated:YES];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 #pragma Observer Method

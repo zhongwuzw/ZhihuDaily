@@ -23,6 +23,8 @@
 #import "ThemeDailyViewController.h"
 #import "ThemeManager.h"
 #import "SkinStyle.h"
+#import "Reachability.h"
+#import "SettingsViewController.h"
 
 #define NAVBAR_CHANGE_POINT 50
 #define TABLE_HEADER_VIEW_HEIGHT 34
@@ -89,7 +91,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageViewController)
     [super viewDidAppear:animated];
     
     [_circularView startTimerIfNeeded];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleStatusBarTapNotification:) name:STATUS_BAR_TAP_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -103,13 +107,25 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageViewController)
     [super viewWillDisappear:animated];
     [_circularView stopTimer];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:STATUS_BAR_TAP_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 }
 
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kThemeDidChangeNotification object:nil];
 }
 
-#pragma Observer Method
+#pragma mark - Observer Method
+
+- (void)reachabilityChanged:(NSNotification *)notification{
+    Reachability *reachability = [notification object];
+    NetworkStatus netStatus = [reachability currentReachabilityStatus];
+    
+    if (netStatus == ReachableViaWiFi) {
+        dispatch_main_async_safe(^{
+            [self.tableView reloadData];
+        });
+    }
+}
 
 - (void)handleStatusBarTapNotification:(NSNotification *)notification{
     [_tableView setContentOffset:CGPointZero animated:YES];
@@ -187,7 +203,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageViewController)
  *  @return
  */
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
-    if (self.navigationController.visibleViewController == [self.navigationController.viewControllers firstObject] || [self.navigationController.visibleViewController isKindOfClass:[ThemeDailyViewController class]]) {
+    if (self.navigationController.visibleViewController == [self.navigationController.viewControllers firstObject] || [self.navigationController.visibleViewController isKindOfClass:[ThemeDailyViewController class]] || [self.navigationController.visibleViewController isKindOfClass:[SettingsViewController class]]) {
         return NO;
     }
     

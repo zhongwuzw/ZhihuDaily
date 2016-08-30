@@ -12,8 +12,10 @@
 #import "LeftMenuViewController.h"
 #import "LaunchViewController.h"
 #import "ThemeManager.h"
+#import "PictureBlockURLProtocol.h"
 
 #import <CocoaLumberjack/CocoaLumberjack.h>
+#import <objc/runtime.h>
 
 @interface AppDelegate ()
 
@@ -21,11 +23,28 @@
 
 @implementation AppDelegate
 
++ (NSURLSessionConfiguration *)zw_defaultSessionConfiguration{
+    NSURLSessionConfiguration static * configuration = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        configuration = [AppDelegate zw_defaultSessionConfiguration];
+        NSArray *protocolClasses = @[[PictureBlockURLProtocol class]];
+        configuration.protocolClasses = protocolClasses;
+
+    });
+    
+    return configuration;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
     [DDLog addLogger:[DDASLLogger sharedInstance]];
-
+    
+    [self configureReachability];
+    
+    [self configurePictureURLProtocol];
+    
     [self configureRootVC];
     
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
@@ -34,6 +53,19 @@
                                                            [UIColor whiteColor], NSForegroundColorAttributeName, [UIFont systemFontOfSize:17], NSFontAttributeName, nil]];
     
     return YES;
+}
+
+- (void)configurePictureURLProtocol{
+    Method systemMethod = class_getClassMethod([NSURLSessionConfiguration class], @selector(defaultSessionConfiguration));
+    Method zwMethod = class_getClassMethod([AppDelegate class], @selector(zw_defaultSessionConfiguration));
+    method_exchangeImplementations(systemMethod, zwMethod);
+    
+    [NSURLProtocol registerClass:[PictureBlockURLProtocol class]];
+}
+
+- (void)configureReachability{
+    self.reachability = [Reachability reachabilityForInternetConnection];
+    [_reachability startNotifier];
 }
 
 - (void)configureRootVC{

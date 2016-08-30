@@ -34,12 +34,15 @@
                             <inset key="imageEdgeInsets" minX="0.0" minY="-10" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="消息" image="Menu_Icon_Message"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YFG-pR-QM3">
+                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YFG-pR-QM3">
                             <rect key="frame" x="230" y="0.0" width="115" height="50"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <inset key="titleEdgeInsets" minX="-20" minY="22" maxX="0.0" maxY="0.0"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="-10" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="设置" image="Menu_Icon_Setting"/>
+                            <connections>
+                                <action selector="handleButtonClicked:" destination="-1" eventType="touchUpInside" id="dCl-oL-gYd"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z3m-GT-b63">
                             <rect key="frame" x="0.0" y="0.0" width="115" height="50"/>

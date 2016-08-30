@@ -68,7 +68,7 @@
     }
     else{
         [self.imageWidthConstraint setConstant:68];
-        [_rightImage sd_setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:[UIImage imageNamed:@"Image_Preview"]];
+        [_rightImage sd_setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:[UIImage imageNamed:@"Image_Preview"] options:SDWebImageRetryFailed | SDWebImageLowPriority];
     }
 }
 

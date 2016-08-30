@@ -15,6 +15,7 @@
 #import "SideMenuViewController.h"
 #import "ThemeManager.h"
 #import "SkinStyle.h"
+#import "SettingsViewController.h"
 
 @interface LeftMenuViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -64,6 +65,15 @@
         case 2:
             [self handleNightModeButtonClicked:sender];
             break;
+        case 3:
+        {
+            SettingsViewController *settingVC = [SettingsViewController new];
+            settingVC.sideMenuController = self.sideMenuController;
+            
+            [self.homePageViewController.navigationController pushViewController:settingVC animated:NO];
+            [self.sideMenuController hideMenuViewController];
+            break;
+        }
         default:
             break;
     }
@@ -129,8 +139,8 @@
             self.themeDailyViewController.themeID = _dataArray[indexPath.row].themeID;
             self.themeDailyViewController.titleName = _dataArray[indexPath.row].name;
             self.themeDailyViewController.sideMenuViewController = self.sideMenuController;
-            [self.homePageViewController.navigationController setViewControllers:@[self.homePageViewController,self.themeDailyViewController] animated:NO];
         }
+        [self.homePageViewController.navigationController setViewControllers:@[self.homePageViewController,self.themeDailyViewController] animated:NO];
     }
     else{
         [self.homePageViewController.navigationController popToRootViewControllerAnimated:NO];
