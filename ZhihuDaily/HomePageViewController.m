@@ -73,7 +73,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageViewController)
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    [self.view setClipsToBounds:YES];
 
     self.navigationController.delegate = self;
     

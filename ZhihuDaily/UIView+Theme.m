@@ -39,7 +39,6 @@ static void *kUIView_DeallocHelper;
             if (objc_getAssociatedObject(self, &kUIView_DeallocHelper) == nil) {
                 __unsafe_unretained typeof(self) weakSelf = self; // 注意：没有使用weak的原因是在dealloc方法中，weak会被置为nil，导致访问不到对象，所以使用__unsafe_unretained属性
                 id deallocHelper = [self addDeallocBlock:^{
-                    NSLog(@"deallocing %@", weakSelf);
                     [[NSNotificationCenter defaultCenter] removeObserver:weakSelf];
                 }];
                 objc_setAssociatedObject(self, &kUIView_DeallocHelper, deallocHelper, OBJC_ASSOCIATION_ASSIGN);

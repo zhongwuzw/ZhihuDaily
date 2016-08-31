@@ -123,8 +123,10 @@
     CGPoint contentPoint = CGPointMake(offsetPoint.x + self.centerX, 0);
     NSIndexPath *path = [_collectionView indexPathForItemAtPoint:contentPoint];
     NSIndexPath *newPath = [NSIndexPath indexPathForItem:path.row + 1 inSection:path.section];
-    [_collectionView scrollToItemAtIndexPath:newPath atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
-    [self setPageControlIndex:newPath];
+    if (newPath.item < [_collectionView numberOfItemsInSection:path.section]) {
+        [_collectionView scrollToItemAtIndexPath:newPath atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
+        [self setPageControlIndex:newPath];
+    }
 }
 
 - (void)startTimerIfNeeded{
