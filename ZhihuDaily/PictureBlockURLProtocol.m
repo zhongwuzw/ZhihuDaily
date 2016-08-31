@@ -72,7 +72,7 @@ static NSString *const HybridResourceProtocolKey = @"HybridResourceProtocolKey";
 
 - (void)stopLoading
 {
-    [self.connection cancel];
+//    [self.connection cancel];
 }
 
 #pragma mark -NSURLConnectionDelegate

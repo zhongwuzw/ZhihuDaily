@@ -24,15 +24,9 @@
 @implementation AppDelegate
 
 + (NSURLSessionConfiguration *)zw_defaultSessionConfiguration{
-    NSURLSessionConfiguration static * configuration = nil;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        configuration = [AppDelegate zw_defaultSessionConfiguration];
-        NSArray *protocolClasses = @[[PictureBlockURLProtocol class]];
-        configuration.protocolClasses = protocolClasses;
-
-    });
+    NSURLSessionConfiguration *configuration = [AppDelegate zw_defaultSessionConfiguration];
+    NSArray *protocolClasses = @[[PictureBlockURLProtocol class]];
+    configuration.protocolClasses = protocolClasses;
     
     return configuration;
 }
