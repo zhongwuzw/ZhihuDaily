@@ -18,13 +18,15 @@ __Disclaimer - 声明__
 ![](https://raw.githubusercontent.com/zhongwuzw/ZhihuDaily/master/images/demo4.gif)
 #### 4.夜间部分：
 ![](https://raw.githubusercontent.com/zhongwuzw/ZhihuDaily/master/images/demo5.gif)
+#### 5.设置-移动网络不下载图片
+![](https://raw.githubusercontent.com/zhongwuzw/ZhihuDaily/master/images/demo6.gif)
 
 ## Features - 特性
   - 实现知乎日报大多数功能
   - 没有广告
   
 ## TODO - 后续实现
-  - 网络状况切换管理
+  - ~~网络状况切换管理~~ （已完成）
   
 ## Usage - 用法
   - clone或直接下载zip，运行即可
