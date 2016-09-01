@@ -60,6 +60,7 @@
 		0EBCDE681D54680F008E3420 /* CircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBCDE671D54680F008E3420 /* CircleProgressView.m */; };
 		0EBCDE6D1D549A81008E3420 /* HomeNewsTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBCDE6C1D549A81008E3420 /* HomeNewsTableHeaderView.m */; };
 		0EBCDE701D549F0D008E3420 /* NSDateFormatter+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBCDE6F1D549F0D008E3420 /* NSDateFormatter+Util.m */; };
+		0ED1FE3F1D7801130012590B /* NSURLSessionConfiguration+Swizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ED1FE3E1D7801130012590B /* NSURLSessionConfiguration+Swizzle.m */; };
 		0EE1B9DA1D5AD52E00A835D9 /* NewsListResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE1B9D91D5AD52E00A835D9 /* NewsListResponseModel.m */; };
 		0EE1B9E61D5B343800A835D9 /* NewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE1B9E41D5B343800A835D9 /* NewsDetailViewController.m */; };
 		0EE1B9E71D5B343800A835D9 /* NewsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EE1B9E51D5B343800A835D9 /* NewsDetailViewController.xib */; };
@@ -201,6 +202,8 @@
 		0EBCDE6C1D549A81008E3420 /* HomeNewsTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeNewsTableHeaderView.m; sourceTree = "<group>"; };
 		0EBCDE6E1D549F0D008E3420 /* NSDateFormatter+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Util.h"; sourceTree = "<group>"; };
 		0EBCDE6F1D549F0D008E3420 /* NSDateFormatter+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Util.m"; sourceTree = "<group>"; };
+		0ED1FE3D1D7801130012590B /* NSURLSessionConfiguration+Swizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLSessionConfiguration+Swizzle.h"; sourceTree = "<group>"; };
+		0ED1FE3E1D7801130012590B /* NSURLSessionConfiguration+Swizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLSessionConfiguration+Swizzle.m"; sourceTree = "<group>"; };
 		0EE1B9D81D5AD52E00A835D9 /* NewsListResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsListResponseModel.h; sourceTree = "<group>"; };
 		0EE1B9D91D5AD52E00A835D9 /* NewsListResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsListResponseModel.m; sourceTree = "<group>"; };
 		0EE1B9E31D5B343800A835D9 /* NewsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDetailViewController.h; sourceTree = "<group>"; };
@@ -380,6 +383,8 @@
 				0E1307971D51C4EE000C90A2 /* UINavigationBar+BackgroundColor.m */,
 				0EBCDE6E1D549F0D008E3420 /* NSDateFormatter+Util.h */,
 				0EBCDE6F1D549F0D008E3420 /* NSDateFormatter+Util.m */,
+				0ED1FE3D1D7801130012590B /* NSURLSessionConfiguration+Swizzle.h */,
+				0ED1FE3E1D7801130012590B /* NSURLSessionConfiguration+Swizzle.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -968,6 +973,7 @@
 				0E3B7F391D74948200C9FA00 /* Reachability.m in Sources */,
 				0EBCDE681D54680F008E3420 /* CircleProgressView.m in Sources */,
 				0E13079C1D51E3D1000C90A2 /* HTTPClient.m in Sources */,
+				0ED1FE3F1D7801130012590B /* NSURLSessionConfiguration+Swizzle.m in Sources */,
 				0E1B7D3F1D657D2B00028C79 /* NSObject+DeallocBlock.m in Sources */,
 				0EE1B9E61D5B343800A835D9 /* NewsDetailViewController.m in Sources */,
 				0E1307A31D51E716000C90A2 /* BaseResponseModel.m in Sources */,
