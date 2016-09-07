@@ -32,9 +32,9 @@
 
 - (void)initUI{
     self.webView = [UIWebView new];
+    _webView.backgroundColor = [UIColor clearColor];
     _webView.delegate = self;
     _webView.scrollView.delegate = self;
-    _webView.scrollView.backgroundColor = [UIColor whiteColor];
     [self addSubview:_webView];
     
     [_webView setTranslatesAutoresizingMaskIntoConstraints:NO];
