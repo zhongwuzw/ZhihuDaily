@@ -13,11 +13,13 @@
 #import "LaunchViewController.h"
 #import "ThemeManager.h"
 #import "PictureBlockURLProtocol.h"
+#import "UserConfig.h"
 
 #import <CocoaLumberjack/CocoaLumberjack.h>
 #import <objc/runtime.h>
+#import <SDWebImageManager.h>
 
-@interface AppDelegate ()
+@interface AppDelegate ()<SDWebImageManagerDelegate>
 
 @end
 
@@ -26,6 +28,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
     [DDLog addLogger:[DDASLLogger sharedInstance]];
+    
+    [SDWebImageManager sharedManager].delegate = self;
     
     [self configureReachability];
     
@@ -73,6 +77,24 @@
     if (CGRectContainsPoint(statusBarFrame, location)) {
         [[NSNotificationCenter defaultCenter] postNotificationName:STATUS_BAR_TAP_NOTIFICATION object:nil];
     }
+}
+
+//针对使用SDWebCache库下载图片时的情况做优化，直接在创建请求前期即进行拦截；其他情况如UIWebView的图片还是使用NSURLProtocol类
+- (BOOL)imageManager:(SDWebImageManager *)imageManager shouldDownloadImageForURL:(NSURL *)imageURL{
+    if ([[UserConfig sharedInstance] isBlockPicture] && [self isBlockPictureDownload]) {
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)isBlockPictureDownload{
+    Reachability *reachability = ((AppDelegate *)[[UIApplication sharedApplication] delegate]).reachability;
+    
+    NetworkStatus netStatus = [reachability currentReachabilityStatus];
+    
+    BOOL isBlock = netStatus == ReachableViaWWAN?YES : NO;
+    
+    return isBlock;
 }
 
 @end

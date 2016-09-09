@@ -60,7 +60,7 @@
 - (void)setTitleLabel:(NSString *)title imageURL:(NSString *)imageURL{
     [_titleLabel setText:title];
 
-    [_rightImage sd_setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:[UIImage imageNamed:@"Image_Preview"] options:SDWebImageLowPriority | SDWebImageRetryFailed];
+    [_rightImage sd_setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:[UIImage imageNamed:@"Image_Preview"] options:SDWebImageLowPriority];
 }
 
 @end

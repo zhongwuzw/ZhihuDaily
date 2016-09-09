@@ -22,7 +22,7 @@
     CircularCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     
     TopNewsResponseModel *model = (TopNewsResponseModel *)self.dataArray[indexPath.row];
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:model.image] placeholderImage:[UIImage imageNamed:@"Home_Image"] options:SDWebImageRetryFailed | SDWebImageLowPriority];
+    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:model.image] placeholderImage:[UIImage imageNamed:@"Home_Image"] options:SDWebImageLowPriority];
     cell.textLabel.text = model.title;
     cell.model = model;
     
