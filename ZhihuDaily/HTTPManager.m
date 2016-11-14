@@ -68,18 +68,15 @@
     BaseResponseModel *baseModel = [MTLJSONAdapter modelOfClass:modelClass fromJSONDictionary:responseObject error:&error];
     
     dispatch_main_async_safe(^{
-        if (baseModel && [baseModel isKindOfClass:modelClass]) {
-            if (success) {
-                success(task, baseModel);
-            }
-        }else if (![baseModel isKindOfClass:modelClass]){
-            if (failure) {
-                failure(task, baseModel);
-            }
-        }else{
+        if (error) {
             if (failure) {
                 BaseResponseModel *errorModel = [[BaseResponseModel alloc] initWithErrorCode:HttpRequestParseErrorType errorMsg:@"解析错误"];
                 failure(task, errorModel);
+            }
+        }
+        else{
+            if (success) {
+                success(task, baseModel);
             }
         }
     })
