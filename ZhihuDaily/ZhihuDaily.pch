@@ -10,7 +10,7 @@
 #define ZhihuDaily_pch
 
 #import <UIKit/UIKit.h>
-#import <CocoaLumberjack/DDLog.h>
+#import <CocoaLumberjack/CocoaLumberjack.h>
 
 #import "CommonMacros.h"
 #import "HTTPClient.h"

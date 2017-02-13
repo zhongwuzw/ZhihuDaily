@@ -115,5 +115,8 @@
     
 }
 
+- (void)dealloc{
+    [self.afManager invalidateSessionCancelingTasks:YES];
+}
 
 @end
