@@ -288,8 +288,4 @@
     [viewController removeFromParentViewController];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 @end

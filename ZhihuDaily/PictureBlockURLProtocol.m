@@ -9,14 +9,9 @@
 #import "PictureBlockURLProtocol.h"
 #import "AppDelegate.h"
 #import "UserConfig.h"
+#import "NSString+Utils.h"
 
 static NSString *const HybridResourceProtocolKey = @"HybridResourceProtocolKey";
-
-@interface PictureBlockURLProtocol ()<NSURLConnectionDataDelegate,NSURLSessionDataDelegate,NSURLSessionTaskDelegate>
-
-@property (nonatomic, strong)NSURLConnection *connection;
-
-@end
 
 @implementation PictureBlockURLProtocol
 
@@ -58,66 +53,18 @@ static NSString *const HybridResourceProtocolKey = @"HybridResourceProtocolKey";
 
 - (void)startLoading
 {
-//        NSMutableURLRequest *newRequest = [self.request mutableCopy];
-//        newRequest.allHTTPHeaderFields = self.request.allHTTPHeaderFields;
-//        
-//        [NSURLProtocol setProperty:@YES forKey:HybridResourceProtocolKey inRequest:newRequest];
-//
-//        NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:nil];
-//        [[session dataTaskWithRequest:newRequest] resume];
-
-        //使用NSURLSession替换NSURLConnection
-//        self.connection = [NSURLConnection connectionWithRequest:newRequest delegate:self];
+    NSString *path = [[[self.request URL] path] stringByReplacingPercentEscapes];
+    NSString *extention = [path pathExtension];
+    NSString *mimeType = [NSString mimeTypeForPathExtension:extention];
+    
+    NSURLResponse *response = [[NSURLResponse alloc] initWithURL:[self.request URL] MIMEType:mimeType expectedContentLength:0 textEncodingName:nil];
+    [[self client] URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageNotAllowed];
+    [[self client] URLProtocol:self didLoadData:[@"" dataUsingEncoding:NSUTF8StringEncoding]];
+    [[self client] URLProtocolDidFinishLoading:self];
 }
 
 - (void)stopLoading
 {
-//    [self.connection cancel];
-}
-
-#pragma mark -NSURLConnectionDelegate
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageNotAllowed];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    [self.client URLProtocol:self didLoadData:data];
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    [self.client URLProtocolDidFinishLoading:self];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    [self.client URLProtocol:self didFailWithError:error];
-}
-
-#pragma mark -NSURLSessionDelegate
-
-- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition))completionHandler
-{
-    [self.client URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageNotAllowed];
-    
-    completionHandler(NSURLSessionResponseAllow);
-}
-
-- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data
-{
-    [self.client URLProtocol:self didLoadData:data];
-}
-
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error
-{
-    if (error) {
-        [self.client URLProtocol:self didFailWithError:error];
-    }
-    else
-        [self.client URLProtocolDidFinishLoading:self];
 }
 
 @end

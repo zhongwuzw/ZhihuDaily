@@ -136,12 +136,16 @@
 - (void)initData{
     [_navBarView setTitle:_titleName];
     
+    WEAK_REF(self);
     [self.themeDataManager getThemeWithThemeID:_themeID success:^(NSURLSessionDataTask *task, BaseResponseModel *model){
-        ThemeEditorTableHeaderView *headerView = [[ThemeEditorTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 40)];
-        [headerView installEditorListWithArray:self.editorsArray];
-        [_topBackImageView sd_setImageWithURL:[NSURL URLWithString:self.background] placeholderImage:_topBackImageView.image];
-        _tableView.tableHeaderView = headerView;
-        [_tableView reloadData];
+        STRONG_REF(self_);
+        if (self__) {
+            ThemeEditorTableHeaderView *headerView = [[ThemeEditorTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, self__.view.width, 40)];
+            [headerView installEditorListWithArray:self__.editorsArray];
+            [self__.topBackImageView sd_setImageWithURL:[NSURL URLWithString:self__.background] placeholderImage:self__.topBackImageView.image];
+            self__.tableView.tableHeaderView = headerView;
+            [self__.tableView reloadData];
+        }
     }fail:^(NSURLSessionDataTask *task, BaseResponseModel *model){
         
     }];
@@ -204,6 +208,10 @@
 
 - (void)handleStatusBarTapNotification:(NSNotification *)notification{
     [_tableView setContentOffset:CGPointZero animated:YES];
+}
+
+- (void)dealloc{
+    DDLogDebug(@"ThemeDailyViewController dealloc");
 }
 
 @end

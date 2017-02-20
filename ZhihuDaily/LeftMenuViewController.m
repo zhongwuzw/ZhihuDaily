@@ -46,10 +46,14 @@
     SingleThemeResponseModel *homeModel = [[SingleThemeResponseModel alloc] initWithDictionary:@{@"name":@"首页",@"themeID":@(-1)} error:nil];
     [_dataArray addObject:homeModel];
 
+    WEAK_REF(self);
     [[HTTPClient sharedInstance] getThemesListWithSuccess:^(NSURLSessionDataTask *task,BaseResponseModel *model){
-        ThemesListResponseModel *themesModel = (ThemesListResponseModel *)model;
-        [self.dataArray addObjectsFromArray:themesModel.others];
-        [self.tableView reloadData];
+        STRONG_REF(self_);
+        if (self__) {
+            ThemesListResponseModel *themesModel = (ThemesListResponseModel *)model;
+            [self__.dataArray addObjectsFromArray:themesModel.others];
+            [self__.tableView reloadData];
+        }
     }fail:^(NSURLSessionDataTask *task, BaseResponseModel *model){
         
     }];
@@ -147,10 +151,6 @@
     }
     
     [self.sideMenuController hideMenuViewController];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 @end

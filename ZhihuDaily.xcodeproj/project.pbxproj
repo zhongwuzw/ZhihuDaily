@@ -60,6 +60,8 @@
 		0EBCDE681D54680F008E3420 /* CircleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBCDE671D54680F008E3420 /* CircleProgressView.m */; };
 		0EBCDE6D1D549A81008E3420 /* HomeNewsTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBCDE6C1D549A81008E3420 /* HomeNewsTableHeaderView.m */; };
 		0EBCDE701D549F0D008E3420 /* NSDateFormatter+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBCDE6F1D549F0D008E3420 /* NSDateFormatter+Util.m */; };
+		0ECA02841E5AA21C00955887 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ECA02831E5AA21C00955887 /* NSString+Utils.m */; };
+		0ECA02861E5AA2B800955887 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ECA02851E5AA2B800955887 /* MobileCoreServices.framework */; };
 		0ED1FE3F1D7801130012590B /* NSURLSessionConfiguration+Swizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ED1FE3E1D7801130012590B /* NSURLSessionConfiguration+Swizzle.m */; };
 		0EE1B9DA1D5AD52E00A835D9 /* NewsListResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE1B9D91D5AD52E00A835D9 /* NewsListResponseModel.m */; };
 		0EE1B9E61D5B343800A835D9 /* NewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE1B9E41D5B343800A835D9 /* NewsDetailViewController.m */; };
@@ -202,6 +204,9 @@
 		0EBCDE6C1D549A81008E3420 /* HomeNewsTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeNewsTableHeaderView.m; sourceTree = "<group>"; };
 		0EBCDE6E1D549F0D008E3420 /* NSDateFormatter+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Util.h"; sourceTree = "<group>"; };
 		0EBCDE6F1D549F0D008E3420 /* NSDateFormatter+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+Util.m"; sourceTree = "<group>"; };
+		0ECA02821E5AA21C00955887 /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utils.h"; sourceTree = "<group>"; };
+		0ECA02831E5AA21C00955887 /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utils.m"; sourceTree = "<group>"; };
+		0ECA02851E5AA2B800955887 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		0ED1FE3D1D7801130012590B /* NSURLSessionConfiguration+Swizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLSessionConfiguration+Swizzle.h"; sourceTree = "<group>"; };
 		0ED1FE3E1D7801130012590B /* NSURLSessionConfiguration+Swizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLSessionConfiguration+Swizzle.m"; sourceTree = "<group>"; };
 		0EE1B9D81D5AD52E00A835D9 /* NewsListResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsListResponseModel.h; sourceTree = "<group>"; };
@@ -246,6 +251,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0ECA02861E5AA2B800955887 /* MobileCoreServices.framework in Frameworks */,
 				A7BF8EB070CB32E760C5DAFE /* libPods-ZhihuDaily.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,6 +391,8 @@
 				0EBCDE6F1D549F0D008E3420 /* NSDateFormatter+Util.m */,
 				0ED1FE3D1D7801130012590B /* NSURLSessionConfiguration+Swizzle.h */,
 				0ED1FE3E1D7801130012590B /* NSURLSessionConfiguration+Swizzle.m */,
+				0ECA02821E5AA21C00955887 /* NSString+Utils.h */,
+				0ECA02831E5AA21C00955887 /* NSString+Utils.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -761,6 +769,7 @@
 		F3D6A2D478B476E2E451BC5B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0ECA02851E5AA2B800955887 /* MobileCoreServices.framework */,
 				22F2A2427616E77FCCA1CCA9 /* libPods-ZhihuDaily.a */,
 			);
 			name = Frameworks;
@@ -961,6 +970,7 @@
 				0EE1B9EF1D523840000AC44B /* LatestNewsResponseModel.m in Sources */,
 				0EEED5051D616DA900E5838F /* ThemesListResponseModel.m in Sources */,
 				0E14CAEE1D5C1427008C74A5 /* DetailNewsHeaderView.m in Sources */,
+				0ECA02841E5AA21C00955887 /* NSString+Utils.m in Sources */,
 				0EEED51E1D61D26A00E5838F /* ThemeDetailResponseModel.m in Sources */,
 				0E1D5AB51D75711000511C0F /* SettingsTableViewCell.m in Sources */,
 				0E14CAF71D5C8489008C74A5 /* PushAnimator.m in Sources */,

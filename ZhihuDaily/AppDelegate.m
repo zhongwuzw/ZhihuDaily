@@ -29,6 +29,8 @@
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
     [DDLog addLogger:[DDASLLogger sharedInstance]];
     
+    DDLogDebug(@"Home Path : %@", HomePath);
+    
     [SDWebImageManager sharedManager].delegate = self;
     
     [self configureReachability];

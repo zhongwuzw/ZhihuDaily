@@ -15,6 +15,16 @@
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(UserConfig)
 
+- (instancetype)init{
+    if (self = [super init]) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                     selector:@selector(savePref)
+                         name:UIApplicationWillTerminateNotification
+                       object:nil];
+    }
+    return self;
+}
+
 - (BOOL)isBlockPicture{
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     return [userDefaults boolForKey:BlockPicture];
@@ -23,7 +33,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(UserConfig)
 - (void)setIsBlockPicture:(BOOL)blockPicture{
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setBool:blockPicture forKey:BlockPicture];
-    [userDefaults synchronize];
+}
+
+- (void)savePref{
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

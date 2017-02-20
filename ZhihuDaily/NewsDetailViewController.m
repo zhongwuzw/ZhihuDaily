@@ -62,9 +62,13 @@
 }
 
 - (void)initData{
+    WEAK_REF(self);
     [[HTTPClient sharedInstance] getDetailNewsWithID:_storyID success:^(NSURLSessionDataTask *task, BaseResponseModel *model){
-        DetailNewsResponseModel *detailNewsModel = (DetailNewsResponseModel *)model;
-        [_detailNewsView updateNewsWithModel:detailNewsModel];
+        STRONG_REF(self_);
+        if (self__) {
+            DetailNewsResponseModel *detailNewsModel = (DetailNewsResponseModel *)model;
+            [self__.detailNewsView updateNewsWithModel:detailNewsModel];
+        }
     }fail:^(NSURLSessionDataTask *task, BaseResponseModel *model){
         ;
     }];
@@ -155,10 +159,6 @@
     
     [self.navigationController pushViewController:safariVC animated:YES];
     [safariVC.navigationController setNavigationBarHidden:NO animated:YES];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 @end

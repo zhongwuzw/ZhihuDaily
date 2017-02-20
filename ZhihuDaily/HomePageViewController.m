@@ -415,18 +415,18 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageViewController)
         }
         
         if (yOffset + _tableView.height + TABLE_VIEW_CELL_HEIGHT > _tableView.contentSize.height) {
+            WEAK_REF(self);
             [self.homePageDataManager getPreviousNewsWithSuccess:^(NSURLSessionDataTask *task, BaseResponseModel *model){
-                NSInteger section = [self.homePageDataManager numberofSections];
-                [_tableView insertSections:[NSIndexSet indexSetWithIndex:section - 1] withRowAnimation:UITableViewRowAnimationFade];
+                STRONG_REF(self_);
+                if (self__) {
+                    NSInteger section = [self__.homePageDataManager numberofSections];
+                    [self__.tableView insertSections:[NSIndexSet indexSetWithIndex:section - 1] withRowAnimation:UITableViewRowAnimationFade];
+                }
             }fail:^(NSURLSessionDataTask *task, BaseResponseModel *model){
                 ;
             }];
         }
     }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 @end
