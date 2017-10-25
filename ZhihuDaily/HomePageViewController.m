@@ -249,6 +249,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageViewController)
 
 - (void)initTableView{
     self.tableView = [UITableView new];
+    
+    self.tableView.estimatedRowHeight = 0;
+    self.tableView.estimatedSectionHeaderHeight = 0;
+    self.tableView.estimatedSectionFooterHeight = 0;
+    
     [self.view addSubview:_tableView];
     
     [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -420,11 +425,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageViewController)
                 STRONG_REF(self_);
                 if (self__) {
                     NSInteger section = [self__.homePageDataManager numberofSections];
-                    [self__.tableView insertSections:[NSIndexSet indexSetWithIndex:section - 1] withRowAnimation:UITableViewRowAnimationFade];
+                    [self__.tableView insertSections:[NSIndexSet indexSetWithIndex:section - 1] withRowAnimation:UITableViewRowAnimationNone];
                 }
-            }fail:^(NSURLSessionDataTask *task, BaseResponseModel *model){
-                ;
-            }];
+            } fail:nil];
         }
     }
 }
