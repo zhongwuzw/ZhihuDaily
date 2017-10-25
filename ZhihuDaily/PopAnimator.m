@@ -27,6 +27,10 @@
     CGRect f = fromViewController.view.frame;
     f.origin.x = f.origin.x + f.size.width;
     
+    toViewController.view.transform = CGAffineTransformIdentity;
+    toViewController.view.frame = [UIScreen mainScreen].bounds;
+    toViewController.view.transform = CGAffineTransformMakeScale(0.9, 0.9);
+    
     [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
         fromViewController.view.frame = f;
         toViewController.view.transform = CGAffineTransformIdentity;
