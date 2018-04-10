@@ -42,10 +42,10 @@
 - (void)removeLaunchViewController{
     [_launchController willMoveToParentViewController:nil];
     [UIView animateWithDuration:.5 animations:^{
-        _launchController.view.alpha = 0;
+        self.launchController.view.alpha = 0;
     }completion:^(BOOL finished){
-        [_launchController.view removeFromSuperview];
-        [_launchController removeFromParentViewController];
+        [self.launchController.view removeFromSuperview];
+        [self.launchController removeFromParentViewController];
     }];
 }
 

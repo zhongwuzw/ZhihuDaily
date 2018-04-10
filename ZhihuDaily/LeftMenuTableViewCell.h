@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^SelectedBlock)();
+typedef void(^SelectedBlock)(void);
 
 @interface LeftMenuTableViewCell : UITableViewCell
 

@@ -10,6 +10,6 @@
 
 @interface NSObject (DeallocBlock)
 
-- (id)addDeallocBlock:(void (^)())deallocBlock;
+- (id)addDeallocBlock:(void (^)(void))deallocBlock;
 
 @end

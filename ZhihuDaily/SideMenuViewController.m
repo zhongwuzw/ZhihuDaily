@@ -119,7 +119,7 @@
         }completion:^(BOOL finished){
             [self hideViewController:self.contentViewController];
             [contentViewController didMoveToParentViewController:self];
-            _contentViewController = contentViewController;
+            self.contentViewController = contentViewController;
             
             [self statusBarNeedsAppearanceUpdate];
         }];

@@ -10,7 +10,7 @@
 
 @implementation DeallocBlockExecutor
 
-+ (instancetype)executorWithDeallocBlock:(void (^)())deallocBlock
++ (instancetype)executorWithDeallocBlock:(void (^)(void))deallocBlock
 {
     DeallocBlockExecutor *o = [DeallocBlockExecutor new];
     o.deallocBlock = deallocBlock;

@@ -149,11 +149,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageViewController)
             if (yOffset > NAVBAR_CHANGE_POINT) {
                 CGFloat alpha = MIN(1, 1 - ((NAVBAR_CHANGE_POINT + 64 - yOffset) / 64));
                 [UIView animateWithDuration:0.5 animations:^{
-                   [_navBarView setBackgroundViewColor:UIColorFromRGBAndAlpha(self.navBarViewBGColor, alpha)];
+                   [self.navBarView setBackgroundViewColor:UIColorFromRGBAndAlpha(self.navBarViewBGColor, alpha)];
                 }];
             } else {
                 [UIView animateWithDuration:0.5 animations:^{
-                    [_navBarView setBackgroundViewColor:UIColorFromRGBAndAlpha(self.navBarViewBGColor, 0)];
+                    [self.navBarView setBackgroundViewColor:UIColorFromRGBAndAlpha(self.navBarViewBGColor, 0)];
                 }];
             }
         }
@@ -301,10 +301,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageViewController)
                 }
             };
             [self__.tableView reloadData];
-            [_navBarView stopActivityIndicator];
+            [self__.navBarView stopActivityIndicator];
         }
     }fail:^(NSURLSessionDataTask *task,BaseResponseModel *model){
-        [_navBarView stopActivityIndicator];
+        [self_.navBarView stopActivityIndicator];
     }];
 }
 

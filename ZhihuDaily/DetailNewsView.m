@@ -106,7 +106,7 @@
         
         if (yOffset <= -35) {
             [UIView animateWithDuration:.3 animations:^{
-                _previousButton.imageView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, M_PI);
+                self.previousButton.imageView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, M_PI);
 
             }];
             
@@ -116,7 +116,7 @@
         }
         else{
             [UIView animateWithDuration:.3 animations:^{
-                _previousButton.imageView.transform = CGAffineTransformIdentity;
+                self.previousButton.imageView.transform = CGAffineTransformIdentity;
                 
             }];
         }
@@ -127,13 +127,13 @@
         
         if (yOffset + kScreenHeight - 35 >= scrollView.contentSize.height + 40) {
             [UIView animateWithDuration:.3 animations:^{
-                _nextButton.imageView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, M_PI);
+                self.nextButton.imageView.transform = CGAffineTransformRotate(CGAffineTransformIdentity, M_PI);
                 
             }];
         }
         else
             [UIView animateWithDuration:.3 animations:^{
-                _nextButton.imageView.transform = CGAffineTransformIdentity;
+                self.nextButton.imageView.transform = CGAffineTransformIdentity;
                 
             }];
     }

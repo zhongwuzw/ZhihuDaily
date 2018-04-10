@@ -10,8 +10,8 @@
 
 @interface DeallocBlockExecutor : NSObject
 
-@property (nonatomic, copy) void (^deallocBlock)();
+@property (nonatomic, copy) void (^deallocBlock)(void);
 
-+ (instancetype)executorWithDeallocBlock:(void (^)())deallocBlock;
++ (instancetype)executorWithDeallocBlock:(void (^)(void))deallocBlock;
 
 @end

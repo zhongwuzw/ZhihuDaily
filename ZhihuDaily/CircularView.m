@@ -43,6 +43,7 @@
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     [self addSubview:_collectionView];
     
+    if (@available(iOS 11.0, *)) { self.collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever; }
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.pagingEnabled = YES;
@@ -51,10 +52,6 @@
     self.collectionView.showsHorizontalScrollIndicator = NO;
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"CircularCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
-    
-    [_collectionView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_collectionView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_collectionView)]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_collectionView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_collectionView)]];
     
     self.pageControl = [UIPageControl new];
     [self addSubview:_pageControl];
@@ -115,7 +112,7 @@
         _timer = nil;
     }
     WeakTarget *target = [[WeakTarget alloc] initWithTarget:self selector:@selector(timerFireMethod:)];
-    _timer = [NSTimer scheduledTimerWithTimeInterval:4 target:target selector:@selector(timerDidFire:) userInfo:nil repeats:YES];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:6 target:target selector:@selector(timerDidFire:) userInfo:nil repeats:YES];
 }
 
 - (void)timerFireMethod:(NSTimer *)timer{
@@ -172,6 +169,8 @@
 }
 
 - (void)scrollCollectionViewToCorrectIndexPath{
+    if (self.dataArray.count < 2) { return; }
+    
     float contentOffsetWhenFullyScrolledRight = self.frame.size.width * ([self.dataArray count] -1);
     
     if (self.collectionView.contentOffset.x == contentOffsetWhenFullyScrolledRight) {
@@ -190,11 +189,13 @@
 
 - (void)setFrame:(CGRect)frame
 {
+    NSLog(@"frame is %f,%f,%f,%f",frame.origin.x,frame.origin.y,frame.size.width,frame.size.height);
     if (self.height != frame.size.height) {
         [self.collectionView.collectionViewLayout invalidateLayout];
     }
     
     [super setFrame:frame];
+    self.collectionView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
 }
 
 @end

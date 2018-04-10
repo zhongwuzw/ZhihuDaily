@@ -40,10 +40,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageDataManager)
     return [[HTTPClient sharedInstance] getLatestNewsWithSuccess:^(NSURLSessionDataTask *task, BaseResponseModel *model){
         LatestNewsResponseModel *latestNewsModel = (LatestNewsResponseModel *)model;
         
-        if ([[_homePageArray firstObject].date isEqualToString:latestNewsModel.date]) {
-            if ([_homePageArray firstObject].stories.count != latestNewsModel.stories.count) {
-                [_homePageArray removeObjectAtIndex:0];
-                [_homePageArray insertObject:latestNewsModel atIndex:0];
+        // It's ok to use self explicity, because self and HTTPClient is SINGLETON
+        if ([[self.homePageArray firstObject].date isEqualToString:latestNewsModel.date]) {
+            if ([self.homePageArray firstObject].stories.count != latestNewsModel.stories.count) {
+                [self.homePageArray removeObjectAtIndex:0];
+                [self.homePageArray insertObject:latestNewsModel atIndex:0];
                 self.topNewsArray = latestNewsModel.topStories;
                 
                 if (success) {
@@ -58,7 +59,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageDataManager)
             }
         }
         else{
-            [_homePageArray insertObject:latestNewsModel atIndex:0];
+            [self.homePageArray insertObject:latestNewsModel atIndex:0];
             self.currentDate = latestNewsModel.date;
             self.topNewsArray = latestNewsModel.topStories;
             
@@ -66,16 +67,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageDataManager)
                 success(task,model);
             }
         }
-    
-        //            NSRange range;
-        //            NSArray *newArray;
-        //            if (self__.circularView.dataArray.count > 0) {
-        //                range.location = 1;
-        //                range.length = self__.circularView.dataArray.count - 2;
-        //                newArray = [self__.circularView.dataArray subarrayWithRange:range];
-        //            }
-        //
-        //            BOOL isEqual = [tempArray isEqualToArray:newArray];
     }fail:fail];
 }
 
@@ -88,8 +79,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageDataManager)
     
     return [[HTTPClient sharedInstance] getPreviousNewsWithDate:self.currentDate success:^(NSURLSessionDataTask *task,BaseResponseModel *model){
         NewsListResponseModel *newsListModel = (NewsListResponseModel *)model;
+        // It's ok to use self explicity, because self and HTTPClient is SINGLETON
         self.currentDate = newsListModel.date;
-        [_homePageArray addObject:newsListModel];
+        [self.homePageArray addObject:newsListModel];
         
         if (success) {
             success(task,model);
