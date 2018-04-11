@@ -30,11 +30,12 @@
 #define TABLE_HEADER_VIEW_HEIGHT 34
 #define TABLE_VIEW_CELL_HEIGHT 82
 #define PROGRESS_THRESHOLD 60
+#define STATUS_BAR_HEIGHT 20
 
 #define REUSE_TABLE_VIEW_CELL @"REUSE_TABLE_VIEW_CELL"
 #define REUSE_TABLE_Header_VIEW_CELL @"REUSE_TABLE_Header_VIEW_CELL"
 
-static const CGFloat TestViewControllerHeadScrollHeight = 190.0f;
+static const CGFloat HomeHeaderViewHeight = 200.0f;
 
 @interface HomePageViewController ()<UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate,UIGestureRecognizerDelegate>
 
@@ -239,16 +240,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageViewController)
     [self initTableView];
     [self initCircularView];
     
-    self.navBarView = [NavBarView new];
-    [_navBarView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    self.navBarView = [[NavBarView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 50)];
     [self.view addSubview:_navBarView];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_navBarView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_navBarView)]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_navBarView(50)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_navBarView)]];
     [_navBarView.leftButton addTarget:self action:@selector(menuButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)initTableView{
-    self.tableView = [UITableView new];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
     
     self.tableView.estimatedRowHeight = 0;
     self.tableView.estimatedSectionHeaderHeight = 0;
@@ -256,12 +254,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageViewController)
     
     [self.view addSubview:_tableView];
     
-    [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_tableView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[_tableView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
-    
-    self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.tableView.bounds), TestViewControllerHeadScrollHeight)];
+    self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.tableView.bounds), HomeHeaderViewHeight)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.tableView.delegate = self;
@@ -276,7 +269,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageViewController)
 
 - (void)initCircularView{
     
-    self.circularView = [[HomeTopNewsCircularView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), TestViewControllerHeadScrollHeight + 20)];
+    self.circularView = [[HomeTopNewsCircularView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), HomeHeaderViewHeight)];
     
     [self.view addSubview:_circularView];
 }
@@ -339,7 +332,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageViewController)
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingHeaderView:(UIView *)view forSection:(NSInteger)section{
     if (section == 0) {
-        [_navBarView.backgroundHeightConstraint setConstant:20];
+        [_navBarView.backgroundHeightConstraint setConstant:STATUS_BAR_HEIGHT];
         [_navBarView setTitleLabelHidden:YES];
     }
 }
@@ -394,21 +387,30 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(HomePageViewController)
     CGFloat yOffset  = scrollView.contentOffset.y;
     if (yOffset <= 0) {
         
-        if (!_isLoading) {
-            CGFloat progress = -yOffset / PROGRESS_THRESHOLD;
+        if (!_isLoading && yOffset <= -STATUS_BAR_HEIGHT) {
+            CGFloat progress = (-yOffset - STATUS_BAR_HEIGHT) / PROGRESS_THRESHOLD;
             [_navBarView updateProgress:progress];
         }
         
         CGRect f = self.circularView.frame;
         f.origin.y = 0;
-        f.size.height = TestViewControllerHeadScrollHeight + 20 - yOffset;
+        f.size.height = HomeHeaderViewHeight - yOffset;
         self.circularView.frame = f;
     }
-    else{
-        CGRect f = self.circularView.frame;
-        f.origin.y = -yOffset;
-        f.size.height = TestViewControllerHeadScrollHeight + 20;
-        self.circularView.frame = f;
+    else {
+        if (yOffset <= HomeHeaderViewHeight) {
+            CGRect f = self.circularView.frame;
+            f.origin.y = -yOffset;
+            f.size.height = HomeHeaderViewHeight;
+            self.circularView.frame = f;
+        }
+        else if ((-self.circularView.frame.origin.y) < yOffset)
+        {
+            CGRect f = self.circularView.frame;
+            f.origin.y = -HomeHeaderViewHeight;
+            f.size.height = HomeHeaderViewHeight;
+            self.circularView.frame = f;
+        }
         
         [_navBarView setProgressViewHidden:YES];
         
